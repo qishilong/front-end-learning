@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		console.log(jQuery);
+		console.log($===jQuery);
+
+		$(document).ready(function(){
+			var box=document.getElementById('box');
+			console.log(box);
+		});
+
+		$().ready(function(){
+			var box=document.getElementById('box');
+			console.log(box);
+		});
+
+		$(function(){
+			var box=document.getElementById('box');
+			console.log(box);
+		});
+
+		$(document).ready(function(){
+			console.log('ready完成了');
+		});
+		window.onload=function(){
+			console.log('load完成了');
+		};
+		document.addEventListener('DOMContentLoaded',function(){
+			console.log('dom内容加载完毕');
+		});
+	</script>
+</head>
+
+<body>
+	<button id="btn">按钮</button>
+	<div id="box"></div>
+
+	<img src="http://www.google.com/1.jpg" alt="">
+
+	<ul id="ulId" class="ulClass">
+		<li>red</li>
+		<li>green</li>
+		<li name="blue">blue</li>
+	</ul>
+
+	<p class="text"></p>
+
+	<h1>大标题</h1>
+	<script>
+		/* 原生js写法 */
+		/* var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			var div=document.createElement('div');
+			div.style.width='100px';
+			div.style.height='100px';
+			div.style.background='green';
+
+			document.body.appendChild(div);
+		} */
+
+		/* jQuery的写法 */
+		$('#btn').click(function(){
+			$('div').css({
+				width:'100px',
+				height:'100px',
+				background:'green'
+			}).appendTo('body');
+		});
+
+		//强大的选择器
+		var li=$('ul li:nth-child(1)');
+		var li=$('#ulId li:first-child');
+		var li=$('.ulClass li:first-child + li');
+		var li=$('li[name=blue]');
+		//var li=document.querySelector('#ulId li:first-child');
+		//li.style.background='green';
+
+		li.css('background','green');
+		
+
+		//链式操作
+		$('.text').html('陈学辉').css('border','1px solid #000').width(200).height(200).css('background','grey');
+
+		//原生js获取到的对象与jquery取到的对象的对比
+		var h1=document.querySelector('h1');
+		h1.style.color='red';
+		//h1.css('color','pink');	//报错，原生的对象不使用jquery里的方法
+		
+
+		var $h1=$('h1');
+		$h1.css('color','green');
+		//$h1.style.color='pink';	//报错，jquery的对象也不能使用原后的方法
+
+		console.log(h1==$h1);	//false
+		console.log(h1);
+		console.log($h1);
+
+		//原生转jquery
+		$(h1).css('color','blue');
+
+		//jquery转原生
+		$h1[0].style.color='purple';
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+}
+
+/* 最外层容器样式 */
+.container{
+    /* outline: 1px solid red; */
+    perspective: 1000px;
+}
+
+/* 魔方容器样式 */
+.wrap{
+    width: 1100px;
+    height: 600px;
+    margin: 50px auto;
+    /* outline: 1px solid blue; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+}
+
+/* 魔方样式 */
+.box{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    /* outline: 1px solid; */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all .5s;
+}
+
+/* 魔方的每一面 */
+.box>div{
+    width: 100%;
+    height: 100%;
+    border: 10px solid rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 70px;
+    color: #fff;
+    text-shadow: 0 3px 10px rgb(0, 0, 0);
+}
+
+/* 接下来选择一个魔方，为他的6个面来设置背景图 */
+/* 但是我们有 28 个魔方，所以选择使用 JS 来完成这一块代码 */
+/* .box:nth-child(1) div{
+    background: #f44336 url('../img/1.png') no-repeat center;
+} */
+
+/* 接下来我们需要构建我们的魔方
+所谓构建，就是将魔方的每一面移动到正确的位置 */
+
+.box div:nth-child(1){
+    /* 正面 */
+    transform: translateZ(50px);
+}
+
+.box div:nth-child(2){
+    /* 背面 */
+    transform: translateZ(-50px);
+}
+
+.box div:nth-child(3){
+    /* 顶面 */
+    transform: rotateX(90deg) translateZ(50px);
+}
+
+.box div:nth-child(4){
+    /* 底面 */
+    transform: rotateX(90deg) translateZ(-50px);
+}
+
+.box div:nth-child(5){
+    /* 左面 */
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.box div:nth-child(6){
+    /* 右面 */
+    transform: rotateY(90deg) translateZ(-50px);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /*
+            Web Storage
+            5Mb 
+
+            localStorage
+            sessionStorage
+
+            1、length   本地存储数据的数量
+            2、key()    通过索引找到存储的数据
+            3、getItem()    通过键名取到本地存储的数据
+            4、setItem()    设置一个本地存储数据
+            5、removeItem() 删除一个本地存储数据
+            6、clear()      清空本地存储数据
+
+         */
+        console.dir(Storage);
+
+        console.log(localStorage, sessionStorage);
+
+        console.log(localStorage.length);
+
+        localStorage.setItem('name', 'kaivon');
+        localStorage.setItem('age', '18');
+        localStorage.setItem('sex', 'male');
+        localStorage.setItem('insterest', 'drink');
+
+        var color = ["red", "green"];   //"red", "green"
+        var color = { "c1": "red", "c2": "green" }  //[object Object]
+        localStorage.setItem('color', JSON.stringify(color));
+        console.log(JSON.parse(localStorage.getItem('color')));
+
+        localStorage.removeItem('color');
+        //localStorage.clear();
+
+    </script>
+</body>
+<html>

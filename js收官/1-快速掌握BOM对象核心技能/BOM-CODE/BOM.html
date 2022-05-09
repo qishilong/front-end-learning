@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        #demo2 {
+            position: absolute;
+            top: 1200px;
+            border: 2px solid black;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id='demo2' style='opacity: 0.3'></div> -->
+    <!-- <iframe src="./child.html" frameborder="0" width='300px' height='300px'></iframe> -->
+    <script>
+        // window  属性
+
+        // 1.innerHeight innerWidth 包含滚动条的大小
+        // 2.pageX/YOffset 设置或返回当前页面对于串口的显示区域左上角的x/y位置
+        // HTMLDivElement.prototype.checkSelf = function () {
+        //     if (!this.lock) {
+        //         if(this.offsetTop < window.innerHeight + window.pageYOffset) {
+        //             console.log('start')
+        //             this.lock = true;
+        //             var iSpeed = 0.01;
+        //             var self = this;
+        //             this.timer = setInterval(function () {
+        //                 if (self.style.opacity == '1') {
+        //                     console.log('over')
+        //                     clearInterval(self.timer);
+        //                 }else {
+        //                     console.log( self.style.opacity )
+        //                     self.style.opacity = parseFloat(self.style.opacity) + iSpeed;
+        //                 }
+        //             }, 30);
+        //         }
+        //     }
+
+        // }
+
+        // window.onscroll = function () {
+        //     demo2.checkSelf();
+        // }
+
+        //3. screenLeft screenTop screenX screenY 只读整数。声明了窗口的左上角在屏幕上的的 x 坐标和 y 坐标。 IE、 Safari、 Chrome 和 Opera 支持 screenLeft 和 screenTop，而 Chrome、Firefox 和 Safari 支持 screenX 和 screenY。
+
+        //4. name 设置或返回窗口的名称 跨域的时候会用到
+
+        //5.  parent self top  获取父亲级窗口的window对象  获取自己  获取顶级窗口的window对象 这个到网络部分讲iframe会详细说明
+        // child child-child 
+        // var father = 'father';
+
+        //6. closed 判断是否已经关闭
+
+
+
+        // window 对象的方法
+        //1. 定时器 
+
+        //2. alert confirm prompt 这些追求用户体验的网站都不会用的，样子太low了，大家走自己写
+
+        //3. open 打开新窗口并控制其样式  或查找一个已经命名的窗口。    返回该窗口的window对象 
+        //  window.open('https://www.baidu.com', 'width=100,height=100'); 按顺序传参数 把 width=100,height=100当成是新窗口的name而不是样式所以此时直接在原有浏览器打开
+
+        // 按顺序传参数的话且不填写样式  和上面同样
+        // var newWindow = window.open('https://www.baidu.com', 'aa');
+
+        // 按顺序传参数并且给予样式必然重新打开窗口
+        var newWindow = window.open('https://www.baidu.com', 'aa', 'width=100,height=100');
+
+
+        // moveTo moveBy 在新打开的窗口里使用window.moveTo 或者 moveBy 可以移动窗口到指定位置
+        // resizeBy resizeTo 设置新打开窗口的大小
+
+        // focus 可以聚焦到该窗口
+
+        // close 关闭浏览器窗口
+
+        //scrollTo scrollBy移动滚动条之前说过
+
+
+
+        // Navigator 对象
+
+        // userAgent 做浏览器嗅探
+
+        // onLine 判断是否脱机 （有没有网络）
+
+        // cookieEnabled判断是否能使用cookie
+
+        // 
+        var nVer = navigator.appVersion,
+            nAgt = navigator.userAgent,
+            browser = navigator.appName,
+            version = '' + parseFloat(navigator.appVersion),
+            majorVersion, nameOffset, verOffset, ix, network = 'unknown';
+        // Opera
+        if ((verOffset = nAgt.indexOf('Opera')) != -1) {
+            browser = 'Opera';
+            version = nAgt.substring(verOffset + 6);
+            if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                version = nAgt.substring(verOffset + 8);
+            }
+        }
+        // Opera Next
+        if ((verOffset = nAgt.indexOf('OPR')) != -1) {
+            browser = 'Opera';
+            version = nAgt.substring(verOffset + 4);
+        }
+    // MSIE
+        else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
+            browser = 'Microsoft Internet Explorer';
+            version = nAgt.substring(verOffset + 5);
+        }
+    // Chrome
+        else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
+            browser = 'Chrome';
+            version = nAgt.substring(verOffset + 7);
+        }
+    // Safari
+        else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
+            browser = 'Safari';
+            version = nAgt.substring(verOffset + 7);
+            if ((verOffset = nAgt.indexOf('Version')) != -1) {
+                version = nAgt.substring(verOffset + 8);
+            }
+        }
+    // Firefox
+        else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
+            browser = 'Firefox';
+            version = nAgt.substring(verOffset + 8);
+        }
+    // MSIE 11+
+        else if (nAgt.indexOf('Trident/') != -1) {
+            browser = 'Microsoft Internet Explorer';
+            version = nAgt.substring(nAgt.indexOf('rv:') + 3);
+        }
+    // WeiXin
+        else if (nAgt.indexOf('NetType/') != -1) {
+            browser = 'WeiXin';
+            if (nAgt.indexOf('NetType/WIFI') != -1) {
+                network = 'WIFI';
+            }else if(nAgt.indexOf('NetType/2G') != -1) {
+                network = '2G';
+            }else if(nAgt.indexOf('NetType/3G+') != -1) {
+                network = '3G+';
+            }
+            verOffset = nAgt.lastIndexOf('/')
+            version = nAgt.substring(verOffset + 1);
+            if (browser.toLowerCase() == browser.toUpperCase()) {
+                browser = navigator.appName;
+            }
+        }
+    // Other browsers
+        else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
+            browser = nAgt.substring(nameOffset, verOffset);
+            version = nAgt.substring(verOffset + 1);
+            if (browser.toLowerCase() == browser.toUpperCase()) {
+                browser = navigator.appName;
+            }
+        }
+
+        // trim the version string
+        if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
+        if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
+        if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
+        majorVersion = parseInt('' + version, 10);
+        if (isNaN(majorVersion)) {
+            version = '' + parseFloat(navigator.appVersion);
+            majorVersion = parseInt(navigator.appVersion, 10);
+        }
+
+        // mobile version
+        var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
+
+        // start system detect
+        var os = '';
+        var clientStrings = [
+            {s: 'Windows 10', r: /(Windows 10.0|Windows NT 10.0)/},
+            {s: 'Windows 8.1', r: /(Windows 8.1|Windows NT 6.3)/},
+            {s: 'Windows 8', r: /(Windows 8|Windows NT 6.2)/},
+            {s: 'Windows 7', r: /(Windows 7|Windows NT 6.1)/},
+            {s: 'Windows Vista', r: /Windows NT 6.0/},
+            {s: 'Windows Server 2003', r: /Windows NT 5.2/},
+            {s: 'Windows XP', r: /(Windows NT 5.1|Windows XP)/},
+            {s: 'Windows 2000', r: /(Windows NT 5.0|Windows 2000)/},
+            {s: 'Windows ME', r: /(Win 9x 4.90|Windows ME)/},
+            {s: 'Windows 98', r: /(Windows 98|Win98)/},
+            {s: 'Windows 95', r: /(Windows 95|Win95|Windows_95)/},
+            {s: 'Windows NT 4.0', r: /(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
+            {s: 'Windows CE', r: /Windows CE/},
+            {s: 'Windows 3.11', r: /Win16/},
+            {s: 'Android', r: /Android/},
+            {s: 'Open BSD', r: /OpenBSD/},
+            {s: 'Sun OS', r: /SunOS/},
+            {s: 'Linux', r: /(Linux|X11)/},
+            {s: 'iOS', r: /(iPhone|iPad|iPod)/},
+            {s: 'Mac OS X', r: /Mac OS X/},
+            {s: 'Mac OS', r: /(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
+            {s: 'QNX', r: /QNX/},
+            {s: 'UNIX', r: /UNIX/},
+            {s: 'BeOS', r: /BeOS/},
+            {s: 'OS/2', r: /OS\/2/},
+            {s: 'Search Bot', r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
+        ];
+        for (var id in clientStrings) {
+            var cs = clientStrings[id];
+            if (cs.r.test(nAgt)) {
+                os = cs.s;
+                break;
+            }
+        }
+        var osVersion = '';
+        if (/Windows/.test(os)) {
+            osVersion = /Windows (.*)/.exec(os)[1];
+            os = 'Windows';
+        }
+        switch (os) {
+            case 'Mac OS X':
+                osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
+                break;
+            case 'Android':
+                osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
+                break;
+            case 'iOS':
+                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
+                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+                break;
+        }
+
+        //detect data
+        var params = {};
+        params.os = os;//操作系统
+        params.osVersion = osVersion ? osVersion : 'unknown';//操作系统版本
+        params.mobile = mobile;//是否移动端访问
+        params.browser = browser;//浏览器
+        params.browserVersion = version;//浏览器版本
+        params.browserMajorVersion = majorVersion;//浏览器major版本
+
+        //输出对象
+        console.log(params);
+
+
+        // history
+        // 属性
+        // 1.length
+        // 方法
+        // 1.back
+        // 2.forward
+        // 3.go
+
+        // location
+        // 属性
+        // hash
+        // host
+        // href
+        // pathname
+        // port
+        // protocol
+        // search
+
+        // 方法
+        // 1.assign
+        // 2.reload
+            // 如果该方法没有规定参数，或者参数是 false，它就会用 HTTP 头 If-Modified-Since 来检测服务器上的文档是否已改变。如果文档已改变，reload() 会再次下载该文档。如果文档未改变，则该方法将从缓存中装载文档。这与用户单击浏览器的刷新按钮的效果是完全一样的。
+            // 如果把该方法的参数设置为 true，那么无论文档的最后修改日期是什么，它都会绕过缓存，从服务器上重新下载该文档。这与用户在单击浏览器的刷新按钮时按住 Shift 健的效果是完全一样。
+
+        // 3.replace
+        // window.location.assign(url) ： 加载 URL 指定的新的 HTML 文档。 就相当于一个链接，跳转到指定的url，当前页面会转为新页面内容，可以点击后退返回上一个页面。
+// window.location.replace(url) ： 通过加载 URL 指定的文档来替换当前文档 ，这个方法是替换当前窗口页面，前后两个页面共用一个
+// 窗口，所以是没有后退返回上一页的
+
+
+        // Screen
+        // none
+
+        
+
+
+
+
+
+
+    </script>
+</body>
+</html>

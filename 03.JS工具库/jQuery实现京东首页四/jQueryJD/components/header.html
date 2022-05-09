@@ -1,0 +1,178 @@
+<div class="header-content">
+  <!-- logo -->
+  <div class="logo">
+    <img src="//img10.360buyimg.com/img/jfs/t1/160510/16/25709/36032/616cea7eEd14780cc/43b0d9ed8c9e9ab0.png"
+      style="display: block; height: 120px; margin: 0px auto; width: 100%;">
+  </div>
+  <!-- 搜索框 -->
+  <div class="search-box">
+    <!-- 搜索框表单 -->
+    <div class="search-form">
+      <input type="text" id="search-inp" placeholder="外置光驱" />
+      <a href="#" class="search-btn iconfont icon-search"></a>
+      <!-- 联想项目 -->
+      <ul class="search-list">
+        <!-- <li>
+          <span>伴手礼</span>
+          <span class="product-number">约1000件商品</span>
+        </li> -->
+      </ul>
+    </div>
+    <!-- 热门词汇 -->
+    <div class="hotwords">
+      <!-- <a href="#">伴手礼</a>
+      <a href="#">伴手礼</a> -->
+    </div>
+    <!-- 购物车模块 -->
+    <div class="settleup">
+      <div class="cw-icon">
+        <i class="iconfont icon-gouwuche"></i>
+        <a target="_blank" href="//cart.jd.com/cart.action">我的购物车</a>
+        <i class="ci-count" id="shopping-amount">0</i>
+      </div>
+    </div>
+    <!-- 导航栏区域 -->
+    <ul class="navitems">
+      <li><a href="#" class="red">秒杀</a></li>
+      <li><a href="#" class="red">优惠券</a></li>
+      <li><a href="#">PLUS会员</a></li>
+      <li><a href="#">品牌闪购</a></li>
+      <li><a href="#">拍卖</a></li>
+      <li><a href="#">京东家电</a></li>
+      <li><a href="#">京东超市</a></li>
+      <li><a href="#">京东生鲜</a></li>
+      <li><a href="#">京东国际</a></li>
+      <li><a href="#">京东金融</a></li>
+    </ul>
+  </div>
+  <!-- 广告 -->
+  <div class="ad">
+    <a id="J_promo_lk" class="promo_lk"
+      href="//pro.jd.com/mall/active/4NzjHgeKjMknj8nxEdFtR2ZwFm5A/index.html?babelChannel=ttt1" target="_blank"
+      clstag="h|keycount|head|adbtn_01" aria-label="推广位"
+      style="background-image: url(&quot;//img10.360buyimg.com/babel/jfs/t1/201412/14/13270/75235/61793c2fE7fda79de/487acf8035c4bb92.png.webp&quot;); background-size: cover;"></a>
+  </div>
+</div>
+
+<script>
+  // mock 数据结构，数据格式。
+  // 防止污染全局变量
+  (function () {
+    // 1. 动态生成热门词汇
+    $.ajax({
+      url: '/hotwords',
+      dataType: 'json',
+      success(val) {
+        // val {result: []}
+        // val.result 
+        // 1. for Array.prototype.forEach
+        // val.result.forEach(function (item) {
+        //   $('<a></a>')
+        //     .attr('href', item.href)
+        //     .text(item.word)
+        //     .appendTo($('.hotwords'))
+        // });
+        // 2. 累加，reduce Array.prototype.reduce
+        // 利用reduce生成html字符串
+        // .hotwords.innerHTMl = html
+
+        var html = val.result.reduce(function (prev, next) {
+          return prev + '<a href="' + next.href + '">' + next.word + '</a>'
+        }, '');
+        $('.hotwords').html(html);
+      }
+    })
+    // 1.2 热门关键词更新
+    // 利用定时器不断获取更新
+    var timer = null;
+    function recommend() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        $.ajax({
+          url: '/recommendWord',
+          dataType: 'json',
+          success(data) {
+            // console.log(data);
+            $('.hotwords')
+              .find('a')
+              .eq(0)
+              .text(data.word)
+              .attr('href', data.href)
+          }
+        })
+      }, 2000);
+    }
+    recommend();
+    // 热门关键词更新鼠标事件
+    // 异步！
+    // 理想模式
+    //  $('.hotwords')
+    //     .find('a')
+    //     .eq(0)
+    // .mouseenter(function () {
+    //   clearInterval(timer)
+    // })
+    // .mouseleave(function () {
+    //   recommend();
+    // })
+    // 事件委托啊！！
+    $('.hotwords')
+      .on('mouseenter', 'a', function (e) {
+        if ($(e.target).index() == 0) {
+          clearInterval(timer)
+        }
+      })
+      .on('mouseleave', 'a:first-of-type', function () {
+        recommend();
+      })
+    // 2. 联想下拉框
+    var inpTimer = null;
+    $('#search-inp').on('input', function () {
+      var val = $(this).val();
+      if (val) {
+        clearInterval(inpTimer);
+        inpTimer = setTimeout(function () {
+          $.ajax({
+            url: 'https://suggest.taobao.com/sug',
+            dataType: 'jsonp',
+            data: {
+              callback: 'searchCallback',
+              code: 'utf-8',
+              q: val
+            }
+          })
+        }, 1000);
+      }
+    });
+    // 鼠标移出防抖操作
+    var hideTimer = null;
+    $('.search-form')
+      .mouseleave(function () {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () {
+          $('.search-list').hide();
+        }, 1000);
+      })
+      .mouseenter(function () {
+        clearTimeout(hideTimer);
+      })
+    window.searchCallback = function (val) {
+      // console.log(val);
+      // {result: [[name, number]]}
+      // val.result.forEach
+      $('.search-list').html('');
+      if (val.result.length == 0) {
+        $('<li>未搜索到相关信息</li>')
+          .appendTo($('.search-list'))
+      } else {
+        val.result.forEach(function (item) {
+          $('<li></li>')
+            .append($('<span></span>').text(item[0]))
+            .append($('<span></span>').addClass('product-number').text('约'+parseInt(item[1])+'件商品'))
+            .appendTo($('.search-list'))
+        });
+      }
+      $('.search-list').show();
+    }
+  })();
+</script>

@@ -1,0 +1,99 @@
+html{
+	font-size:14px;
+}
+
+#head{
+	height:4.5rem;
+	background:linear-gradient(90deg,#333,#111,#aaa);
+}
+.bg{
+	background:url('../images/bg.png') repeat center center;
+}
+
+.bg button:hover svg{
+	animation:change 2s ease-in-out infinite;
+}
+@keyframes change{
+	0%{
+		transform: rotate(0);
+	}
+	25%{
+		transform: rotate(45deg);
+	}
+	50%{
+		transform: rotate(0deg);
+	}
+	75%{
+		transform: rotate(-45deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+
+#head .navbar-brand span{
+	font-size:1.7rem;
+	text-shadow:4px 2px 6px #ccc;
+	animation:jumping 0.7s infinite alternate; 
+}
+#head .navbar-brand span:nth-of-type(1){
+	animation-delay:0s;
+}
+#head .navbar-brand span:nth-of-type(2){
+	animation-delay:0.25s;
+}
+#head .navbar-brand span:nth-of-type(3){
+	animation-delay:0.5s;
+}
+#head .navbar-brand span:nth-of-type(4){
+	animation-delay:0.75s;
+}
+@keyframes jumping{
+	0%{
+		transform: translateY(0);
+		text-shadow:4px 2px 6px #ccc; 
+	}
+	100%{
+		transform: translateY(-20px);
+		text-shadow:4px 6px 6px #ccc; 
+	}
+}
+
+#myNav{
+	left: 0;
+	top: 4.5rem;
+	background:linear-gradient(#333,#222,#111);
+	z-index: 10;
+}
+#myNav a{
+	color: #ccc;
+}
+#myNav a:hover{
+	color: #fff;
+}
+
+.main{
+	background:linear-gradient(#333,#222,#111);
+}
+.leftCon{
+	height: calc(100vh - 4.5rem);
+	background:url('../images/bg.png') center;
+}
+.leftCon nav a{
+	width: 180px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	transition: .3s;
+}
+.leftCon nav a:hover, .leftCon nav a.active{
+	background: rgba(255, 255, 255, .3);
+}
+
+.rightCon{
+	background: #e5e5e5;
+}
+.areaChart, .sexChart{
+	width:500px;
+	height:500px;
+	border: 1px solid #000;
+}

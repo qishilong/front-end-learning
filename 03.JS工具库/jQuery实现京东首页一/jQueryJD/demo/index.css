@@ -1,0 +1,91 @@
+@import url(./font/font_fw9h1qjz99b/iconfont.css);
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.swiper-wrap {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper {
+  /* 宽度 */
+  /* 500*4 */
+  width: 2000px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.swiper-item {
+  width: 500px;
+  height: 300px;
+  float: left;
+}
+
+/* 按钮 */
+.btn {
+  width: 25px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -17.5px;
+  background: rgba(0,0,0,.15);
+  color: #fff;
+  user-select: none;
+}
+.rbtn {
+  right: 0;
+  /* 左上角，右上角，右下角，左下角 */
+  border-radius: 18px 0 0 18px;
+}
+.lbtn {
+  border-radius: 0 18px 18px 0;
+}
+
+/* 小白点 */
+.dots-wrap {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
+  text-align: right;
+}
+.dots-wrap .dot {
+  display: inline-block;
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 0 2px;
+}
+.dots-wrap .active-dot {
+  background-color: red;
+}
+
+
+.item1 {
+  width: 100%;
+  height: 100%;
+  background: #fac;
+}
+
+.item2 {
+  width: 100%;
+  height: 100%;
+  background: #caf;
+}
+
+.item3 {
+  width: 100%;
+  height: 100%;
+  background: #afc;
+}

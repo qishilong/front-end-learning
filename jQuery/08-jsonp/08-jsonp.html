@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<!-- 
+		JSONP	Json Width Padding
+		src
+	 -->
+
+	<button id="jsonp">jsonp</button>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script>
+		$('#jsonp').click(function () {
+			$.ajax({
+				url: 'http://developer.duyiedu.com/edu/testJsonp',
+				dataType: 'jsonp',
+				method: 'post',
+				success: function (data) {
+					console.log(data);
+				}
+			});
+		});
+
+		function fn(data) {
+			console.log('kaivon');
+			console.log(data);
+		}
+
+		var jp = {
+			ajax: function (options) {
+				var url = options.url;
+				var dataType = options.dataType;	//请求方式
+
+				var targetProtocol = '';	//用户地址的协议
+				var targetHost = '';	//用户地址的域名和端口
+
+				if (url.indexOf('http://') == 0 || url.indexOf('https://') == 0) {
+					//这个条件成立，说明用户传入的地址是一个绝对地址
+					var targetUrl = new URL(url);	//把用户传进来的地址（字符串）变成一个真正的地址对象
+					targetProtocol = targetUrl.protocol;	//返回地址对象的协议
+					targetHost = targetUrl.host;	//返回地址对象的域名和端口
+				} else {
+					//代码走到这里说明，用户传入的地址是一个相对地址
+					targetProtocol = location.protocol;	//返回地址对象的协议
+					targetHost = location.host;	//返回地址对象的域名和端口
+				}
+
+				if (dataType != 'jsonp') {
+					//这个条件成立说明用户的请求方式不是jsonp，那就直接返回
+					return;
+				}
+
+				if (location.protocol == targetProtocol && location.host == targetHost) {
+					//这个条件成立说明现在是同域
+					//...
+				} else {
+					//不同域
+					var callback = 'cb' + Math.floor(Math.random() * 100000);	//随机生成一个函数名
+
+					//把生成的方法定义到window身上
+					window[callback]=options.success;
+
+					//生成script标签
+					var script = document.createElement('script');
+					if (url.indexOf('?') > 0) {
+						//这个条件成立说明用户传的url里面有参数（带问号了）
+						script.src = url + '&callback=' + callback;
+					} else {
+						script.src = url + '?callback=' + callback;
+					}
+
+					document.head.appendChild(script);
+				}
+			}
+		}
+
+		jp.ajax({
+			url:'https://developer.duyiedu.com/edu/testJsonp',
+			dataType:'jsonp',
+			success:function(data){
+				console.log(data);
+			},
+		});
+	</script>
+	<script src="https://developer.duyiedu.com/edu/testJsonp?callback=fn"></script>
+</body>
+<html>

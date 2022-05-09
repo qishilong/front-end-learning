@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<button id="btn">数据请求</button>
+	<script src="js/ajax.js"></script>
+	<script>
+		/* 
+			cookie	为什么有cookie?
+			http	上下文无关，无状态协议
+			set-cookie	服务器设置
+
+			1、cookie不可跨域
+			2、cookie存储在浏览器里面
+			3、cookie有数量与大小的限制
+				1、数量在50个左右
+				2、大小在4kb左右
+			4、cookie的存储时间非常灵活
+			5、cookie不光可以服务器设置，客户端也可以设置
+
+			document.cookie
+			key:value
+
+			cookie的属性
+				1、name		cookie的名字，唯一性
+				2、value	cookie的值
+				3、domain	设置cookie在哪个域下是有效的
+				4、path		cookie的路径
+				5、expires	cookie的过期时间
+					GMT
+				6、max-age	cookie的有效期
+					-1	
+					0	
+					正数
+				7、HttpOnly	有这个标记的cookie，前端是无法获取的
+				8、Secure	设置cookie只能有过https协议传输
+				9、SameSite	设置cookie在跨域请求的时候不能被发送
+		 */
+
+		document.cookie = 'name=kaivon';
+		document.cookie = 'name=kaivon; age=18';
+
+		//cookie属性
+		document.cookie = 'color=red; domain=127.0.0.2; path=/docs';
+
+		console.log(new Date());
+		document.cookie = 'margin=20; expires=' + new Date(2008, 1, 1);
+
+		//document.cookie='padding=30; max-age=1';
+		document.cookie = 'padding=30; max-age=5';
+
+		/* setTimeout(function () {
+			console.log(document.cookie);
+		}, 4000);
+		setTimeout(function () {
+			console.log(document.cookie);
+		}, 5000); */
+
+		document.cookie = 'width=40; expires=' + new Date(2030, 1, 1);
+
+		var btn = document.querySelector('#btn');
+		btn.onclick = function () {
+			console.log(document.cookie);
+			ajax('js/data.json', function (data) {
+				console.log(data);
+			});
+		}
+	</script>
+</body>
+<html>

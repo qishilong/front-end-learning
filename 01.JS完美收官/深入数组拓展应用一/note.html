@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 当前作用域下定义 变量
+    // var i;
+    // 作用域，全局作用域，函数作用域。
+    // for (i = 0; i < 5; i++) {
+    //   setTimeout(function () {
+    //     console.log(i)
+    //   }, 1000);
+    // }
+    // i = 5;
+
+    // 1. 循环 5次
+    // 2. 开启一个超时定时器， 1秒后输出 i
+
+    // function buildList(list) {
+    //   // list = [1,2,3]
+    //   var result = [];
+    //   for (var i = 0; i < list.length; i++) {
+    //     var len = result.length; // 0 1 2
+    //     var item = "item" + i; // 0 1 2
+
+    //     // result[0] = function () {}
+    //     result[len] = function () {
+    //       console.log(item + list[i]);
+    //     };
+    //   }
+    //   return result;
+    // }
+    // function testList() {
+    //   var fnlist = buildList([1, 2, 3]);
+
+    //   for (var j = 0; j < fnlist.length; j++) {
+    //     fnlist[j]();
+    //   }
+    // }
+    // testList();
+
+    /*
+     GO = {
+       buldList: function,
+       testList: function,
+       AO(testList) = {
+         fnlist: result
+       },
+       AO(buildList) = {
+         list: [1,2,3]
+         result: [func, func, func],
+         i: 3,
+         len: 2,
+         item: 'item2'
+         AO(func) = {
+          'item2' + undefined
+         }
+       }
+     }
+    
+    */
+
+    // var a = Date(0);
+    // var b = new Date(0);
+    // var c = new Date();
+    // console.log([a === b, b === c, a === c])
+
+
+    // console.log(2.toString())
+
+    // js 对象 
+    // obj.property 对象点属性
+    // 1.2 小数点
+    // console.log(2.0.toString());
+    // console.log(2 .toString());
+    // console.log((2).toString());
+
+    // 修改数组长度，可以进行数组截取
+    // var arr = [1, 2, 3, 4, 5];
+    //     console.log(arr.length); // 5
+    //     arr.length = 2;
+    //     // [1,2]
+    //     console.log(arr);
+    //     arr.length = 3;
+    //     // [1,2,undefined]
+    //     console.log(arr);
+
+
+    // var name = 'shanshan';
+    // name += 10;
+    // // 'shanshan10'
+    // var type = typeof (name);
+    // // 'string'
+    // if (type.length === 6) {
+    //   type.text = 'string';
+    // }
+    // console.log(type.text);
+
+
+    (function () {
+      var x, y;
+      // undefined, 2
+      try {
+        throw new Error();
+      } catch (x) {
+        // 块级作用域
+          x = 1;
+          y = 2;
+        console.log(x); // 1
+      }
+      console.log(x); // undefined
+      console.log(y); // 2
+    }())
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!-- 左侧的菜单栏，一开始是空的，动态请求数据 -->
+<ul class="menu">
+  <!-- <li class="cate_menu_item ">
+   <a href="#">上坪</a>
+   <span class="cate_menu_line ">/</span>
+   <a href="#">上坪</a>
+   <span class="cate_menu_line ">/</span>
+   <a href="#">上坪</a>
+ </li> -->
+</ul>
+<!-- 隐藏栏目，鼠标放到菜单栏时会出现 -->
+<div class="menu-content">
+  <!-- 上面黑色的 tab 栏目 -->
+  <div class="tabs">
+
+  </div>
+  <!-- 下面的各个分类 -->
+  <div class="details">
+    <!-- <dl class="menu-item-details">
+      <dt class="menu-item-title">
+        <a href="#">习数</a>
+      </dt>
+      <dd class="menu-item"><a href="http://mpdwrjquy.lu/cticudsg">强通格中</a><a
+          href="http://xppokhzgt.中国互联.网络/nfesdxn">省么因</a><a href="http://jmohrrj.gr/zonqa">装传适叫</a><a
+          href="http://qggkj.cl/qpciymsqh">单工过</a><a href="http://xpgpgrg.tg/twgoa">与则约形</a><a
+          href="http://pheebb.sr/plupp">后事</a><a href="http://vleoouxpn.zr/bauxqpnnv">非什光</a><a
+          href="http://zqcsntc.hk/lwjlpwsn">展才件</a></dd>
+    </dl> -->
+  </div>
+</div>
+
+<script>
+  (function () {
+    // 获取数据
+    var menuList = [];
+    // titles menu
+    // content 隐藏内容
+    $.ajax({
+      url: '/menu',
+      dataType: 'json',
+      success(val) {
+        menuList = val.data;
+        menuList.forEach(function (item) {
+          // console.log(item.titles)
+          // 1. html 字符串
+          var html = item.titles.map(function (title) {
+            return '<a href="' + title.href + '">' + title.name + '</a>';
+          }).join('<span class="cate_menu_line ">/</span>');
+          // console.log(html);
+          // 2. 作为 li.html()
+          $('<li></li>')
+            .addClass('cate_menu_item')
+            .html(html)
+            // 3. 插入到.menu
+            .appendTo($('.menu'))
+        });
+      }
+    });
+    // 鼠标移入每一行菜单，展示对应的功能
+    $('.menu').on('mouseenter', 'li', function () {
+      //背景颜色的切换 
+      $(this)
+        .addClass('menu-active')
+        .siblings()
+        .removeClass('menu-active')
+      // 对应数据的索引值
+      var index = $(this).index();
+      // 根据index 渲染右侧隐藏区域
+      renderMenuContent(menuList[index].content)
+
+    });
+    function renderMenuContent(content) {
+      // tabs 黑色区域
+      // details 下面区域
+      // console.log(content);
+      var tabs = content.tabs;
+      var details = content.details;
+      // 1. 生成tabs结构
+      $('.tabs').html('');
+      tabs.forEach(function (tab) {
+        $('<a></a>')
+          .attr('href', tab.href)
+          .text(tab.name)
+          .appendTo($('.tabs'))
+      });
+      // 2. 生成details结构
+      $('.details').html('')
+      details.forEach(function (item) {
+        var val = item.items.map(function (i) {
+          return '<a href="'+ i.href +'">'+ i.name+'</a>'
+        }).join('');
+        $('<dl></dl>')
+          .addClass('menu-item-details')
+          .append(
+            $('<dt></dt>')
+              .addClass('.menu-item-title')
+              .append($('<a></a>').text(item.category))
+          )
+          .append(
+            $('<dd></dd>')
+              .html(val)
+          )
+          .appendTo($('.details'))
+      })
+
+      $('.menu-content').show();
+    }
+    // console.log(menuList);
+
+    // 鼠标离开之后
+    $('.fs-1').mouseleave(function () {
+      $('.menu-content').hide();
+      $('.menu-active').removeClass('menu-active')
+    })
+  })();
+
+  // 1. ajax
+  // 2. ajax请求的结果，动态生成html结构
+</script>

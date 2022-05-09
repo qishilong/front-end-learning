@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/mock.js"></script>
+	<script>
+		var Random = Mock.Random;
+
+		//2、Date	日期类里的方法，共4个
+		//Random.date()		随机一个日期
+		console.log(
+			Random.date(),
+			Random.date('yyyy-MM--dd : HH-m-ss'),
+		);
+
+		//Random.time()		随机一个时间
+		console.log(
+			Random.time(),
+			Random.time('A HH:mm:ss:SS'),
+		);
+
+		//Random.datetime()	随机一个日期+时间
+		console.log(
+			Random.datetime(),
+		);
+
+		//Random.now()	返回当前的日期和时间字符串
+		//week 定到这个周的第一天
+		console.log(
+			Random.now(),
+			Random.now('minute'),
+		);
+
+
+		//3、Image	图片类里的方法，花2个
+		//Random.image()	生成一个随机的图片地址
+		console.log(
+			Random.image(),
+			Random.image('200x100'),
+			Random.image('200x100', '#ffcc33', '#FFF', 'png', 'kaivon'),
+		);
+
+		//Random.dataImage()	//生成一段随机的 Base64 图片编码
+		console.log(
+			//Random.dataImage(),
+			Random.dataImage('200x100'),
+		)
+
+		//Color	颜色类里的方法，共5个
+		//Random.color()	随机一个16进制的颜色
+		console.log(
+			Random.color(),
+		);
+
+		//Random.hex()
+		console.log(
+			Random.hex(),
+		);
+
+		//Random.rgb()
+		console.log(
+			Random.rgb(),	//随机生成一个rgb格式的颜色
+		);
+
+		//Random.rgba()
+		console.log(
+			Random.rgba(),	//随机生成一个rgba格式的颜色
+		);
+
+		//Random.hsl()
+		console.log(
+			Random.hsl(),	//随机生成一个hsl格式(色相、饱和度、亮度)的颜色
+		);
+
+
+		//5、Text	文本类里的方法，共8个
+		//Random.paragraph()	随机生成一段文本
+		console.log(Random.paragraph());
+		console.log(Random.paragraph(2));
+		console.log(Random.paragraph(1, 3));
+
+		//Random.cparagraph()	随机生成一段中文文本。
+		console.log(Random.cparagraph());
+		console.log(Random.cparagraph(2));
+		console.log(Random.cparagraph(1, 3));
+
+		//Random.sentence()	随机生成一个句子，句子首字母大写
+		console.log(Random.sentence());
+		console.log(Random.sentence(5));
+		console.log(Random.sentence(1, 5));
+
+		//Random.csentence()	随机生成一段中文文本
+		console.log(Random.csentence());
+		console.log(Random.csentence(5));
+		console.log(Random.csentence(1, 5));
+
+		//Random.word()		随机生成一个单词
+		console.log(Random.word());
+		console.log(Random.word(5));
+		console.log(Random.word(1, 5));
+
+		//Random.cword()	随机生成一个汉字
+		console.log(Random.cword());
+		console.log(Random.cword(5));
+		console.log(Random.cword(1, 5));
+		console.log(Random.cword('零一二三四五六七八九十', 3));
+		console.log(Random.cword('零一二三四五六七八九十', 5, 7));
+
+		//Random.title()	随机生成一个标题
+		console.log(Random.title());
+		console.log(Random.title(3));
+		console.log(Random.title(1, 5));
+
+		//Random.ctitle()	随机生成一句中文标题
+		console.log(Random.ctitle());
+		console.log(Random.ctitle(3));
+		console.log(Random.ctitle(1, 5));
+
+
+		//6、Name	名字类里的方法，共6个
+		//Random.first()	随机生成一个常见的英文名
+		console.log(Random.first())
+
+		//Random.last()		随机生成一个常见的英文姓
+		console.log(Random.last());
+
+		//Random.name()		随机生成一个常见的英文姓名
+		console.log(Random.name(true));	//是否添加一个中间值
+
+		//Random.cfirst()	//随机生成一个常见的中文名
+		console.log(Random.cfirst());
+
+		//Random.clast()	//随机生成一个常见的中文姓
+		console.log(Random.clast());
+
+		//Random.cname()	随机生成一个常见的中文姓名
+		console.log(Random.cname());
+
+
+		//7、Web	Web类里的方法，共6个
+		//Random.url()	//随机生成一个 URL
+		console.log(Random.url());
+		console.log(Random.url('http'));	//指定协议
+		console.log(Random.url('http', 'kaivon.cn'));	//指定域名
+
+		//Random.protocol()		随机生成一个 URL 协议
+		console.log(Random.protocol());
+
+		//Random.domain()	随机生成一个域名
+		console.log(Random.domain());
+
+		//Random.tld()	随机生成一个顶级域名
+		console.log(Random.tld());
+
+		//Random.email()	随机生成一个邮件地址
+		console.log(Random.email());
+		console.log(Random.email('kaivon.cn'));	//指定@后的域名
+
+		//Random.ip()	随机生成一个 IP 地址
+		console.log(Random.ip());
+
+
+		//8、Address	地址类里的方法，共5个
+		//Random.region()	随机生成一个（中国）大区
+		console.log(Random.region());
+
+		//Random.province()	随机生成一个（中国）省（或直辖市、自治区、特别行政区）
+		console.log(Random.province());
+
+		//Random.city()		随机生成一个（中国）市
+		console.log(Random.city());
+		console.log(Random.city(true));	//是否生成所属的省
+
+		//Random.county()		随机生成一个（中国）县
+		console.log(Random.county());
+		console.log(Random.county(true));	//指示是否生成所属的省、市
+
+		//Random.zip()		随机生成一个邮政编码
+		console.log(Random.zip());
+
+
+		//9、Helper	帮助类里的方法，共5个
+		//Random.capitalize()	//把字符串的第一个字母转换为大写
+		console.log(Random.capitalize('kaivon'));
+
+		//Random.upper()	//把字符串转换为大写
+		console.log(Random.upper('kaivon'));
+
+		//Random.lower()	//把字符串转换为小写
+		console.log(Random.lower('KAI'));
+
+		//Random.pick()		//从数组中随机选取一个元素
+		console.log(Random.pick(['a', 'b', 'c', 'd', 'e']));
+
+		//Random.shuffle()	//打乱数组中元素的顺序
+		console.log(Random.shuffle(['a', 'b', 'c', 'd', 'e']));
+
+
+		//10、Miscellaneous	其它类里的方法，共3个
+		//Random.guid()		随机生成一个 GUID
+		console.log(Random.guid());
+
+		//Random.id()		随机生成一个 18 位身份证
+		console.log(Random.id());
+
+
+		console.log(
+			Mock.mock('@EMAIL'),
+			Mock.mock('@CITY(true)'),
+			Mock.mock('@cword("陈学辉好帅", 1, 3)'),
+		);
+
+		//扩展方法
+		Random.extend({
+			constellation: function (date) {
+				var constellations = ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座'];
+				return this.pick(constellations)
+			}
+		});
+		console.log(Random.constellation());
+		console.log(Mock.mock('@constellation'))
+	</script>
+</body>
+<html>

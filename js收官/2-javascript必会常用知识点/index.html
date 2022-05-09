@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div {
+            border: 1px solid black;
+            width: 200px;
+            height: 100px;;
+        } */
+
+        body {
+            height: 3000px;
+        }
+
+        #wrapper {
+            position: absolute;
+            top: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <p>
+        <label for="demo">username:</label>
+        <input type="text" id='demo'>
+    </p>
+
+    <input type="text" value='ccc' id='demo2'>
+    <input type="checkbox" checked='checked' id='demo3'>
+
+    <div id='wrapper'></div> -->
+
+
+
+    <div class="wrapper" id='ow'>
+        <p class='    demo   active   box    '>
+            <span class='   active   '></span>
+            <span class='demo  box'></span>
+        </p>
+        <p class='demo'>
+            <span class='   demo    active'></span>
+        </p>
+    </div>
+    <script>
+
+  
+
+
+
+        //一. 要说 DOCTYPE 渲染模式，其和最后页面被展示的效果有关系，那我们深入浅出一下吧
+
+        // 浏览器请求页面大致经历了哪些过程
+        // 1. 发送url，DNS查询，请求IP地址
+        // 2. TCP三次握手
+        // 3. 服务器响应内容
+        // 4. 按照成哥讲的js时间线理解js解析执行的过程就好
+        // 5. 渲染页面： DOM树 CSSDOM树，生成RENDER树，布局，渲染
+        // 6. TCP四次挥手
+
+
+        // 这一过程有很多部分参与，说一下浏览器的组成，和组成部分的功能。
+        // 这里着重说一下渲染页面这部分，有渲染引擎主要参与
+        // 细化一下来说其渲染的过程：.... 
+
+
+        // 在布局这块 是由不同渲染模式来定义不同的规则的
+        // 拿一个举例子  IE6怪异模式盒子模型 和 标准模式盒子模型    IE6怪异模式和标准模式的margin: 100 auto 0;
+        // 总结一下: 渲染的最后效果，由于采取模式的不同而产生了不同的效果
+        // 我们能大概了解了渲染模式是什么意思有什么样的作用。
+
+
+
+        // IE6怪异模式其实现在主流浏览器都已经不然兼容了（不去迎合了，被废弃掉了）但我们可以见到了解一下历史以及上述的过程吗。
+
+        // 为什么要有怪异模式和标准模式的区别-》向前兼容
+
+        // 如何控制显示页面的浏览器采取什么样的模式来渲染  DOCTYPE
+
+
+
+
+        // 二.
+
+        // Label 标签
+
+        // var oLabel = document.getElementsByTagName('label')[0];
+        // oLabel.onclick = function () {
+        //     console.log(this);
+        // }
+        // var oInput = document.getElementById('demo');
+        // oInput.onclick = function () {
+        //     console.log(this);
+        // }
+    
+
+        // 属性特性
+        // 特性天生就可以具有的如 id type class value checked  有映射关系 js对象->html标签
+        // 属性包含特性  非特性的属性 data cst log times等等    无映射关系 js对象->html标签
+        // setAttribute getAttribute 是属性就能赋值
+        // jq源码  attr prop底层原理就是这个
+
+
+
+
+
+        // 图片预加载 有充裕的能力时可以这么做
+        // 加载图片一点点出现，用户体验比较差
+
+        // var oImage = new Image();
+        // oImage.src = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2187922730,604631233&fm=27&gp=0.jpg';
+        // oImage.onload = function () {
+        //     document.body.appendChild(this);
+        // }
+
+        // 图片懒加载
+        // BOM中说了
+
+        // 淘宝 图片预加载+懒加载
+
+        // HTMLDivElement.prototype.checkSelf = function () {
+        //     if (!this.lock) {
+        //         if(this.offsetTop < window.innerHeight + window.pageYOffset) {
+        //             console.log('start')
+        //             this.lock = true;
+        //             var iSpeed = 0.01;
+        //             // var self = this;
+        //             setTimeout(function () {
+        //                 var oImage = new Image();
+        //                 oImage.src = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2187922730,604631233&fm=27&gp=0.jpg';
+        //                 oImage.onload = function () {
+        //                     wrapper.appendChild(this);
+        //                 }
+        //             }, 1500);
+
+        //         }
+        //     }
+
+        // }
+
+        // window.onscroll = function () {
+        //     wrapper.checkSelf();
+        // }
+
+
+        // Math.random() [0, 1)
+
+        //  12-36     36-12=24   24 * Math.random() -> [0, 24)  再加 12    12 + 24 * Math.random() -> [12, 36)
+
+        // var n = Math.random() * 100;
+        // if (n <= 1) {
+        //     console.log('one')
+        // }else if (n <= 10) {
+        //     console.log('two');
+        // }else if (n < 50) {
+        //     console.log('three');
+        // }else {
+        //     console.log('thank you')
+        // }
+
+
+
+        // 文档碎片
+        // docuemnt.createDocumentFragment();
+        
+        // 集中操作减少布局计算（重排）和绘制次数（重绘）
+        // 理想很丰满显示很骨干
+        // 其实可以采用字符串拼接的方式
+        // 操作DOM成本高，所以可以采用虚拟DOM来搞定
+        // 虚拟DOM简单原理
+
+
+        // 断点调试
+
+
+        // 封装className 
+        // document.getElementsByClassName()
+        document.getElementsByClassName = undefined;
+        Element.prototype.getElementsByClassName = Document.prototype.getElementsByClassName = document.getElementsByClassName || function (_className) {
+            // this DOM
+            // 如果 children不兼容的话这里也要通过childNodes来做一下兼容
+            var allDomArray = [].slice.call(document.getElementsByTagName('*'), 0);
+            var newDomArray = [];
+            function trimClassName (dom) {
+                var reg = /\s+/g;
+                // 把所有的空格变成一个先
+                var newClassStr = dom.className.replace(reg, ' ');
+                return newClassStr;
+            }
+
+            allDomArray.forEach(function (ele, index) {
+                var newClassStr = trimClassName(ele).trim();
+                var classNameArray = newClassStr.split(' ');
+                classNameArray.forEach(function (className, index) {
+                    if (className == _className) {
+                        newDomArray.push(ele);
+                    }
+                })
+            });
+            return newDomArray;
+        }
+
+
+
+
+    
+
+
+
+
+
+    </script>
+
+</body>
+</html>

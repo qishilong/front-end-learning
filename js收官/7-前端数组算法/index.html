@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. 
+        // var str = '123abc';
+        // console.log( str.split('').reverse().join('') );
+
+        //2.二分查找
+        // 题干描述 -> 原始做法 -> 二分查找原理简述 -> 对比优势 -> 画图详细说明二分查找 -> 代码实现
+
+        // var arr = [1, 3, 5, 7, 9, 10, 12, 13, 15, 17, 19];
+        // //         low       high2 mid low2           high
+        // function binary_search (arr, key) {
+        //     var low = 0,
+        //         high = arr.length - 1;
+        //     var times = 0;
+        //     while (low <= high) {
+        //         console.log('循环次数：',++times);
+        //         var mid = parseInt( (high + low) / 2);
+        //         if (key == arr[mid]) {
+        //             return mid;
+        //         } else if (key > arr[mid]) {
+        //             low = mid + 1;
+        //         }else if (key < arr[mid]) {
+        //             high = mid - 1;
+        //         }else {
+        //             return -1; 
+        //         }                    =
+        //     }
+        // };
+        // var result = binary_search(arr, 3);
+        // console.log('key-index', result);
+
+
+        //3.判断是否为对称数组，也叫判断字符串是否为回文字符串
+        // var arr1 = ['a', 'b', 1, 1, 'b', 'a'];
+        // var arr2 = ['a', 'b', 1, 'b', 'a'];
+        // function test1 (arr) {
+        //     // 严谨判断 不做严谨判断的话 在线代码系统一般都不能通过
+        //     if (arr == null) {
+        //         return false;
+        //     };
+        //     for (var i = 0; i < arr.length; i++) {
+        //         // 从两侧向中间逼近进行比较
+        //         if (arr[i] != arr[arr.length - 1 - i]) {
+        //             return false;
+        //         }
+        //     };
+        //     return true;
+        // };
+        // console.log(test1(arr1), test1(arr2), test1([]), test1(null));
+
+        // 改进一下 往往这种简单的算法题考验你的就是能不能写出最优解。
+        // function test2 (arr) {
+        //     if (arr == null) {
+        //         return false;
+        //     };
+        //     var p = 0;
+        //     var q = arr.length - 1;
+        //     while(true) {
+        //         if (p >= q) {
+        //             break;
+        //         }
+        //         if (arr[p] != arr[q]) {
+        //             return false;
+        //         }
+        //         p++;
+        //         q--;
+        //     };
+        //     return true;
+        // };
+        // console.log(test2(arr1), test2(arr2), test2([]), test2(null));
+        
+
+        //3.查询子串第一次出现的位置。
+        
+        // function test (origin, sub) {
+        //     if (!origin || !sub || origin.length == 0 || sub.length == 0) {
+        //         return -1;
+        //     };
+
+        //     // 边界问题要注意
+        //     // 12345678  length 8
+        //     //      6789 length 4
+        //     // 
+        //     for (var i = 0; i < origin.length - sub.length + 1; i++) {
+        //         for (var j = 0; j < sub.length; j++) {
+        //             // 从原串的第i为开始对比 字串，子串从第0位开始
+        //             if (origin[i + j] != sub[j]) {
+        //                 break;
+        //             }
+        //             if (j == sub.length - 1) {
+        //                 //j到了字串最后一位了
+        //                 return i;
+        //             }
+        //         }
+        //     };
+        //     return -1;
+        // };
+        // console.log(test([1, 2, 3, 4, 5, 7, 8], [4, 5, 6]));
+        // console.log(test([1, 2, 3, 4, 5, 7, 8], [4, 5, 7]));
+        // console.log(test(null, [4, 5, 7]));
+        
+        
+
+
+        // 4. 最大递增子序列
+        // function test (arr) {
+        //     if (!arr || arr.length == 0) {
+        //         return 0;
+        //     };
+
+        //     //始终记录最大的值
+        //     var max = 0;
+
+        //     // 计算当前发现的最大的值
+        //     var nowMax = 1;
+        //     for (var i = 1; i < arr.length; i++) {
+        //         if (arr[i] - arr[i - 1] > 0) {
+        //             nowMax++;
+        //         }else {
+        //             max = nowMax > max ? nowMax : max;
+        //             nowMax = 1;
+        //         }
+        //     };
+        //     //最后可能是递增出来的，所以这里需要重新比较一下。
+        //     max = nowMax > max ? nowMax : max;
+        //     return max;
+        // };
+
+        // console.log( test([1, 2, 5, 1, 2, 3, 4, 8, 1, 2, 6, 9]) );
+        // console.log( test([]) );
+        // console.log( test([null]) );
+        
+
+    </script>
+</body>
+</html>

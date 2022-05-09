@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			padding-bottom: 1000px;
+		}
+		ul{
+			width: 500px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		li{
+			padding: 20px;
+			margin-top: 10px;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 基础选择器 -->
+	<ul id="list1">
+		<li>red</li>
+		<li class="red">red</li>
+		<li>red</li>
+		<li>red</li>
+		<li>red</li>
+	</ul>
+	<ul id="list2">
+		<li>red</li>
+		<li>red</li>
+		<li class="red">red</li>
+		<li>red</li>
+		<li>red</li>
+	</ul>
+	<p class="red">red</p>
+	
+
+	<div>
+		<a href="#" class="link">链接</a>
+		<a href="#">链接</a>
+		<a href="#">链接</a>
+		<a href="#">链接</a>
+		<p>
+			<a href="#">链接</a>
+		</p>
+	</div>
+
+	<!-- 属性选择器 -->
+	<ul id="ulColor">
+		<li class="red">color</li>
+		<li title="blue">color</li>
+		<li title="css-1">color</li>
+		<li id="color1-green">color</li>
+		<li id="red-1color">color</li>
+		<li lang="encnhk">color</li>
+		<li lang="en cn">color</li>
+		<li class="cl" name="kaivon">color</li>
+	</ul>
+
+	<!-- 基础过滤选择器 -->
+	<ol id="olColor">
+		<li>color</li>
+		<li>color</li>
+		<li>color</li>
+		<li lang="en">color</li>
+		<li id="tar">color</li>
+		<li>color</li>
+		<li>color</li>
+		<li>color</li>
+	</ol>
+	<h1>h1</h1>
+	<h2>h2</h2>
+	<h3>h3</h3>
+	<h4>h4</h4>
+
+	<!-- 子元素过滤器 -->
+	<div id="paragraph">
+		<p>段落</p>
+		<p>段落</p>
+		<span>段落</span>
+		<p>段落</p>
+		<span>段落</span>
+		<p>段落</p>
+		<span>段落</span>
+	</div>
+	<div id="only">
+		<p>唯一的一个子元素</p>
+	</div>
+	<div id="only-two">
+		<span>span</span>
+		<p>p</p>
+	</div>
+
+	<!-- 内容过滤选择器 -->
+	<div id="content">kaivon</div>
+	<div></div>
+	<div id="has">
+		<div><p>段落</p></div>
+	</div>
+	<div>
+		<h1 id="title">大标题</h1>
+	</div>
+
+	<!-- 表单过滤选择器 -->
+	<input type="button" value="按钮1">
+	<button>按钮2</button>
+	<div id="sex">
+		<input type="checkbox">男
+		<input type="checkbox">女
+	</div>
+	<div>
+		<input type="checkbox" checked>男
+		<input type="checkbox">女
+	</div>
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		/* 基础选择器 */
+		$('#list1').css('background','green');
+		$('.red').css('background','grey');
+		$('li').css('border','2px solid pink');
+		//$('*').css('border','2px solid orange');
+		$('li,p').css('font-size','20px');
+		
+		//层级选择器
+		$('div a').css('color','green');
+		$('div>a').css('color','red');
+		$('div a.link + a').css('color','purple');
+		$('div a.link ~ a').css('color','blue');
+
+		//属性选择器
+		$('#ulColor li[class]').css('background','pink');
+		$('#ulColor li[title=blue]').css('background','grey');
+		$('#ulColor li[title!=blue]').css('background','yellowgreen');
+		$('#ulColor li[title|=css]').css('background','darkgreen');	//前缀是用-隔开的
+		$('#ulColor li[id^=color]').css('background','hotpink');	//以属性值为开始（不需要-隔开）
+		$('#ulColor li[id$=color]').css('background','purple');
+		$('#ulColor li[lang*=cn]').css('background','olive');	//属性中包含cn字符串
+		$('#ulColor li[lang~=cn]').css('background','skyblue');	//属性中包含cn单词，用空格隔开
+		$('#ulColor li[class=cl][name=kaivon]').css('background','teal');	//属性中包含cn单词，用空格隔开
+
+		//基础过滤选择器
+		$('#olColor li:eq(1)').css('border','5px solid pink');
+		$('#olColor li:gt(1)').css('border','5px solid grey');	//大于
+		$('#olColor li:lt(3)').css('border','5px solid yellowgreen');	//小于
+		$('#olColor li:not(#olColor li:eq(2))').css('border','5px solid darkgreen');	//排除
+		$('#olColor li:even').css('border','5px solid hotpink');	//偶数
+		$('#olColor li:odd').css('border','5px solid purple');	//奇数
+		$('#olColor li:first').css('border','5px solid olive');	//第一个
+		$('#olColor li:last').css('border','5px solid skyblue');	//最后一个
+		$('#olColor li:lang(en)').css('border','5px solid teal');	//lang属性
+		$('#olColor li:target(tar)').css('border','5px solid yellow');	//tatget属性
+		$(':root').css('border','2px solid blue');	//根节点
+		$(':header').css('border','5px solid darkgreen');	//所有的h标签
+
+		//子元素过滤器
+		$('#paragraph p:first-child').css('color','pink');	//第一个子元素必需是p标签
+		$('#paragraph span:first-of-type').css('color','yellowgreen');	//选择到第1个span标签
+		$('#paragraph span:last-child').css('color','darkgreen');
+		$('#paragraph p:last-of-type').css('color','hotpink');
+		$('#paragraph p:nth-child(2)').css('color','blue');	//选择到第2个子元素，并且这个子元素必需是p标签
+		$('#paragraph span:nth-of-type(2)').css('color','olive');
+		$('#only p:only-child').css('color','skyblue');	//选择到只有一个子元素的标签
+		$('#only-two span:only-of-type').css('font-size','30px');	//选择到只有一个span子元素的标签
+
+		//内容过滤选择器
+		$('#content:contains(kaivon)').css('color','blue');
+		$('div:empty').css({
+			width:'100px',
+			height:'100px',
+			background:'green'
+		});
+		$('#has:has(p)').css('border','1px solid #000');
+		$('#title:parent').css('border','1px solid #f00');
+
+		//表单过滤选择器
+		$(':button').css('border','2px solid #f0f');	//选择到所有的按钮
+		$('#sex input:checkbox').wrap('<span></span>').parent().css('border','2px solid purpLe');
+		$(':checked').wrap('<span></span>').parent().css('border','2px solid blue');
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+for(var arr=[1,2,3,4],result=0,i=0;i<arr.length;i++)result+=arr[i];

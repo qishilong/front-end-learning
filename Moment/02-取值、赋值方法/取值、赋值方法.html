@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/moment-with-locales.js"></script>
+</head>
+
+<body>
+	<script>
+		console.log(moment().seconds() === new Date().getSeconds());	//true
+		console.log(moment.utc().seconds() === new Date().getUTCSeconds());	//true
+
+		//millisecond()/milliseconds()	获取或设置毫秒
+		console.log(moment().millisecond());
+		console.log(moment().milliseconds());
+		console.log(moment().millisecond(100).valueOf());
+		console.log(moment().milliseconds(100).valueOf());
+
+		//second()/seconds()	获取/设置秒
+		//minute()/minutes()	获取/设置分
+		//hour()/hours()		获取/设置小时
+		//date()/dates()		获取/设置日期
+		//day()/days()			获取/设置星期
+		console.log(
+			moment().day(),	//1
+			moment().day('Sunday'),//设置星期的时候可以传入一个星期的英文单词
+		);
+
+		//weekday()	根据语言环境获获取/设置星期，根据语言环境获取或设置星期几
+		moment.locale('zh-cn');	//把当前的语言环境设置为中文
+		console.log(
+			moment().weekday(),	//0	
+			moment().weekday(0),	//0	//英文下是周日，中文下是周一
+		);
+
+		//dayOfYear() 	获取或设置年份的日期（今天是今年的第几天）
+		console.log(moment().dayOfYear());	//111
+		console.log(moment().dayOfYear(1));
+
+		//week()/weeks()	获取或设置年份的星期（当前星期是今年的第几个星期）
+		console.log(moment().week());	//17
+		console.log(moment([2021, 4, 20]).week());	//20
+
+		//month()/months()	获取或设置月份，设置时范围为0-11，还支持月份名称
+		console.log(moment().month());	//3
+		console.log(moment().month('July'));	//3
+
+		//quarter()/quarters()	获取或设置季度
+		console.log(moment().quarter());	//2 
+		console.log(moment().quarter(4));	//2 
+
+		//year()/years()	获取或设置年份
+		console.log(moment().year());
+		console.log(moment().year(2088));
+
+		//weekYear()
+		console.log(moment([2020, 0, 1]).weekYear());
+		console.log(moment([2020, 11, 31]).weekYear());
+
+		//weeksInYear() 根据语言环境获取当前 moment 年份的周数
+		console.log(moment().weeksInYear());	//52
+
+		//get() 获取日期
+		console.log(moment().get('year'));
+		console.log(moment().get('M'));
+		console.log(moment().get('date'));
+
+		//set()	设置日期
+		console.log(
+			moment().set('year', 2030),
+			moment().set('month', 8),
+			moment().set({
+				'year': 2008,
+				'month': 7,
+				'date': 8
+			}),
+		);
+
+		//max()	对比多个日期，返回最大的那个日期
+		//min()	对比多个日期，返回最小的那个日期
+		var a = moment('2019-10-15');
+		var b = moment({ year: 2010, month: 3, date: 5 });
+		var c = moment([2020, 10, 20]);
+		console.log(moment.max(a, b, c));	//c
+		console.log(moment.min(a, b, c));	//b
+	</script>
+</body>
+<html>

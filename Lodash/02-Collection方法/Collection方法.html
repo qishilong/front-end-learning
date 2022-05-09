@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/lodash.js"></script>
+	<script>
+		//countBy()	按照一定规则统计数量，key循环次数，value为匹配到的数量
+		console.log(_.countBy(['one', 'two', 'three'], 'length'));	//{3: 2, 5: 1}	按每个字符串的length进行统计，length为3的有两个数据。length为5的有1个数据
+
+		//groupBy()	按照一定规则进行分组，key为循环次数，value为匹配到的数组
+		console.log(_.groupBy(['one', 'two', 'three'], 'length'));	//{3: ["one", "two"], 5: ["three"]}
+
+		//each()/forEach()	循环，与原生Array.forEach一样
+		//eachRight()/forEachRight()	倒着循环
+		//every()	与原生Array.every方法一样
+		//filter()	过滤数组，与Array对象上的filter()方法一样
+		//find()	查找数据，与Array对象上的find()方法一样
+		//findLast()	与上面一样，区别在于它是从右往左查
+		//flatMap()		生成一个扁平化的数组，与原生的flatMap()方法一样		
+		//flatMapDeep()	与上面一样，不过它可以递归
+		//flatMapDepth()	与上面一样，它可以递归，并且可以指定递归的深度
+		//includes()	与Array对象上的includes()方法一样
+
+		//invokeMap()	使用第二个参数（方法）去处理数组，返回处理后的结果（数组）
+		console.log(
+			_.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort'),	//[ [1, 5, 7],[1, 2, 3]]
+			_.invokeMap([123, 456], String.prototype.split, ''),	//[["1", "2", "3"],["4", "5", "6"]]
+		);
+
+		//keyBy()	创建一个对象，里面的key由第二个参数决定。value为原数组里对应的那条数据
+		var array = [
+			{ 'dir': 'left', 'code': 97 },
+			{ 'dir': 'right', 'code': 100 }
+		];
+		var result = _.keyBy(array, function (o) {
+			return String.fromCharCode(o.code);	//key为使用fromCharCode解析后的字符。value为它所在数组里的那条数据
+		});
+		console.log(result);
+
+		//key为dir，value为key所在原数组里的那条数据
+		console.log(_.keyBy(array, 'dir'));
+
+		//orderBy()	排序，既能升序又能降序
+		var users = [
+			{ 'user': 'fred', 'age': 48 },
+			{ 'user': 'barney', 'age': 34 },
+			{ 'user': 'fred', 'age': 40 },
+			{ 'user': 'barney', 'age': 36 }
+		];
+		console.log(
+			_.orderBy(users, 'age', 'asc'),	//以age属性的值进行升序排序
+			_.orderBy(users, 'user', 'desc'),	//以user属性的值进行降序排序
+		);
+
+		//sortBy()		排序，只能升序
+		console.log(
+			_.sortBy(users, function (o) {
+				return o.user;
+			}),
+		);
+
+		//partition()	根据第2个参数把一个数组分拆成一个二维数组
+		var users = [
+			{ 'user': 'barney', 'age': 36, 'active': false },
+			{ 'user': 'fred', 'age': 40, 'active': true },
+			{ 'user': 'pebbles', 'age': 1, 'active': false }
+		];
+		console.log(
+			_.partition(users, function (o) {	//active为true的放在一起，active为false的放在一起
+				return o.active;
+			}),
+			_.partition(users, { 'age': 1, 'active': false }),//把第二个参数对应的数据放一起，其余的放一起
+		);
+		
+		//reduce()	与Array对象上的reduce()方法一样
+		//reduceRight()	与Array对象上的reduceRight()方法一样
+		
+		//reject()
+		var users = [
+			{ 'user': 'barney', 'age': 36, 'active': false },
+			{ 'user': 'fred', 'age': 40, 'active': true }
+		];
+		console.log(
+			_.reject(users, function (o) {
+				return o.active;	//barney
+			}),
+			_.reject(users, { 'age': 36, 'active': false }),	//fred
+			_.reject(users, ['user', 'fred']),	//barney
+			_.reject(users, 'age'),	//[]
+		);
+
+		//sample()	从数组中随机取一个数据
+		console.log(_.sample(['a', 'b', 'c', 'd', 'e']));
+
+		//sampleSize()	获得 n 个随机数据
+		console.log(_.sampleSize(['a', 'b', 'c', 'd', 'e'], 3));
+
+		//shuffle()	随机排序
+		console.log(_.shuffle(['a', 'b', 'c', 'd', 'e']));
+
+		//size()	返回集合长度
+		console.log(
+			_.size(['a', 'b', 'c', 'd', 'e']),	//5
+			_.size({ a: 1, b: 2 }),	//2
+			_.size('kaivon'),	//6
+		);
+
+		//some()	与Array对象上的some()方法一样
+	</script>
+</body>
+<html>

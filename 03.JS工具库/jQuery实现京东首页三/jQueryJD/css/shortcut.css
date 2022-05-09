@@ -1,0 +1,86 @@
+.shortcut {
+  height: 30px;
+  line-height: 30px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.shortcut a {
+  color: #999;
+}
+
+.position {
+  float: left;
+  color: #999;
+  cursor: pointer;
+}
+.position span:hover {
+  color: red;
+}
+
+a.red {
+  color: red;
+}
+
+.navbar {
+  float: right;
+}
+
+.navbar li {
+  float: left;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 竖线 */
+.spacer {
+  width: 1px;
+  height: 10px;
+  background-color: #ccc;
+  margin: 10px 5px;
+}
+
+.nav-item .dt {
+  padding: 0 7px;
+  border: 1px solid transparent;
+}
+
+.my-dropdown {
+  display: none;
+  top: 30px;
+  left: 0px;
+  background-color: #fff;
+  border: 1px solid #e3e4e5;
+  z-index: 100;
+  position: absolute;
+}
+
+.nav-item:hover .dt-icon{
+  background-color: #fff;
+  border-bottom: none;;
+  border-color: #e3e4e5;
+  position: relative;
+  z-index: 101;
+}
+
+.nav-item:hover .my-dropdown {
+  display: block;
+}
+
+.my-dropdown dl {
+  padding: 10px 0 10px 15px;
+  border-bottom: 1px solid #eee;
+ 
+}
+.my-dropdown dd {
+  line-height: 24px;
+  float: left;
+  white-space: nowrap;
+}
+.my-jd {
+  width: 280px;
+}
+.my-jd dd {
+  width: 126px;
+}

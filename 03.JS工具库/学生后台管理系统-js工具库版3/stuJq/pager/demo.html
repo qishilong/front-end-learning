@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./pager.css">
+  <script src="./jquery-3.3.1.js"></script>
+  <script src="./pager.js"></script>
+</head>
+
+<body>
+  
+  <div id="app">
+      
+  </div>
+  <div id="app1"></div>
+
+  <script>
+    //1. jquery实现
+   $('#app').page({
+     totalPage: 7,
+     nowPage:1,
+     position: 'center',
+     callBack: function (i) {
+      console.log(i,1)
+     }
+   })
+
+   $('#app1').page({
+     totalPage: 70,
+     nowPage:3,
+     position: 'right',
+     callBack: function (i) {
+      console.log(i,2)
+     }
+   })
+   
+  </script>
+</body>
+
+</html>

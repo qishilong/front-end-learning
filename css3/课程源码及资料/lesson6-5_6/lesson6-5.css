@@ -1,0 +1,67 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+
+div{
+    width:200px;
+    height:200px;
+    background-image:url(source/pic3.jpeg);
+    background-size: cover;
+    transform:matrix(-1,0,0,1,0,0);
+}
+
+
+
+
+/*矩阵就是transform给咱们选中的计算规则*/
+
+/*
+| -1,0, 0 |     | x |      | -x |
+| 0, 1, 0 |  *  | y |   =  | -y |
+| 0, 0, 1 |     | 1 |      | 1  |
+
+*/
+/*
+
+| a,c,e |     | x |      | ax + cy + e |
+| b,d,f |  *  | y |   =  | bx + dy + f |
+| 0,0,1 |     | 1 |      | 0  + 0  + 1 |
+
+*/
+
+/*
+| 1 0 e |       | x |     | x + e |
+| 0 1 f |   *   | y |  =  | y + f |
+| 0 0 1 |       | 1 |     | 1     |
+
+
+| a,0,0 |     | x |      | ax |
+| 0,d,0 |  *  | y |   =  | dy |
+| 0,0,1 |     | 1 |      | 1  |
+
+
+| cos(θ),-sin(θ),e |     | x |      
+| sin(θ),cos(θ) ,f |  *  | y |   =  
+| 0     ,0      ,1 |     | 1 |      
+
+
+
+matrix(1,0,0,1,e,f); === translate(x, y);
+matrix(a,0,0,d,0,0); === scale(x, y);
+matrix(cos(θ),sin(θ),-sin(θ),cos(θ),0,0); === rotate(θ);
+
+x1 = cos(θ)x - sin(θ)y + 0
+y2 = sin(θ)x + cos(θ)y + 0
+
+matrix(1,tan(θy),tan(θx),1,0,0) 
+
+matrix(1,0,0,0,0,1,0,0,0,0,1,0,x,y,z,1) 缩放
+matrix(x,0,0,0,0,y,0,0,0,0,z,0,0,0,0,1) 平移
+
+*/
+
+
+
+

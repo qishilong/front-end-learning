@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10909304",
+      "name": "arrow-left",
+      "font_class": "arrow-left",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "10909308",
+      "name": "arrow-right",
+      "font_class": "arrow-right",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      /* 禁止用户选择 */
+      user-select: none;
+    }
+
+    .pagination-wrap {
+      text-align: right;
+    }
+
+    .pagination {
+      font-size: 0;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .pagination li {
+      display: inline-block;
+      margin: 0 10px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .pagination li:hover {
+      background-color: rgb(190, 190, 190);
+      color: #eee;
+      cursor: pointer;
+    }
+
+    .pagination li.currentPage {
+      background-color: rgb(84, 138, 197);
+      color: #eee;
+    }
+  </style>
+  <script src="./jquery-3.3.1.js"></script>
+</head>
+
+<body>
+  <div class="pagination-wrap">
+    <!-- <ul class="pagination">
+      <li>&lt;</li>
+      <li class="currentPage">1</li>
+      <li>2</li>
+      <li>&gt;</li>
+    </ul> -->
+  </div>
+
+  <script>
+    //1. jquery实现
+    var totalPage = 100;
+    var currentPage = 96;
+
+    // jquery对象
+    var pagination = $('<ul></ul>').addClass('pagination');
+    pagination.append($('<li class="prev-btn">&lt;</li>'));
+    if (totalPage <= 7) {
+      for (var i = 1; i <= totalPage; i++) {
+        pagination.append($('<li></li>').text(i).attr('title', i))
+      }
+    } else {
+      // currentPage <= 4
+      // 123456, ... 100
+      // currentPage > 4
+      // 1 ..., 
+      // currentPage -2, currentPage -1, currentPage,currentPage + 1, currentPage + 2 
+      // ... 100
+      // currentPage <= totalPage-4
+      // 1 ...
+      // ...
+      // ... 100
+      // currentPage > totalPage-4
+      // 1... ,95, 96, 97, 98, 99, 100
+      // 1... (totalPage-6+1)， totalPage-6+2, ...totalPage-6+6
+
+      // 2次 
+      // cp <= 4;
+      // 123456
+      // cp > 4
+      // 1 ...
+      // cp > 4 && cp <= totalPage - 4
+      // cp-2, cp-1, cp, cp+1, cp+2
+      // 1,2,3,4,5
+      // cp-3+1, cp-3+2, cp-3+3, cp-3+4, cp-3+5
+
+      // cp <=toalPage - 4
+      // ... totalPage
+      // cp >totalpage - 4
+      // (totalPage-6+1)， totalPage-6+2, ...totalPage-6+6
+      if (currentPage <= 4) {
+        for (var i = 1; i <= 6; i++) {
+          $('<li></li>')
+            .text(i)
+            .attr('title', i)
+            .appendTo(pagination)
+        }
+      }
+      if (currentPage > 4) {
+        // 1, ...
+        pagination
+          .append($('<li>1</li>'))
+          .append($('<li>...</li>').addClass('less-than'))
+      }
+      if (currentPage > 4 && currentPage <= totalPage - 4) {
+        for (var i = 1; i <= 5; i++) {
+          $('<li></li>')
+            .text(currentPage - 3 + i)
+            .attr('title', currentPage - 3 + i)
+            .appendTo(pagination)
+        }
+      }
+      if (currentPage <= totalPage - 4) {
+        pagination
+          .append($('<li>...</li>').addClass('more-than'))
+          .append($(`<li>${totalPage}</li>`))
+
+      }
+      // (totalPage-6+1)， totalPage-6+2, ...totalPage-6+6
+      if (currentPage > totalPage - 4) {
+        for (var i = 1; i <= 6; i++) {
+          $('<li></li>')
+            .text(totalPage - 6 + i)
+            .attr('title', totalPage - 6 + i)
+            .appendTo(pagination)
+        }
+      }
+
+
+    }
+
+    pagination.append($('<li class="next-btn">&gt;</li>'));
+    pagination.appendTo($('.pagination-wrap'));
+
+    // 当前页的类名
+    $(`li[title=${currentPage}]`).addClass('currentPage');
+
+    // ES6 模板字符串
+    // ''
+    // var name = '小丁'
+    // console.log('name:' + name);
+    // console.log(`name:${name}`)
+
+    function renderByCurrentPage() {
+      
+    }
+
+    // 绑定事件 事件委托
+    pagination.on('click', 'li', function (e) {
+      var target = $(e.target);
+      //  < -1 上一页
+      if (target.hasClass('prev-btn')) {
+        if (currentPage === 1) {
+          window.alert('这已经是第一页了')
+        } else {
+          currentPage--;
+          // currentPage 重新渲染
+        }
+      } else if (target.hasClass('next-btn')) {
+        //  > +1 下一页
+        if (currentPage === totalPage) {
+          window.alert('这已经是最后一页了')
+        } else {
+          currentPage++;
+          // currentPage 重新渲染
+        }
+      } else if (target.hasClass('less-than')) {
+        //  ... less-than  -5
+        if (currentPage >5) {
+          currentPage -= 5;
+        } else {
+          currentPage = 1;
+        }
+        // currentPage 重新渲染
+
+      } else if (target.hasClass('more-than')) {
+        //  ... more-than  +5
+        if (currentPage + 5 <= totalPage) {
+          currentPage +=5;
+        } else {
+          currentPage = totalPage;
+        }
+      } else {
+        var nowPage = parseInt(target.text());
+        // 优化
+        if (nowPage === currentPage) {
+          return;
+        }
+        currentPage = nowPage;
+        // 根据currentPage重新渲染
+      }
+
+
+      //  点谁跳谁
+    })
+
+
+
+
+    // 2. jquery$.fn.extend 进行封装
+  </script>
+</body>
+
+</html>

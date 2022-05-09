@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			left: 100px;
+			top: 100px;
+			background: green;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box"></div>
+	<script>
+		var manageCookie = {
+			//设置cookie
+			set: function (name, value, date) {
+				//expires	date：要求用户传入的是一个时间节点（这里函数默认规定传进来的是天数）
+				/* var endDate = new Date();	//过期时间点
+				endDate.setDate(endDate.getDate() + date);
+				document.cookie = name + '=' + value + '; expires=' + endDate; */
+
+				document.cookie = name + '=' + value + '; max-age=' + date;	//这里要求用户传入的第三个参数为过期的秒数
+			},
+			//移除cookie
+			remove: function (name) {
+				this.set(name, '', 0);	//只需要把时间设置成0就可以了
+			},
+			//获取cookie
+			get: function (name) {
+				var cookies = document.cookie.split('; ');	//'name=kaivon; padding=30; width=40;' => ['name=kaivon', 'padding=30', 'width=40']
+
+				for (var i = 0; i < cookies.length; i++) {
+					//[['name','kaivon'],['padding','30'],['width',40]]
+					var item = cookies[i].split('=');		//['name','kaivon']
+
+					if (item[0] == name) {	//这个条件成立说明用户传进来的那个cookie的名字找到了
+						return item[1];
+					}
+				}
+			}
+		}
+
+		/* manageCookie.set('left', 100, 10000);
+		console.log(manageCookie.get('left'));	//100 */
+
+		//拖拽
+		var drag = {
+			init: function (dom) {
+				this.dom = dom;
+				this.bindEvent();
+
+				var l = manageCookie.get('newLeft');
+				var t = manageCookie.get('newTop');
+
+				this.dom.style.left = l ? l + 'px' : '100px';
+				this.dom.style.top = t ? t + 'px' : '100px';
+			},
+			bindEvent: function () {
+				this.dom.onmousedown = this.mouseDown.bind(this);
+			},
+			mouseDown: function (e) {
+				document.onmousemove = this.mouseMove.bind(this);
+				document.onmouseup = this.mouseUp.bind(this);
+
+				this.disX = e.clientX - this.dom.offsetLeft;
+				this.disY = e.clientY - this.dom.offsetTop;
+			},
+			mouseMove: function (e) {
+				this.newLeft = e.clientX - this.disX;
+				this.newTop = e.clientY - this.disY;
+
+				this.dom.style.left = this.newLeft + 'px';
+				this.dom.style.top = this.newTop + 'px';
+			},
+			mouseUp: function () {
+				document.onmousemove = null;
+				document.onmouseup = null;
+
+				//鼠标抬起的时候需要存储(cookie)一下此刻盒子的位置信息
+				manageCookie.set('newLeft', this.newLeft, 10000);
+				manageCookie.set('newTop', this.newTop, 10000);
+			}
+		}
+
+		drag.init(document.getElementById('box'));
+	</script>
+</body>
+
+</html>

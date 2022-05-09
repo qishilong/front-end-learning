@@ -1,0 +1,45 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+200张 bm1387 === > 30000gpu
+*/
+/*
+
+reflow:
+改变窗口大小
+
+改变文字大小
+
+内容的改变，输入框输入文字
+
+激活伪类，如:hover
+
+操作class属性
+
+脚本操作DOM
+
+计算offsetWidth和offsetHeight
+
+设置style属性
+
+
+repaint：
+repaint：如果只是改变某个元素的背景色、
+文 字颜色、边框颜色，不影响它周围或内部布局的属性
+repaint
+repaint 速度快于 reflow
+
+*/

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/lodash.js"></script>
+	<script>
+		//castArray()	强制转为数组，其实就是在外面加一层方括号
+		console.log(
+			_.castArray('a'),	//["a"]
+			_.castArray({ a: 1, b: 2 }),	//[{a: 1, b: 2}]
+		);
+
+		//clone()	浅拷贝
+		var obj1 = {
+			a: 1,
+			b: {
+				c: 2
+			}
+		};
+		var obj2 = _.clone(obj1);
+		console.log(obj1, obj2);
+		obj2.b.c = 3, console.log(obj1, obj2);
+
+		//cloneDeep()	深拷贝
+		var obj3 = _.cloneDeep(obj1);
+		obj3.b.c = 4, console.log(obj1, obj3);
+
+		//conformsTo()	通过第二个参数来检测对象的属性值是否满足条件
+		var object = { 'a': 1, 'b': 2 };
+		console.log(
+			_.conformsTo(object, { 'b': function (n) { return n > 1 } }),	//true
+			_.conformsTo(object, { 'b': function (n) { return n > 2 } }),	//false
+		);
+
+		//ea()	比较两个值是否相等。与Object.is()这个方法一样
+		console.log(
+			_.eq(12, 12),	//true
+			_.eq({ a: 1 }, { a: 1 }),	//false
+			_.eq(NaN, NaN),	//true
+		);
+
+		//gt()	第一个值是否大于第二个值
+		console.log(
+			_.gt(3, 1),	//true
+			_.gt(3, 3),	//false
+		);
+		//gte()	第一个值是否大于等于第二个值
+		//lt()	小于
+		//lte()	小于等于
+
+		//isArray()
+		console.log(
+			_.isArray([1, 2, 3]),	//true
+			_.isArray(document.body.children),	//false
+			_.isObject({}),		//true
+			_.isObject(null),	//false
+		);
+
+		//toArray()
+		console.log(
+			_.toArray({ a: 1, b: 2 }),	//[1, 2]
+			_.toArray('abc'),	//["a", "b", "c"]
+			_.toArray(null),	//[]
+		);
+	</script>
+</body>
+<html>

@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* 禁止用户选择 */
+  user-select: none;
+}
+
+.pagination-wrap {
+  text-align: right;
+}
+
+.pagination {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.pagination li:hover {
+  background-color: rgb(190, 190, 190);
+  color: #eee;
+  cursor: pointer;
+}
+
+.pagination li.currentPage {
+  background-color: rgb(84, 138, 197);
+  color: #eee;
+}

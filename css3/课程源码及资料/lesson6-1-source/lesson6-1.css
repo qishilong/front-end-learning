@@ -1,0 +1,125 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color: #000;
+}
+
+@keyframes space-change{
+    0%{
+        opacity: .3;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: .3;
+    }
+
+    75%{
+        opacity: .1;
+    }
+    100%{
+        opacity: .3;
+    }
+}
+
+@keyframes sunrise{
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+        transform:scale(.7, .7) translatex(0) translatey(0);
+    }
+    30%{
+        transform:scale(.5, .5) translatex(0) translatey(-500px);
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+        transform:scale(.7, .7) translatex(400px) translatey(0);
+    }
+
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes moonrise{
+    0%{
+        opacity: 0;
+    }
+    30%{
+        opacity: 0;
+        transform:translatey(0);
+    }
+    50%{
+        opacity: 0;
+    }
+    70%{
+        transform:translatey(-300px);
+        opacity: 1;
+    }
+    80%{
+        transform:translatey(-300px);
+        opacity: 1;
+    }
+    90%{
+        opacity: 0;
+    }
+    100%{
+        transform:translatey(0);
+        opacity: 0;
+    }
+}
+
+.space{
+    height:500px;
+    background-image: linear-gradient(to bottom, rgba(0, 130, 255, 1), rgba(255, 255, 255, 1));
+    animation: space-change 20s cubic-bezier(.5,0,.5,1) infinite;
+}
+
+.sun{
+    position: absolute;
+    left:calc(50% - 25px);
+    top:calc(50% - 25px);
+    width:50px;
+    height:50px;
+    background-color: #fff;
+    border-radius:50%;
+    transform:scale(.5, .5);
+    box-shadow: 0px 0px 100px 50px #fff,
+                0px 0px 250px 125px #ff0;
+    animation:sunrise 20s infinite;
+}
+
+.moon{
+    position: absolute;
+    left:calc(50% + 400px);
+    top:calc(50% - 50px);
+    width:100px;
+    height:100px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 0px 8px #fff, inset 0px 0px 8px #000;
+    animation:moonrise 20s cubic-bezier(0,0,.5,.5) infinite;
+}
+
+.moon::after{
+    position: absolute;
+    content:"";
+    width:90px;
+    height:90px;
+    background-color: #000;
+    border-radius: 50%;
+    left:-10px;
+    top:-10px;
+}
+
+
+
+
+
+

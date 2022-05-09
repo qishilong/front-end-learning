@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // 1. 反转字符串。
+      // 'abcdef' => 'fedcba';
+
+      // a. 站队的字符。
+      // 第一队： 123456
+      // 第二队： 654321
+
+      var str = 'abcdef';
+
+      // 如何拿到字符串的每个字符。
+      // str[index]
+
+      // 字符串转换成String类型的对象
+
+      var newStr = '';
+      // 遍历原来的字符串。
+      // f 5, e4,d3,c2,b1,a0
+      // length-1 ~ 0
+      for(var i=str.length-1;i>=0;i--) {
+        newStr += str[i];
+      }
+      // console.log(newStr, str);
+
+      // 类似，数组也可以利用 反转
+      // [1,2,3,4,5,6] => [6,5,4,3,2,1]
+
+      var arr = [1,2,3,4,5,6];
+      var newArr = [];
+
+      for(var i=arr.length-1; i>=0; i--) {
+        newArr.push(arr[i]);
+      }
+      // console.log(newArr, arr);
+
+      // 在原来的基础上进行反转
+      // [1,2,3]
+      // pic.dio
+      // function reverse(arr) {
+      //   var length = arr.length;
+      //   var count = Math.ceil(length / 2);
+      //   // 0,1,2
+      //   for(var i=0; i<count; i++) {
+      //     // 两个数交换的操作
+      //     var temp = arr[i];
+      //     arr[i] = arr[length-1-i];
+      //     arr[length-1-i] = temp;
+      //   }
+      //   console.log(arr);
+      // }
+      // // [1,2,3]
+      // reverse(arr);
+      // [3,2,1]
+
+      // Array.prototype.myReverse = function () {
+      //   var length = this.length;
+      //   var count = Math.ceil(length / 2);
+      //   // 0,1,2
+      //   for(var i=0; i<count; i++) {
+      //     // 两个数交换的操作
+      //     var temp = this[i];
+      //     this[i] = this[length-1-i];
+      //     this[length-1-i] = temp;
+      //   }
+      //   return this;
+      // }
+      // [1,2,3].myReverse()
+      // 
+
+      // 构造函数.prototype.方法、属性
+      // 实例（new 构造函数). 属性，方法
+
+      // Array.prototype.reverse() 数组反转，倒置。修改原数组
+
+      // [1,2,3,4,5,6]
+      //  下标
+      // 0  5（arr.length-1-0）
+      // 1  4 (arr.length-1-1)
+      // 2  3 (arr.length-1-2)
+
+      // 长度为6的数组，交换了3次  6/2
+      //  5                 2    Math.ceil(5/2)， parseInt(5/2)
+
+      //  length  n  交换 Math.ceil(n/2)
+
+      // 如果把字符串转换成数组，在把数组倒序，之后 在转换成字符串。
+      // 倒序 Array.prototype.reverse()
+      // 字符串如何转换成数组呢？
+        
+      // String.prototype.split(v) 把字符串按照字符v拆开, 返回是一个数组
+      // Array.prototype.join(v) 数组中的每一位按照字符v进行拼接，默认值是',''
+      // var str = 'a,b,c,d,e';
+      // var arr = [1,2,3,4];
+
+      var str = 'abcdef';
+
+      // arr
+      var arr = str.split('');
+
+      // revserse
+      arr.reverse();
+
+      // join
+      console.log(str, arr.join(''));
+
+      // 
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            position: absolute;
+            left: 500px;
+            top: 0px;
+        }
+        button {
+            margin-top: 150px;
+        }
+        span {
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            width: 1px;
+            height: 100px;
+            background: black;
+        } */
+        /* .wrapper {
+            width: 400px;
+            height: 80px;
+            background: orange;
+            position: absolute;
+            left: -400px;
+            top: 200px;
+        }
+        .wrapper span {
+            width: 50px;
+            height: 80px;
+            background: red;
+            position: absolute;
+            right: -50px;
+            top: 0px;
+        } */
+
+
+        div {
+            position: absolute;
+            left: 0px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 1;
+        }
+        #topDiv {
+            top: 200px;
+        }
+        #bottomDiv {
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div></div>
+    <span></span>
+    <button id='btn'>run</button> -->
+
+
+    <!-- <div class="wrapper">
+        <span></span>
+    </div> -->
+<!-- 
+    <div id='demo'></div> -->
+
+    <!-- <div></div>
+    <div></div>
+    <div></div>
+    <div></div> -->
+
+    <div id='topDiv'></div>
+    <div id="bottomDiv"></div>
+    <script>
+        // js div
+        // width -> 100 400   height 100 400   left 0 200  top 200 300 opacity 1 0.5
+        // {width: 400, height: 400, left: 200, top: 300, opacity: 50}
+
+        var oTopDiv = document.getElementById('topDiv');
+        var oBottomDiv = document.getElementById('bottomDiv');
+        oTopDiv.onclick = function () {
+            startMove(this, {width: 400, height: 400, left: 200, top: 300, opacity: 50}, function () {
+                startMove(oBottomDiv, {width: 400, height: 400, left: 200, top: 300, opacity: 50}, function () {
+                    alert('over');
+                })
+            })
+        }
+        function getStyle (dom, attr) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(dom, null)[attr];
+            }else {
+                return dom.currentStyle[attr];
+            }
+        }
+
+        function startMove (dom, attrObj, callback) {
+            clearInterval(dom.timer);
+            var iSpeed = null, iCur = null;
+            dom.timer = setInterval(function () {
+                var bStop = true;
+                for (var attr in attrObj) {
+                    // 'width' 'height' 
+                    if (attr == 'opacity') {
+                        iCur = parseFloat( getStyle(dom, attr) ) * 100;
+                    }else {
+                        iCur = parseInt( getStyle(dom, attr) );
+                    }
+                    iSpeed = (attrObj[attr] - iCur) / 7;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                    if (attr == 'opacity') {
+                       dom.style.opacity = (iCur + iSpeed) / 100; 
+                    }else {
+                       dom.style[attr] = iCur + iSpeed + 'px';
+                    }
+                    if (iCur != attrObj[attr]) {
+                        bStop = false;
+                    }
+                }
+                if (bStop) {
+                    clearInterval(dom.timer);
+                    typeof callback == 'function' && callback();
+                }
+            }, 30);
+        }
+
+        // var timer = null;
+        // var oDivArray = document.getElementsByTagName('div');
+
+        // oDivArray[0].onclick = function () {
+        //     startMove(this, 'width', 400);
+        // }
+
+        // oDivArray[1].onclick = function () {
+        //     startMove(this, 'height', 400);
+        // }
+        // oDivArray[2].onclick = function () {
+        //     startMove(this, 'borderWidth', 20);
+        // }
+
+        // oDivArray[3].onclick = function () {
+        //     startMove(this, 'opacity', 50);
+        // }
+
+
+
+        // function startMove (dom, attr, target) {
+        //     clearInterval(dom.timer);
+        //     var iSpeed = null, iCur = null;
+        //     dom.timer = setInterval(function () {
+        //         if (attr == 'opacity') {
+        //             iCur = parseFloat( getStyle(dom, attr) ) * 100;
+        //         }else {
+        //             iCur = parseInt( getStyle(dom, attr) );
+        //         }
+        //         iSpeed = (target - iCur) / 7;
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        //         if (iCur == target) {
+        //             clearInterval(dom.timer);
+        //         }
+        //         if (attr == 'opacity') {
+        //             dom.style.opacity = ( iCur + iSpeed ) / 100;
+        //         }else {
+        //             dom.style[attr] = iCur + iSpeed + 'px';
+        //         }   
+        //     }, 30)
+        // }
+
+
+        // for (var i = 0; i < oDivArray.length; i++) {
+        //     oDivArray[i].onmouseenter = function () {
+        //         startMove(this, 400);
+        //     }
+        //     oDivArray[i].onmouseleave = function () {
+        //         startMove(this, 100);
+        //     }
+        // }
+        // var oDiv = document.getElementById('demo');
+        // var oDiv = document.getElementsByClassName('wrapper')[0];
+        // oDiv.onmouseenter = function () {
+        //     startMove(this, 0);
+        // }
+        // oDiv.onmouseleave = function () {
+        //     startMove(this, -400);
+        // }
+
+        // oDiv.onclick = function () {
+        //     startMove(this, 50);
+        // }
+
+
+
+        //  function startMove (dom, target) {
+        //     clearInterval(dom.timer);
+        //     var iSpeed = null, iCur = null;
+        //     dom.timer = setInterval(function () {
+        //         iCur = parseInt( getStyle(dom, 'width') );
+        //         iSpeed = ( target - iCur ) / 7;
+        //         // .... 
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        //         if (iCur == target) {
+        //             clearInterval(dom.timer);
+        //         }else {
+        //             dom.style.width = iCur + iSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }       
+
+
+
+
+
+        // function startMove (dom, target) {
+        //     clearInterval(timer);
+        //     var iSpeed = null, iCur = null;
+        //     timer = setInterval(function () {
+        //         iCur = parseFloat( getStyle(dom, 'opacity') ) * 100;
+        //         iSpeed = (target - iCur) / 7;
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        //         if (iCur == target) {
+        //             clearInterval(timer);
+        //         }else {
+        //             // 0 - 1    iCur * 100 target * 100 iSpeed * 100  iCur + iSpeed 0 - 100 /  100
+        //             dom.style.opacity = (iCur + iSpeed) / 100;
+        //         }
+        //     }, 30)
+        // }
+
+
+
+
+        // var oDiv = document.getElementsByTagName('div')[0];
+        // var oBtn = document.getElementById('btn');
+        // oBtn.onclick = function () {
+        //     // s = vt t s
+        //     startMove(oDiv, 300);
+        // }
+        // 物体的速度 距离目标点越近 就越小 当到达目标点时 速度减小为0
+        // function startMove (dom, target) {
+        //     clearInterval(timer);
+        //     var iSpeed = null;
+        //     timer = setInterval(function () {
+        //         iSpeed = (target - oDiv.offsetLeft) / 7;
+        //         // .... 
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        //         if (oDiv.offsetLeft == target) {
+        //             clearInterval(timer);
+        //         }else {
+        //             oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+
+
+    
+
+
+
+
+
+
+        // tag target
+
+        // function startMove (dom, target) {
+        //     clearInterval(timer);
+        //     var iSpeed = target - dom.offsetLeft > 0 ? 7 : -7;
+        //     timer = setInterval(function () {
+        //         if ( Math.abs(target - dom.offsetLeft) < Math.abs(iSpeed) ) {
+        //             clearInterval(timer);
+        //             dom.style.left = target + 'px';
+        //         }else {
+        //             dom.style.left = dom.offsetLeft + iSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="d-none d-lg-block leftCon">
+				<div class="d-flex justify-content-center align-items-center logo">
+					<img src="images/logo.png" alt="">
+					<small class="text-white ml-2 font-weight-bold">渡一教育</small>
+				</div>
+
+				<div class="text-center py-4 border-bottom info">
+					<p class="mb-2">陈学辉</p>
+					<p class="mb-2">kaivon@qq.com</p>
+					<p class="mb-2">退出登录</p>
+				</div>
+
+				<div class="nav flex-column list">
+					<h4 class="h6 font-weight-bold p-3">账号管理</h4>
+					<a href="#ziyuan" class="nav-link p-2 ml-5 rounded-left active" data-toggle="tab">资源管理</a>
+					<a href="#quanxian" class="nav-link p-2 ml-5 rounded-left" data-toggle="tab">权限管理</a>
+					<a href="#yonghu" class="nav-link p-2 ml-5 rounded-left" data-toggle="tab">用户管理</a>
+					<a href="#xiugai" class="nav-link p-2 ml-5 rounded-left" data-toggle="tab">修改密码</a>
+					<h4 class="h6 font-weight-bold p-3">地区管理</h4>
+					<a href="#diqu" class="nav-link p-2 ml-5 rounded-left" data-toggle="tab">地区管理</a>
+					<a href="#guize" class="nav-link p-2 ml-5 rounded-left" data-toggle="tab">规则管理</a>
+				</div>
+			</div>
+			<div class="col py-5 px-4 rightCon">
+				<div class="tab-content">
+					<div class="tab-pane active" id="ziyuan">
+						<button class="btn btn-outline-warning mb-5" data-toggle="modal" data-target="#myModal">资源管理</button>
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="width: 10%;">编码</th>
+									<th style="width: 20%;">名称</th>
+									<th>链接</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td class="dropdown-toggle" data-toggle="collapse" data-target="#manage">系统管理</td>
+									<td>/admin/system/userlist/software/</td>
+									<td>
+										<button class="btn btn-success btn-sm">修改</button>
+										<button class="btn btn-danger btn-sm">删除</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div id="manage" class="show">
+							<table class="table">
+								<tbody>
+									<tr>
+										<td style="width: 10%;">2</td>
+										<td style="width: 20%;">系统管理</td>
+										<td>/admin/system/userlist/software/</td>
+										<td>
+											<button class="btn btn-success btn-sm">修改</button>
+											<button class="btn btn-danger btn-sm">删除</button>
+										</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>系统管理</td>
+										<td>/admin/system/userlist/software/</td>
+										<td>
+											<button class="btn btn-success btn-sm">修改</button>
+											<button class="btn btn-danger btn-sm">删除</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="quanxian">权限管理</div>
+					<div class="tab-pane" id="yonghu">用户管理</div>
+					<div class="tab-pane" id="xiugai">修改密码</div>
+					<div class="tab-pane" id="diqu">地区管理</div>
+					<div class="tab-pane" id="guize">规则管理</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">标题</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>这是一个垂直居中的模态框</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

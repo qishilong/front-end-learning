@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/fullpage.css">
+	<style>
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		h2{
+			margin: 0;
+		}
+
+		#fullpage .section{
+			text-align: center;
+		}
+		#fullpage h2{
+			color:#fff;
+			font-size: 80px;
+		}
+
+		#fp-nav ul li a span {
+			background: #fff;
+		}
+		.fp-controlArrow.fp-prev{
+			left: 50px;
+		}
+		.fp-controlArrow.fp-next{
+			right: 50px;
+		}
+
+		#menu{
+			position: fixed;
+			z-index: 1024;
+			width: 100%;
+			top: 0;
+		}
+		#menu ul{
+			overflow: hidden;
+		}
+		#menu li{
+			float: left;
+			margin: 0 15px;
+		}
+		#menu a{
+			color: #fff;
+			font-size: 18px;
+			line-height: 40px;
+			text-decoration: none;
+		}
+		#menu li.active a{
+			font-weight: bold;
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		https://plugins.jquery.com/
+		http://www.jq22.com/
+
+		https://alvarotrigo.com/fullPage/zh/
+		https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs
+	 -->
+	<ul id="menu">
+		<li data-menuanchor="fist" class="active"><a href="#fist">第一屏</a></li>
+		<li data-menuanchor="second"><a href="#second">第二屏</a></li>
+		<li data-menuanchor="third"><a href="#third">第三屏</a></li>
+		<li data-menuanchor="fourth"><a href="#fourth">第四屏</a></li>
+	</ul>
+	<div id="fullpage">
+		<div class="section">
+			<h2>第一屏</h2>
+		</div>
+		<div class="section">
+			<h2>第二屏</h2>
+		</div>
+		<div class="section">
+			<h2>第三屏</h2>
+			<div class="slide">
+				<h2>第三屏，第一页</h2>
+			</div>
+			<div class="slide">
+				<h2>第三屏，第二页</h2>
+			</div>
+			<div class="slide">
+				<h2>第三屏，第三页</h2>
+			</div>
+			<div class="slide">
+				<h2>第三屏，第四页</h2>
+			</div>
+		</div>
+		<div class="section">
+			<h2>第四屏</h2>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/fullpage.js"></script>
+	<script>
+		$('#fullpage').fullpage({
+			sectionsColor:['#693AB8','#a74a2a','#48B7DB','#b32e37'],	//配置块的颜色
+			navigation:true,
+			navigationTooltips:['第一屏','第二屏','第三屏','第四屏'],
+			anchors:['fist','second','third','fourth'],
+			menu:'#menu'
+		});
+	</script>
+</body>
+<html>

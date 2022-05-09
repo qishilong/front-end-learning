@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			padding-bottom: 1000px;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		li{
+			padding: 10px 20px;
+			border: 1px solid #ccc;
+		}
+		.mb{
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 获取后代元素 -->
+	<ul class="child mb">
+		<li>red</li>
+		<li>
+			<ul>
+				<li>green</li>
+				<li><span>blue</span></li>
+			</ul>
+		</li>
+		<li><span>yellow</span></li>
+	</ul>
+
+	<!-- 获取祖先元素 -->
+	<ul class="parent mb" style="position: relative;">
+		<li>white</li>
+		<li>
+			<ul>
+				<li>black</li>
+				<li>orange</li>
+				<li>gold</li>
+			</ul>
+		</li>
+		<li>grey</li>
+	</ul>
+
+	<!-- 获取祖先元素.closest() -->
+	<ul class="closest mb">
+		<li>
+			<ul>
+				<li>pink</li>
+				<li>green</li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- 获取后面的兄弟元素 -->
+	<ul class="next mb">
+		<li>purple</li>
+		<li>cyan</li>
+		<li>
+			<ul>
+				<li>pink</li>
+			</ul>
+		</li>
+		<p>brown</p>
+		<div>skyblue</div>
+	</ul>
+
+	<!-- 获取前面的兄弟元素 -->
+	<ul class="prev mb">
+		<div>skyblue</div>
+		<p>brown</p>
+		<li>
+			<ul>
+				<li>pink</li>
+			</ul>
+		</li>
+		<li>cyan</li>
+		<li>purple</li>
+	</ul>
+
+	<!-- 获取所有的兄弟节点 -->
+	<ul class="siblings">
+		<li>red</li>
+		<li class="select">green</li>
+		<li>blue</li>
+		<li class="select">yellow</li>
+		<li>
+			<ul>
+				<li>pink</li>
+			</ul>
+		</li>
+	</ul>
+
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		//获取后代元素
+		$('.child').children().css('border-color','green');	//.children()	获取所有子元素(第一层)
+		$('.child').children(':eq(1)').css('border-width','3px');	//可以接收一个选择器的参数，这个选择器用来过滤子元素
+		$('.child').find('span:eq(0)').css({	//.find()	获取匹配到的后代元素。它与children不同的地方为：children找到的是子元素，find找到的是后代元素
+			'font-size':'30px',
+			color:'red'
+		});
+
+
+		//获取祖先元素
+		$('.parent li ul li:first').parent('ul').css('border','4px solid blue');	//.parent()		获取父元素。也可以加一个参数.ul。就表示要找到父级必需有个class
+		//$('.parent li ul li:first').parents().css('border','2px solid purple');
+		console.log($('.parent li ul li:first').parents());//.parents()	获取祖先元素。所有祖先元素都会被找到，一直找到HTML
+		$('.parent li ul li:first').parents('ul').css('border','2px solid purple');
+		$('.parent li ul li:first').parentsUntil('li').css('border','5px solid purple');	//.parentsUntil()	获取祖先元素（但是有个范围，找到li就不再往上找了）
+		$('.parent li ul li:first').offsetParent().css('border','5px solid teal');	//.offsetParent()	获取最近的有定位的祖先元素
+		
+		//获取祖先元素.closest() 获取祖先元素，与parents有点像。但区别是closest会找自己，parents不会找自己
+		$('.closest li ul li').closest('ul').css('border','2px solid purple');
+
+		//$('.closest li ul li').parents('li').css('border','5px solid purple');
+		$('.closest li ul li').closest('li').css('border','5px solid purple');	//会从自己查起，如果自己的标签满足的话，自己的标签就算
+
+
+		//获取后面的兄弟元素
+		$('.next li:first').next('li').css('background','cyan');	//.next()	获取后面紧临的兄弟元素。参数也是个选择器，可选
+		$('.next li:first').nextAll('li').css('border','5px solid #000');	//.nextAll()	获取后面所有的同辈兄弟元素
+		$('.next li:first').nextUntil('div').css('border','5px solid red');	//获取后面所有的同辈兄弟元素（但是有个范围，找到div就不找了）
+
+
+		//获取前面的兄弟元素(与next一样)
+		$('.prev li:last').prev('li').css('background','cyan');
+		$('.prev li:eq(3)').prevAll('li').css('border','5px solid #000');
+		$('.prev li:eq(3)').prevUntil('div').css('border','5px solid red');
+
+
+		//获取所有的兄弟节点
+		$('.siblings li:eq(2)').siblings().css('border','5px solid skyblue');
+		$('.siblings li:eq(2)').siblings('.select').css('background','yellow');	//添加了参数，进行过滤
+	</script>
+</body>
+<html>

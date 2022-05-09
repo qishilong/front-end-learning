@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box,#drag {
+			width: 200px;
+			height: 200px;
+			background: green;
+		}
+
+		#drag{
+			background: skyblue;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>陈学辉</h1>
+	<div id="box"></div>
+
+	<div id="drag"></div>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		/*
+			1、给jquery对象本身扩展方法 	$.abc()
+			2、给jquery DOM对象扩展方法		$('#box').abc()
+		 */
+
+		//给jquery对象本身扩展方法
+		$.extend({
+			lg: function (value) {
+				console.log(value);
+			}
+		});
+		$.lg('kaivon');	//kaivon
+
+		//给jquery DOM对象扩展方法
+		$.fn.extend({
+			changeColor: function () {
+				//$(this) 指向使用的DOM对象
+				$(this).css('color', 'red');
+				return $(this);
+			}
+		});
+		$.fn.changeSize = function () {
+			$(this).css('fontSize', 50);
+			return $(this);
+		}
+		$('h1').changeColor().changeSize();
+
+
+		//封装拖拽的插件
+		$.fn.draggable = function (options) {
+			options = options || {};
+			options.limit = options.limit || false;
+
+			var This = $(this);
+
+			//修改DOM元素的样式
+			$(this).css({
+				position: 'absolute',
+				left: 0,
+				top: 0,
+				cursor: 'move'
+			});
+
+			$(this).mousedown(function (ev) {
+				var disX = ev.pageX - $(this).offset().left;
+				var disY = ev.pageY - $(this).offset().top;
+
+				$(document).mousemove(function (ev) {
+					var l = ev.pageX - disX;
+					var t = ev.pageY - disY;
+
+					//如果用户传了limit:true，这个参数，就要处理拖拽的范围了
+					if (options.limit) {
+						if (l < 0) {
+							l = 0;
+						} else if (l > $(document).innerWidth() - This.outerWidth()) {
+							l = $(document).innerWidth() - This.outerWidth();
+						}
+
+						if (t < 0) {
+							t = 0;
+						} else if (t > $(document).innerHeight() - This.outerHeight()) {
+							t = $(document).innerHeight() - This.outerHeight();
+						}
+					}
+
+					This.css({
+						left: l,
+						top: t
+					});
+				});
+
+				$(document).mouseup(function () {
+					$(this).off();
+				});
+
+				return false;
+			});
+		};
+
+
+		$('#box').draggable({
+			limit: true,
+		});
+		
+		$('#drag').draggable();
+	</script>
+</body>
+<html>

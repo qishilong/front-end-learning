@@ -1,0 +1,26 @@
+  * {
+      margin: 0;
+      padding: 0;
+  }
+  
+  .img-container {
+      width: 1200px;
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  .item {
+      width: 18%;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+      box-sizing: border-box;
+      float: left;
+      margin: 0 10px;
+  }
+  
+  .item>img {
+      width: 100%;
+  }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        span {
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            background: black;
+            width: 1px;
+            height: 100px;
+        } */
+        /* * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        ul {
+            position: relative;
+            margin: 100px auto 0px;
+            width: 800px;
+            height: 100px;
+        }
+        ul .ele {
+            float: left;
+            width: 198px;
+            border: 1px solid black;
+            background: orange;
+            height: 98;
+            line-height: 98px;
+            text-align: center;
+        }
+
+        .bg {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 200px;
+            height: 100px; 
+            opacity: 0.4;
+            background: deeppink;
+        } */
+    </style>
+</head>
+<body>
+    <!-- <div></div>
+    <span></span> -->
+<!-- 
+    <ul>
+        <li class="ele">cst</li>
+        <li class="ele">cg</li>
+        <li class="ele">dg</li>
+        <li class="ele">dcg</li>
+        <li class="bg"></li>
+    </ul> -->
+
+    <script>
+        // var oLiArray = document.getElementsByTagName('li');
+        // var timer = null;
+        // var oLiBg = oLiArray[ oLiArray.length - 1 ];
+
+
+        // for (var i = 0; i < oLiArray.length - 1; i++) {
+        //     oLiArray[i].onmouseenter = function () {
+        //         startMove(oLiBg, this.offsetLeft);
+        //     }
+        // }
+
+
+        // function startMove (dom, target) {
+        //     clearInterval(timer);
+        //     // 正 -> 负 <-
+        //     var a = 3;
+        //     var iSpeed = 0;
+        //     var u = 0.8;
+        //     timer = setInterval(function () {
+        //         a = (target - dom.offsetLeft) / 5;
+        //         iSpeed += a;
+        //         iSpeed *= 0.8;
+        //         //近似吧绝对值为小于 1 看成是速度为0
+        //         if (Math.abs(iSpeed) < 1 && Math.abs(target - dom.offsetLeft) < 1) {
+        //             clearInterval(timer);
+        //             dom.style.left  = target + 'px';
+        //         }else {
+        //             dom.style.left = dom.offsetLeft + iSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+
+
+
+
+
+
+        // var oDiv = document.getElementsByTagName('div')[0];
+        // var timer = null;
+        // oDiv.onclick = function () {
+        //     startMove(this, 300);
+        // }
+
+        // 位置
+        // f
+        // a 
+
+        // function startMove (dom, target) {
+        //     clearInterval(timer);
+        //     // 正 -> 负 <-
+        //     var a = 3;
+        //     var iSpeed = 0;
+        //     var u = 0.8;
+        //     timer = setInterval(function () {
+        //         a = (target - dom.offsetLeft) / 5;
+        //         iSpeed += a;
+        //         iSpeed *= 0.8;
+        //         //近似吧绝对值为小于 1 看成是速度为0
+        //         if (Math.abs(iSpeed) < 1 && Math.abs(target - dom.offsetLeft) < 1) {
+        //             clearInterval(timer);
+        //             dom.style.left  = target + 'px';
+        //         }else {
+        //             dom.style.left = dom.offsetLeft + iSpeed + 'px';
+        //         }
+        //     }, 30);
+        // }
+
+
+
+
+        // v = v + at;
+        // var oDiv = document.getElementsByTagName('div')[0];
+        // var timer = null;
+        // oDiv.onclick = function () {
+        //     startMove(this);
+        // }
+        // // 加速度不变的加速运动 运动方向是向右
+        // // 加速度不变的减速运动   加速不变的加速运动 向左
+        // function startMove (dom) {
+        //     clearInterval(timer);
+        //     var a = -2;
+        //     var iSpeed = 20;
+        //     timer = setInterval(function () {
+        //         iSpeed = iSpeed + a;
+        //         oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+        //     }, 30);
+        // };
+
+    </script>
+</body>
+</html>

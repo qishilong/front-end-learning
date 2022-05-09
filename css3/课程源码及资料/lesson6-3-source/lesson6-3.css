@@ -1,0 +1,223 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+@keyframes run{
+    0%{
+        background-position: 0 0;
+
+    }
+    100%{
+        background-position:-2400px 0;
+    }
+}
+
+div{
+    width:200px;
+    height:100px;
+    background-image:url(horse.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    animation:run .5s steps(12, end) infinite;
+}
+
+
+
+
+
+/*@keyframes secondrun{
+    0%{
+        transform:rotate(180deg);
+    }
+    100%{
+        transform:rotate(540deg);   
+    }
+}
+
+@keyframes minuterun{
+    0%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(540deg);
+    }
+}
+
+div.clock{
+    position: relative;
+    width:512px;
+    height:512px;
+    background-image: url(clock.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+div.second{
+    position: absolute;
+    left:247px;
+    top:180px;
+    width:16px;
+    height:278px;
+    background-image: url(second.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    transform-origin:center 76px;
+    transform:rotate(180deg);
+    z-index: 3;
+    animation:secondrun 60s steps(60, end) infinite;
+}
+
+div.minute{
+    position: absolute;
+    transform-origin:center 16px;
+    left:238px;
+    top:240px;
+    width:32px;
+    height:218px;
+    background-image: url(minute.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    transform:rotate(180deg);
+    z-index: 2;
+    animation:minuterun 3600s steps(60, end);
+}
+
+div.hour{
+    position: absolute;
+    transform-origin:center 16px;
+    left:238px;
+    top:240px;
+    width:32px;
+    height:148px;
+    background-image: url(hour.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+*/
+/*position: absolute;
+left:0;
+top:0;*/
+
+/*
+
+@keyframes cursor{
+    0%{
+        border-left-color: rgba(0,0,0,0);
+    }
+    50%{
+        border-left-color: rgba(0,0,0,1);
+    }
+    100%{
+        border-left-color: rgba(0,0,0,0);
+    }
+}
+
+@keyframes cover{
+    0%{
+        left:0;
+    }
+    100%{
+        left:100%;
+    }
+}
+
+div{
+    position: relative;
+    display: inline-block;
+    height:100px;
+    font-size:80px;
+    line-height: 100px;
+    font-family: monospace;
+}
+
+
+div::after{
+    content:"";
+    position: absolute;
+    left:0;
+    top:10px;
+    height:90px;
+    width:100%;
+    background-color: #fff;
+    border-left:2px solid black;
+    box-sizing:border-box;
+    animation:cursor 1s steps(1, end) infinite, cover 12s steps(12, end);
+}
+*/
+
+
+/*
+
+    打字效果
+    钟表效果 transform: rotate(); 
+            transform-origin:0 center;
+    
+    跑马效果
+
+ */
+
+
+/*
+
+end 保留当前帧状态，直到这段动画时间结束
+
+start 保留下一帧状态，直到这段动画时间结束
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    font-family: monospace;
+
+    时：16-16  px
+    分：16-16  px
+    秒：8-76   px
+
+    秒：16-278
+    分：32-218
+    时：32-148
+    表盘：512-512
+    
+    horse
+    200-100
+    2400-100
+ */
+
+

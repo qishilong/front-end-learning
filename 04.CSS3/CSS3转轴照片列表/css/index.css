@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 最外层容器样式 */
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+/* ul 样式 */
+.content {
+    width: 80%;
+    height: 80%;
+    /* outline: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* li 的样式 */
+.item {
+    width: 16%;
+    height: 100%;
+    /* outline: 1px solid; */
+    border-radius: 20px;
+    overflow: hidden;
+    /* 过渡 */
+    transition: height .5s linear .5s,width .5s linear;
+}
+
+/* li 下面的 div */
+.item .inner {
+    width: 100%;
+    height: 100%;
+    /* outline: 1px solid blue; */
+    position: relative;
+    /* 过渡 */
+    transition: transform .5s linear;
+}
+
+/* 背景图 */
+.item .inner .bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /* 设置背景图的尺寸和位置 */
+    background-size: cover;
+    background-position: center;
+    opacity: .5;
+    /* 过渡 */
+}
+
+/* 接下来给每一个盒子设置背景图 */
+.item:nth-of-type(1) .inner .bg {
+    background-image: url('../img/1.jpg');
+}
+
+.item:nth-of-type(2) .inner .bg {
+    background-image: url('../img/2.jpg');
+}
+
+.item:nth-of-type(3) .inner .bg {
+    background-image: url('../img/3.jpg');
+}
+
+.item:nth-of-type(4) .inner .bg {
+    background-image: url('../img/4.jpg');
+}
+
+.item:nth-of-type(5) .inner .bg {
+    background-image: url('../img/5.jpg');
+}
+
+.item:nth-of-type(6) .inner .bg {
+    background-image: url('../img/6.jpg');
+}
+
+/* 每个盒子不是一开始就在这个位置 */
+/* 这里写在 init 样式类下面，之后一旦通过 JS 将 init 类去除掉
+这条样式就不生效了 */
+.init .inner {
+    transform: translateY(100%);
+}
+
+/* 每个盒子要设置一个过渡的延迟 */
+.item:nth-of-type(1) .inner{
+    transition-delay: .1s;
+}
+
+.item:nth-of-type(2) .inner{
+    transition-delay: .2s;
+}
+
+.item:nth-of-type(3) .inner{
+    transition-delay: .3s;
+}
+
+.item:nth-of-type(4) .inner{
+    transition-delay: .4s;
+}
+
+.item:nth-of-type(5) .inner{
+    transition-delay: .5s;
+}
+
+.item:nth-of-type(6) .inner{
+    transition-delay: .6s;
+}
+
+/* 接下来继续完善样式 */
+
+.item .inner .title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.item .inner .title h2{
+    color: #fff;
+    font-size: 16px;
+    transition: all .2s linear;
+}
+
+/* 接下来设置 hover 效果 */
+.inner:hover .bg{
+    opacity: 1;
+}
+
+.item:hover .inner h2{
+    font-size: 24px;
+}
+
+/* 下面是 dir 区域相关样式 */
+.dir{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 30px;
+    /* outline: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    /* 非展开状态下，看不到，所以设置透明
+    展开之后，直接设置不透明即可 */
+}
+
+.dir .header{
+    color: #fff;
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+/* 关闭按钮 */
+.dir .close{
+    width: 30px;
+    height: 30px;
+    /* outline: 1px solid #fff; */
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+/* 关闭按钮的 X 通过伪元素选择器来制作 */
+.close::before,.close::after{
+    position: absolute;
+    content : '';
+    width: 30px;
+    height: 4px;
+    background-color: #fff;
+    top: 50%;
+}
+
+.close::before{
+    transform: rotate(45deg);
+}
+
+.close::after{
+    transform: rotate(-45deg);
+}
+
+/* 到目前为止，我们点击效果对应的 JS 也写完了
+就是添加和去除对应的类
+接下来就需要针对这两个特殊的类来写样式 */
+.item.active{
+    width: 100%;
+}
+
+.container-active .item:not(.active){
+    width: 0%;
+    height: 0%;
+}
+
+.container-active .item{
+    transition: height .5s linear,width .5s linear .5s;
+}
+
+.item.active .bg{
+    opacity: 1;
+}
+
+.container-active .title h2{
+    opacity: 0;
+}
+
+.container-active .dir{
+    opacity: 1;
+    transition: opacity .5s linear .5s;
+}
+
+.item.active .dir .close{
+    transform: rotate(360deg);
+    transition: transform .5s linear 1s;
+}

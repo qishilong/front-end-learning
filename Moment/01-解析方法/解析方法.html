@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/moment-with-locales.js"></script>
+</head>
+
+<body>
+	<script>
+		//解析
+		//moment() 
+		console.log(moment());	
+
+		//moment(String)
+		console.log(moment('2013-02-08'));	//返回2013年2月8号的日期对象
+		console.log(
+			moment('2013-039'),	//返回2013年的第39天，2013年2月8号
+			moment('2013050'),	//返回2013年的第50天，2013年2月19号
+			moment('2013W065'),	//返回2013年的第6个星期的第5天，2013年2月8号（W表示星期）
+			moment('2013-02-08T09'),//返回2013年2月8号9点（T表示时间）
+		);
+		console.log(moment('kaivon'));//警告，同时照样能返回那个对象，不过对象里的参数的值是不正确的
+
+		//moment(String) 带格式 
+		console.log(moment("12-25-1995", "MM-DD-YYYY"));
+		console.log(moment("12/25/1995", "LL"));
+
+		//moment(String) 多个格式 
+		console.log(moment("29-06-1995", ["MM-DD-YYYY", "DD-MM", "DD-MM-YYYY"]));
+
+		//moment(String) 特殊格式 
+		console.log(moment("2010-01-01T05:06:07", moment.ISO_8601));
+
+		//moment(Object) 
+		console.log(moment({ year: 2010, month: 3, day: 5, hour: 15, minute: 10, second: 3, millisecond: 123 }));//注意：这里的月份也是从0开始，此时对应的是4月
+
+		//moment(Number) 
+		console.log(moment(1318781876406));//这个参数为毫秒数
+
+		//unix()
+		console.log(moment.unix(1318781876406 / 1000));//这个参数为秒数
+
+		//moment(Date)
+		console.log(moment(new Date(2011, 9, 16)));
+
+		//moment(Number[])	参数为一个数组	[year, month, day, hour, minute, second, millisecond]
+		console.log(moment([2010, 1, 14, 15, 25, 50, 125]));//注意月份是从0开始的，这里对应的是2月
+
+		//moment(JSONDate) 
+		console.log(moment("/Date(1198908717056-0700)/"));	//前面一串数字为时间戳，-后面的是时区
+
+		//moment(Moment) 参数为一个moment对象，用于克隆
+		var a=moment([2012]);
+		var b=moment(a);
+		console.log(a.valueOf()===b.valueOf());
+
+		//clone()	也可以使用clone去克隆
+		var a=moment([2008]);
+		var b=a.clone();
+		console.log(a,b);
+
+		/*
+			GMT	世界时，格林尼治标准时间 
+			UTC	协调世界时，世界统一时间、世界标准时间
+		 */
+		//utc()
+		console.log(moment().format());	//GMT //默认为本地当前时间，东八区的时间（+08:00）
+		console.log(moment.utc().format());	//UTC		//UTC的时间（世界标准时间，位于0时区，时区用Z表示，它与北京时间相差8个小时）
+
+		//isValid()
+		console.log(
+			moment([2015, 25, 35]).isValid(),	//false
+			moment([2015, 10, 35]).invalidAt(),	//2
+		);
+	</script>
+</body>
+<html>

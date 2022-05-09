@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/lodash.js"></script>
+	<script>
+		//assign()	合并对象，与Object.assign()方法一样
+		//assignIn()/extend()	与上面一样，不过它能继承原型身上的属性
+		//assignInWith()/extendWith()	与上面一样，接收一个比较器的函数做为参数
+		//assignWith()	也是接收一个比较器的函数做为参数
+
+		//at()	根据传入的属性创建一个数组
+		var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+		console.log(_.at(object, ['a[0].b.c', 'a[1]']));	//[3, 4]
+
+		//create()	与Object.create()一样
+
+		//defaults()	合并对象，与assign()一样，不过assign方法合并时遇到相同的属性，后面的会覆盖前面的。defaults刚好相反，前面的覆盖后面的
+		console.log(
+			_.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 }),	//{a: 1, b: 2}
+			_.assign({ 'a': 1 }, { 'b': 2 }, { 'a': 3 }),	//{a: 3, b: 2}
+		);
+
+		//defaultsDeep()	与defaults一致，不过它会深递归
+
+		//toPairs()/entries()	把对象里可枚举的属性(不包括继承的)创建成一个数组，与Object.entities()的方法一样
+		//toPairsIn()/entriesIn()	与上面的一样，但它包括继承的属性
+
+		//findKey()	与前面讲的find方法一样，只不过它返回的是key
+		var users = {
+			'barney': { 'age': 36, 'active': true },
+			'fred': { 'age': 40, 'active': false },
+			'pebbles': { 'age': 1, 'active': true }
+		};
+		console.log(_.findKey(users, { 'age': 1, 'active': true }));	//pebbles
+
+		//findLastKey()	与上面一样，只不过它从反方向开始遍历
+
+		//forIn()	与原生 的for...in循环一样，只不过它是一个函数，语法与forEach一样。它遍历的是自己的属性与继承的属性
+		//forInRight()	与上面一样，只不过是反方向遍历
+		//forOwn()	与forIn()一样，只不过forOwn只能遍历到自己的属性
+		//forOwnRight()	与上面一样，只不过是反方向遍历
+
+		//functions()/functionsIn()	这两个没有说？？？？？？
+
+		//get()	获取属性的值，与Object.defineProperty()	属性描述对象上的get方法一致
+		//set()	设置属性的值，与Object.defineProperty()	属性描述对象上的set方法一致
+		//setWith()	与上面的一样，只不过可以给一个参数决定返回的是对象还是数组
+		console.log(_.setWith({}, '[0][1]', 'a', Array));
+
+		//has()	检查属性是否为对象的直接属性，与Object.hasOwnProperty()方法返回true一样
+		//hasIn()	检查属性是对象的直接属性还是继承属性，也与Object.hasOwnProperty()一样，true表示直接属性，false表示继承属性
+
+		//invert()	把对象的key与value颠倒，后面的属性会覆盖前面的属性
+		var object = { 'a': 1, 'b': 2, 'c': 1 };
+		console.log(_.invert(object));	//{1: "c", 2: "b"}
+
+		//invertBy()	与上面一样，它遇到相同的值后不会覆盖，而是会把所有放在一个数组里。另外它多了一个遍历器方法
+
+		//invoke()	调用方法去处理取到的属性值
+		var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
+		console.log(_.invoke(object, 'a[0].b.c.slice', 1, 3)); //[2, 3]	用slice方法去截取a[0].b.c的1-3位
+
+		//keys()	把对象的key放到一个数组里，与Object.keys()的方法一样
+		//keysIn()	与上面一样，只不过它包含继承到的属性
+		//values()	把对象的value放到一个数组里，与Object.value()的方法一样
+		//valuesIn()	与上面一样，只不过它包含继承到的属性
+
+		//mapKeys()	修改对象的key，value不会变
+		var result = _.mapKeys({ 'a': 1, 'b': 2 }, function (value, key) {
+			return key + value;
+		});
+		console.log(result);	//{a1: 1, b2: 2}
+
+		//mapValues()	与上个方法一样，只不过它修改的是value，key不会变
+
+		//merge()	它与assign一样，不过它遇到相同的属性名后并不会覆盖，它会合并
+		var object = {
+			'a': [{ 'b': 2 }, { 'd': 4 }]
+		};
+		var other = {
+			'a': [{ 'c': 3 }, { 'e': 5 }]
+		};
+		console.log(_.merge(object, other));
+
+		//mergeWith()	与上面的方法一致，不过多了接收一个比较器的函数做为参数
+
+		//omit()	删除对象里的属性
+		console.log(_.omit({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'c']));	//{b: "2"}
+
+		//_.omitBy	与上面一样，不过是接收一个迭代器的函数做为参数
+
+		//pick()	筛选对象里的属性
+		console.log(_.pick({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'c']));	//{a: 1, c: 3}
+
+		//pickBy()	与上面一样，不过是可接收一个迭代器的函数做为参数
+
+		//result()	获取对象属性，它与get一样。只不过它遇到函数的属性时会调用函数，并且把this指向对象本身
+		var obj = {
+			a: 12,
+			b: function () {
+				console.log(this.a);
+			}
+		};
+		console.log(_.result(obj, 'a'));	//12
+		_.result(obj, 'b');	//12
+		console.log(_.get(obj, 'b'));	//它只能取到这个函数，并不能执行
+
+		//toPairs()	把对象的key与value一起放到数组里
+		function Foo() {
+			this.a = 1;
+			this.b = 2;
+		}
+		Foo.prototype.c = 3;
+		console.log(_.toPairs(new Foo()));
+		console.log(_.toPairsIn(new Foo()));
+
+		//unset()	删除属性
+		var object = { 'a': [{ 'b': { 'c': 7 } }] };
+		_.unset(object, 'a[0].b.c'), console.log(object);
+
+		//update()	这个与set一样，不过它可以接收一个函数的参数
+		var object = { a: 10 };
+		_.update(object, 'a', function (n) { return n * n });
+		console.log(object);	///{a: 100}
+
+		//updateWith()	与上面的一样，不过可以接收一个路径的参数，决定生成的属性放在哪里
+		var object = {};
+		_.updateWith(object, '[a][b]', function () {
+			return 12;
+		}, Object);
+		console.log(object);
+	</script>
+</body>
+<html>

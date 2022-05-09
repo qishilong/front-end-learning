@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	</style>
+</head>
+
+<body>
+	<!-- get请求 -->
+	<button id="get">get请求</button>
+	<button id="ajaxGet">ajax get请求</button>
+	<br>
+	<br>
+
+	<!-- post请求 -->
+	<div id="login">
+		<div>
+			<label for="username">用户名</label>
+			<input type="text" name="account">
+		</div>
+		<div>
+			<label for="password">密码</label>
+			<input type="password" name="password">
+		</div>
+		<div>
+			<button id="loginBtn1">登录(post请求)</button>
+			<button id="loginBtn2">登录(ajax post请求)</button>
+		</div>
+	</div>
+	<br>
+	<br>
+
+	<!-- JSON请求 -->
+	<button id="json">JSON请求</button>
+
+
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		//get请求
+		$('#get').click(function () {
+			$.get('http://api.duyiedu.com/api/student/findAll', { appkey: 'kaivon_1574822824764' }, function (data) {
+				console.log(data);
+			}, 'json');
+		});
+		$('#ajaxGet').click(function () {
+			$.ajax({
+				url: 'http://api.duyiedu.com/api/student/findAll',
+				type: 'get',
+				/* data:{
+					appkey:'kaivon_1574822824764',
+				}, */
+				data: 'appkey=kaivon_1574822824764',
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+				}
+			});
+		});
+
+		//post请求
+		$('#loginBtn1').click(function () {
+			var username = $('#login input[name=account]').val();
+			var password = $('#login input[name=password]').val();
+
+			$.post('http://api.duyiedu.com/api/student/stuLogin', { appkey: 'kaivon_1574822824764', account: username, password: password }, function (data) {
+				console.log(data);
+			}, 'json');
+
+			//console.log(username,password);
+		});
+
+		$('#loginBtn2').click(function () {
+			$.ajax({
+				url: 'http://api.duyiedu.com/api/student/stuLogin',
+				type: 'post',
+				data: {
+					appkey: 'kaivon_1574822824764',
+					account: $('#login input[name=account]').val(),
+					password: $('#login input[name=password]').val()
+				},
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (status) {
+					console.log('错误原因：' + status);
+				}
+			});
+		});
+
+		//JSON请求
+		$('#json').click(function () {
+			$.getJSON('http://api.duyiedu.com/api/student/findAll', { appkey: 'kaivon_1574822824764' },function(data){
+				console.log(data);
+			});
+		});
+	</script>
+</body>
+<html>

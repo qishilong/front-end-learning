@@ -1,0 +1,12 @@
+{
+    "name": "testBackEnd",
+    "version": "1.0.0",
+    "main": "server.js",
+    "license": "MIT",
+    "dependencies": {
+        "koa": "^2.13.1",
+        "koa-cors": "^0.0.16",
+        "koa-router": "^10.0.0",
+        "koa2-cors": "^2.0.6"
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/moment-with-locales.js"></script>
+</head>
+
+<body>
+	<script>
+		//isBefore()	检查一个时间是否在另一个时间之前，默认是都转成毫秒数进行计算
+		console.log(moment('2010-10-20').isBefore());	//true	没给参数默认为现在的时间
+		console.log(moment('2010-10-20').isBefore('2010-10-19'));	//false	第一个日期是否在第二个日期之前
+		console.log(moment('2009-10-20').isBefore('2010-10-19', 'year'));	//false	二个参数为对比的单位，可以给的有year month week isoWeek day hour minute second
+		console.log(moment('2010-10-20').isBefore('2008-12-31', 'month'));	//false
+
+		//isSame()	检查两个时间是否相同
+		console.log(moment('2010-10-20').isSame('2010-10-20'));
+		console.log(moment('2010-10-20').isSame('2010-12-20', 'year'));
+
+		//isAfter() 检查一个时间是否在另一个时间之后
+		console.log(moment('2010-10-20').isAfter('2010-09-19'));	//true
+
+		//isSameOrBefore()	检查一个时间是否在另一个时间之前或者与之相同（<=）
+		console.log(
+			moment('2010-10-20').isSameOrBefore('2010-10-21'),	//true
+			moment('2010-10-20').isSameOrBefore('2010-10-20'),	//true
+			moment('2010-11-20').isSameOrBefore('2010-10-20'),	//false
+		);
+
+		//isSameOrAfter() 检查一个时间是否在另一个时间之后或者与之相同（>=）
+		console.log(
+			moment('2010-11-20').isSameOrAfter('2010-10-21'),	//true
+			moment('2010-10-20').isSameOrAfter('2010-10-20'),	//true
+			moment('2010-10-19').isSameOrAfter('2010-10-20'),	//false
+		);
+
+		//isBetween()	检查一个时间是否在其他两个时间之间
+		console.log(
+			moment('2010-10-20').isBetween('2010-10-19', '2010-10-25'),	//true
+			moment('2010-10-20').isBetween('2010-10-19', undefined),	//true undefined等于moment(),就是当前的时间
+			moment('2010-10-20').isBetween('2009-10-19', '2012-01-01', 'year'),	//true
+
+			//第四个参数为包容性，第三个参数为null，表示对比单位为默认毫秒数
+			moment('2016-10-30').isBetween('2016-10-30', '2016-12-30', null, '()'),	//false
+		);
+
+		//isLeapYear()	检测是否为闰年
+		console.log(
+			moment().isLeapYear(),	//true
+			moment([2019]).isLeapYear(),	//false
+		);
+
+		//isMoment() 检测变量是否为moment对象
+		console.log(
+			moment.isMoment(),	//false
+			moment.isMoment(new Date()),	//false
+			moment.isMoment(moment()),	//true
+		);
+
+		//isDate()	检测变量是否为原生的Date对象
+		console.log(
+			moment.isDate(),	//false
+			moment.isDate(new Date()),	//true
+			moment.isDate(moment()),	//false
+		);
+	</script>
+</body>
+<html>

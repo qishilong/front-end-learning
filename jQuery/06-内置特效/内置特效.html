@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		button {
+			color: #fff;
+			font-size: 18px;
+			padding: 5px 10px;
+			background: green;
+			border: none;
+		}
+
+		#box {
+			width: 400px;
+			height: 400px;
+			padding: 20px;
+			margin: 20px;
+			background: #ccc;
+			border: 10px solid green;
+			position: relative;
+		}
+
+		#box img {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 基本特效 -->
+	<button id="hide">隐藏</button>
+	<button id="show">显示</button>
+	<button id="toggle">隐藏/显示切换</button>
+	<br>
+	<br>
+
+	<!-- 滑动特效 -->
+	<button id="slideUp">滑动隐藏</button>
+	<button id="slideDown">滑动显示</button>
+	<button id="slideToggle">滑动隐藏/显示切换</button>
+	<br>
+	<br>
+
+	<!-- 渐变特效 -->
+	<button id="fadeOut">淡出隐藏</button>
+	<button id="fadeIn">淡入显示</button>
+	<button id="fadeToggle">淡出隐藏/淡入显示切换</button>
+	<button id="fadeTo">透明度变化</button>
+	<br>
+	<br>
+
+	<!-- 自定义动画 -->
+	<button id="animate">自定义动画</button>
+	<br>
+	<br>
+
+	<!-- 控制动画 -->
+	<button id="stop">暂停动画</button>
+	<button id="finish">完成动画</button>
+
+
+	<div id="box">
+		<img src="images/img_02.jpg" alt="">
+	</div>
+
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		//基本特效
+		$('#hide').click(function () {
+			//$('#box').hide('fast');
+			//$('#box').hide('nomal');
+			//$('#box').hide('slow');
+			$('#box').hide(4000, function () {
+				console.log('隐藏动画完成了');
+			});
+		});
+		$('#show').click(function () {
+			$('#box').show('nomal', function () {
+				console.log('显示动画完成了');
+			});
+		});
+
+		var n = 0;
+		$('#toggle').click(function () {
+			$('#box').toggle('nomal', function () {
+				var re = n++ % 2;
+				//console.log(n++ % 2);
+
+				if (re == 0) {
+					console.log('隐藏动画结束了');
+				} else {
+					console.log('显示动画结束了');
+				}
+			});
+		});
+
+
+		//滑动特效
+		$('#slideUp').click(function () {
+			$('#box').slideUp(4000, function () {
+				console.log('滑动隐藏动画结束了');
+			});
+		});
+		$('#slideDown').click(function () {
+			$('#box').slideDown('nomal', function () {
+				console.log('滑动显示动画结束了');
+			});
+		});
+
+		var n = 0;
+		$('#slideToggle').click(function () {
+			$('#box').slideToggle('nomal', function () {
+				var re = n++ % 2;
+				//console.log(n++ % 2);
+
+				if (re == 0) {
+					console.log('滑动隐藏动画结束了');
+				} else {
+					console.log('滑动显示动画结束了');
+				}
+			});
+		});
+
+
+		//渐变特效
+		$('#fadeOut').click(function () {
+			$('#box').fadeOut('slow', function () {
+				console.log('淡出隐藏动画结束了');
+			});
+		});
+		$('#fadeIn').click(function () {
+			$('#box').fadeIn('slow', function () {
+				console.log('淡入显示动画结束了');
+			});
+		});
+
+		var n = 0;
+		$('#fadeToggle').click(function () {
+			$('#box').fadeToggle('nomal', function () {
+				var re = n++ % 2;
+				//console.log(n++ % 2);
+
+				if (re == 0) {
+					console.log('淡出隐藏动画结束了');
+				} else {
+					console.log('淡入显示动画结束了');
+				}
+			});
+		});
+
+		$('#fadeTo').click(function () {
+			$('#box').fadeTo('nomal', 0.5, function () {
+				console.log('透明度变化完成了');
+			});
+		})
+
+
+		//自定义
+		/* $('#animate').click(function () {
+			$('#box').animate({
+				width: 200,
+				left: '+=50',
+				height: 'toggle',
+				'border-radius': 50
+			}, 500, function () {
+				console.log('运动结束了');
+			});
+		}); */
+
+		//链式操作
+		$('#animate').click(function () {
+			$('#box').animate({ width: 200 }, 'fast')
+				.delay(2000)	//让后面的动画延迟执行
+				.animate({ height: 200 }, 'slow')
+				.delay(1000)
+				.animate({ opacity: 0.5 }, 1000);
+		});
+
+
+		//控制动画
+		$('#stop').click(function () {
+			$('#box').stop();
+		});
+		$('#finish').click(function () {
+			$('#box').finish();
+		});
+	</script>
+</body>
+<html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/lodash.js"></script>
+	<script>
+		//chunk()   把数组拆分成一个二维数组，拆分后的第1个数组的长度为第二个参数的值
+		console.log(_.chunk(['a', 'b', 'c', 'd'], 2));	//[["a", "b"],["c", "d"]]
+
+		//compact() 过滤掉原数组里的非真（转布尔值后为false）数据
+		console.log(_.compact([0, 1, false, 2, '', 3, null, NaN, undefined]));	//[1, 2, 3]
+
+		//concat()  合并数组，与Array对象的方法一样
+
+		//difference()  在第一个数组中把第二个数组里的数据都排除掉
+		console.log(_.difference([1, 3, 5, 7, 9], [3, 7]));	// [1, 5, 9]
+
+		//differenceBy	与上面的方法一样，只不过它可以再接收一个迭代器的函数做为参数
+		console.log(_.differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor));	//[3.1, 1.3]
+
+		//differenceWith()	与上面的方法一样，只不过它可以接收一个比较器的函数做为参数，对每个数据都要比较一下
+		var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+		console.log(_.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual));	//[{ 'x': 2, 'y': 1 }]
+
+		//drop()    切掉数组的前n（第二个参数，默认为1）位
+		console.log(_.drop(['a', 'b', 'c', 'd', 'e'], 2));	//['c', 'd', 'e']
+		//dropRight()   切割数组，切掉数组的后n位
+
+		//dropWhile()	去掉数组中，从起点到第二个方法返回假的数据。与Array对象身上的filter()方法一样
+		//dropRightWhile()	与上面一样，不过它是从右边开始查，查到返回假的那个数据都去除
+
+		//take()	提取数组的前n（第二个参数，默认为1）位。与drop方法相反
+		console.log(_.take(['a', 'b', 'c', 'd', 'e'], 2));
+		//takeRight()/takeWhile()/takeRightWhile()	与上面的一样
+
+		//fill()    填充数组，与Array对象身上的fill()方法一样
+		//findIndex()   查找到第一个满足条件的数据的索引值（从左往右查），没找到返回-1。与Array对象身上的findIndex()方法一样
+		//findLastIndex()	这与上面的findIndex是一样的，区别是它是从右往左的查
+
+		//flatten()	减少一级数组嵌套深度，与Array的flat()这个方法相似
+		console.log(_.flatten(['a', ['b', ['c', ['d']]]]));
+
+		//flattenDeep()	把数组递归为一维数组。相当于[].flat(Infinity)
+		console.log(_.flattenDeep(['a', ['b', ['c', ['d']]]]));	//["a", "b", "c", "d"]
+
+		//flattenDepth()	减少n（第二个参数）层数组的嵌套。相当于[].flat(2)
+		console.log(_.flattenDepth(['a', ['b', ['c', ['d']]]], 2));	//["a", "b", "c", "d"]
+
+		//fromPairs()	把数组转换为一个对象，与Object.fromEntries()方法一样
+		//head()/first()	获取数组里第一个元素，就是取下标为0的那个数据
+		//last()	取数组里的最后一位数据，取下标为length-1的那个数据
+
+		//indexOf()	查找数据，并返回数据对应的索引值，与Array对象身上的indexOf()方法一样
+		//lastIndexOf()	查找数据，并返回数据对应的索引值，与Array对象身上的lastIndexOf()方法一样
+		//initial()	获取数组里除了最后一位的所有数据。相当于删除数组里的最后一个数据，与Array对象身上的pop()方法一样。区别在于pop方法会改变原数组，而这个方法不会改变原数组
+		//tail()	获取除了array数组第一个元素以外的全部元素，想当于Array对象身上的shift()，与initial()相反
+
+		//intersection()	取数组的交集
+		console.log(_.intersection(['a', 'b'], ['b', 'c'], ['e', 'b']));	//['b']
+
+		//union()	取数组的并集（合并起来，去掉重复的）
+		console.log(_.union([2], [1, 2]));	//[2, 1]
+
+		//xor()	删除数组的交集，留下非交集的部分
+		console.log(_.xor(['a', 'b'], ['b', 'c'], ['e', 'b']));	//["a", "c", "e"]
+
+		//join()	把数组转成字符串，这个方法原生的Array对象也有
+
+		//nth()	取数组里的某个数据，就是通过下标取到某个数据。只不过它的数字可以为负。表示倒着找
+		var array = ['a', 'b', 'c', 'd'];
+		console.log(
+			_.nth(array, 1),	//b
+			_.nth(array, -3),	//c
+		);
+
+		//以下这几个方法，用后面remove的方法代替
+		//pull()	根据给的参数（参数为数据）删除原数组里的对应数据
+		//pullAll()	与上面的方法一样，就是参数为数组（好比call,apply这两个方法）
+		//pullAllBy()\pullAllWith()	与前面方面的语法一样
+		//pullAt()	根据给的参数（参数为索引）删除原数组里的对应数据
+
+		//remove()	根据函数删除原数组里的数据
+		var arr = ['a', 'b', 'c', 'd', 'e'];
+		_.remove(arr, function (value, index, array) {
+			return index > 2;
+		});
+		console.log(arr);	//["a", "b", "c"]
+
+		//without()	根据给的参数（参数为数据）删除原数组里的对应数据
+		var arr = ['a', 'b', 'c', 'd', 'e'];
+		console.log(
+			_.without(arr, 'b', 'c'),
+			arr
+		);
+
+		//reverse()	颠倒数组，这个方法原生的Array对象也有
+		//slice()	截取数组，这个方法原生的Array对象也有
+
+		//uniq()
+		console.log(_.uniq([1, 2, 2, 1]));	//[1, 2]
+		//uniqBy()/uniqWith() 与前面的一样
+
+		//zip()	把各数组中索引值相同的数据放到一起，组成新数组
+		console.log(_.zip(['小明', '小红', '小刚'], ['男', '女', '男'], [12, 13, 14]));	//[["小明", "男", 12],["小红", "女", 13],["小刚", "男", 14]]
+
+		//zipObject()	与上面方法一样，区别是它输出的是对象
+		console.log(_.zipObject(['小明', '小红', '小刚'], ['男', '女', '男'], [12, 13, 14]));	//{小明: "男", 小红: "女", 小刚: "男"}
+
+		//zipWith()
+
+		//unzip()	这个方法与zip相反，把每个数组里索引值一样的数据放在一起
+		console.log(_.unzip([["小明", "男", 12],["小红", "女", 13],["小刚", "男", 14]]));	//[['小明', '小红', '小刚'], ['男', '女', '男'], [12, 13, 14]]
+		//unzipWith()	与zipWidth()一样，接收了一个迭代器的函数
+	</script>
+</body>
+<html>

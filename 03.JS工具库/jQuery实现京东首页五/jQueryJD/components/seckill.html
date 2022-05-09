@@ -1,0 +1,88 @@
+<!-- 秒杀模块 -->
+<div class="clearfix">
+  <!-- 京东秒杀倒计时 -->
+  <div class="seckill-count">
+    <a class="seckill-countdown" href="//miaosha.jd.com" target="_blank" clstag="h|keycount|core|seckill_a">
+      <div class="countdown-title">京东秒杀</div>
+      <div>
+        <div class="countdown-desc"><strong>22:00</strong> 点场 倒计时</div>
+        <span class="timmer countdown-main">
+          <span class="timmer__unit timmer__unit--hour">01</span>
+          <span class="timmer__unit timmer__unit--minute">46</span>
+          <span class="timmer__unit timmer__unit--second">57</span>
+        </span>
+      </div>
+    </a>
+  </div>
+  <!-- 两个轮播图 -->
+  <div class="seckill-content">
+    <div class="seckill-list"></div>
+    <div class="seckill-brand"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // 倒计时逻辑
+    // 1. 倒计时的时间
+    var endTime = new Date('2021-11-5 22:00');
+    // 2. 开启定时器，每隔一秒更新页面
+    var seckillTimer = setInterval(function () {
+      // now
+      var now = new Date();
+      // 计算差值
+      var disTime = (endTime.getTime() - now.getTime()) / 1000;
+      if (disTime < 0) {
+        clearInterval(disTime);
+      } else {
+        // 根据disTime计算时分秒
+        var hour = parseInt(disTime / 3600);
+        var min = parseInt(disTime % 3600 / 60);
+        var sec = parseInt(disTime % 60);
+        // 格式化
+        // 0 =》 00 1 =》 01
+        if (hour < 10) {
+          hour = '0' + hour;
+        }
+        if (min < 10) {
+          min = '0' + min;
+        }
+        if (sec < 10) {
+          sec = '0' + sec;
+        }
+        // 注入页面
+        $('.timmer__unit--hour').text(hour);
+        $('.timmer__unit--minute').text(min);
+        $('.timmer__unit--second').text(sec);
+      }
+    }, 1000);
+
+    // 加载两个轮播图
+    $('.seckill-list').load('../components/seckillList.html', function () {
+      $(this)
+        .swiper({
+          showDots: false,
+          autoChangeTime: 10000,
+          type: 'animate',
+          showChangeBtn: 'always',
+          width: 800,
+          height: 200,
+          contentList: $(this).find('.seckill-list-item')
+        })
+    });
+    $('.seckill-brand').load('../components/seckillBrand.html', function () {
+      $(this)
+        .swiper({
+          showDots: true,
+          autoChangeTime: 2000,
+          dotPosition: 'center',
+          type: 'animate',
+          showChangeBtn: 'hide',
+          width: 180,
+          height: 240,
+          contentList: $(this).find('.brand-item')
+        })
+    });
+  })();
+  $.abc();
+</script>

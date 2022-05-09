@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			padding-bottom: 1000px;
+		}
+		.red{
+			background: red;
+		}
+		.green{
+			background: green;
+		}
+		.blue{
+			background: blue;
+		}
+		.active{
+			background: greenyellow;
+		}
+		.css{
+			border: 2px solid #000;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 操作class -->
+	<div class="setClass">
+		<ul>
+			<li>red</li>
+			<li class="green blue">green</li>
+			<li class="red green">blue</li>
+		</ul>
+		<p class="active">点击切换class</p>
+	</div>
+	<hr>
+
+	<!-- 插入元素，内部插入 -->
+	<div class="insideAdd">
+		<p>在内部插入元素</p>
+	</div>
+	<hr>
+
+	<!-- 插入元素，外部插入 -->
+	<div class="outsideAdd">
+		<h2>在外部插入元素</h2>
+	</div>
+	<hr>
+
+	<!-- 插入元素，html与text方法 -->
+	<div class="htmlText">
+		<p>html与text方法</p>
+	</div>
+	<hr>
+
+	<!-- 包裹元素 -->
+	<div class="wrap">
+		<span>red</span>
+		<span>green</span>
+		<span>blue</span>
+	</div>
+	<hr>
+
+	<!-- 删除元素 -->
+	<div class="del">
+		<div class="title">标题</div>
+		<ul>
+			<li>red</li>
+			<li>green</li>
+			<li>blue</li>
+		</ul>
+		<div class="end">底部</div>
+	</div>
+	<hr>
+
+	<!-- 克隆与替换元素 -->
+	<div class="clone">
+		<p>这是一段要被克隆的文字</p>
+		<h2 class="replaceAll">这是一段要主动替换的文字</h2>
+		<div class="name1">陈学辉</div>
+		<div class="name2">kaivon</div>
+		<h2 class="replaceWidth">这是一段要被动替换的文字</h2>
+	</div>
+	<hr>
+
+	<!-- 属性操作-通用属性操作 -->
+	<div class="attr">
+		<img src="images/img_01.jpg" alt="" kaivon="liu">
+		<!-- <img src="images/img_02.jpg" alt="" kaivon="liu"> -->
+		<input type="text" value="这是一个正经的输入框">
+	</div>
+
+	<!-- 属性操作-css类属性操作 -->
+	<div class="css">
+		<h2></h2>
+		<p></p>
+		<div></div>
+	</div>
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		//操作class
+		$('.setClass li:first').addClass('red');	//添加class
+		$('.setClass li:eq(1)').removeClass('green');	//移除class(不给参数，移除所有class)
+		console.log(	//是否包含某个class
+			$('.setClass li:last').hasClass('green'),	//true
+			$('.setClass li:last').hasClass('orange'),	//false
+		);
+		//toggleClass 切换class。在添加、删除间切换
+		$('.setClass p').click(function(){
+			$(this).toggleClass();
+		});
+
+
+		//插入元素（内部插入）
+		$('.insideAdd').append('<h2>append方法插入</h2>');	//append()，在元素里面的末尾插入DOM。这个与appendChild的方法是一样的。
+		$('.insideAdd').append($('.insideAdd p'));
+		$('<h2>appendTo方法插入</h2>').appendTo('.insideAdd');	//将匹配的元素插入到目标元素的最后面。这个与append一样，只不过内容和目标的位置相反。append方法里直接写一个标签的字符串，就相当于创建一个DOM对象
+		$('.insideAdd').prepend('<h2>prepend方法插入</h2>');	//prepend()，与append的语法一样，只不过是插入到父级元素的前面
+		$('<h2>prependTo方法插入</h2>').prependTo('.insideAdd');	//prependTo()，与appendTo是一样的，不同的也是插入的位置是在前面
+
+
+		//插入元素（外部插入，插入为兄弟节点）
+		$('.outsideAdd h2').after('<p>after方法添加到h2后面</p>');	//after()（语法类似于append）
+		$('<p>insertAfter方法添加到h2后面</p>').insertAfter('.outsideAdd h2');	//insertAfter()（语法类似于appendTo）
+		$('.outsideAdd h2').before('<p>before方法添加到h2前面</p>');	//before()（语法类似于prepend）
+		$('<p>insertBefore方法添加到h2前面</p>').insertBefore('.outsideAdd h2');	//insertBefore()（语法类似于prependTo）
+
+
+		//插入元素，html与text方法。相当于原生的innerHTML、innerText属性
+		console.log($('.htmlText').html());//获取
+		$('.htmlText').html('<h2>这是html方法添加的标题</h2><p>这是html方法添加的内容</p>');	//设置
+		console.log($('.htmlText').text());	//获取
+		$('.htmlText').text('<h2>这是text方法添加的标题</h2><p>这是<em>text</em>方法添加的内容</p>');	//设置
+
+
+		//包裹元素
+		$('.wrap span').wrap('<li>');	//wrap()，在每个匹配的元素外层包上一个html元素
+		$('.wrap li').wrapAll('<ul>');	//wrapAll()，在所有匹配元素外面包一层HTML元素
+		$('.wrap span').wrapInner('<strong>');	//wrapInner()，在匹配元素里的内容外包一层结构
+		$('.wrap li').unwrap();	//.unwrap()，将匹配到的元素的父级删除
+
+
+		//删除元素
+		//$('.del .title').remove();	//remove()，移除自己
+		$('div').remove('.title');	//也可以添加参数。从div中移除一个.title的div
+		$('.del ul').empty();	//empty()，清空子元素
+		$('.del .end').click(function(){
+			alert(1);
+		});
+		//detach()，与remove()一样，这两个方法都有一个返回值，返回被删除的DOM。它们的区别就在这个返回值身上
+		var end=$('.del .end').detach();	//再次添加后是有事件的
+		//var end=$('.del .end').remove();	//再次添加后没有事件
+		setTimeout(function(){
+			$('.del').append(end);	//1s后，被删除的那个元素会被重新添加上
+		},1000);
+
+
+		//克隆与替换元素
+		$('.clone p').click(function(){
+			alert(2);
+		});
+		//$('.clone p').clone().appendTo('.clone');
+		$('.clone p').clone(true).appendTo('.clone');	//clone的参数为true时表示，会把事件也克隆了
+		$('<h3>使用replaceAll方法主动替换</h3>').replaceAll('.clone .replaceAll');//创建一个元素然后用它替换掉其它元素
+		$('.clone .name2').replaceAll('.clone .name1');//使用已有的元素替换掉其它元素（剪切操作）
+		$('.clone .replaceWidth').replaceWith('<h3>使用replaceWidth方法被动替换</h3>');
+
+		
+		//属性操作-通用属性操作
+		console.log($('.attr img').attr('src'));	//images/img_01.jpg（如果有多个img的话，它返回的是第一个img的src值）
+		$('.attr img').attr('title','这是一张美食图片');	//如果有多个img的话，设置的是所有的img
+		$('.attr img').attr({	//同时设置多个属性
+			class:'delicious',
+			alt:'美食'
+		});
+		console.log($('.attr img').prop('src'));
+		console.log(
+			$('.attr img').attr('kaivon'),	//liu
+			$('.attr img').prop('kaivon'),	//undefined
+		);
+		$('.attr img').prop({
+			id:'food',
+			kaivon:'liuliu',	//自定义的属性prop并没有添加到DOM标签身上，但是它会添加到DOM对象身上	
+		});
+		$('.attr img').attr('kaivon','liuliuliu');
+		$('.attr img').removeAttr('kaivon');
+		$('.attr img').removeProp('id');	//删除的是DOM对象身上的属性，并不是DOM标签身上的属性
+		$('.attr img').prop('index',5);
+		console.log($('.attr img').prop('index'));	//5 这条属性是添加在DOM对象身上
+		$('.attr img').removeProp('index');
+		console.log($('.attr img').prop('index'));	//undefined removeProp是删除DOM对象身上的属性
+		console.log($('.attr input').val());	//这是一个正经的输入框
+		$('.attr input').val('这不是一个输入框');
+
+
+		//属性操作-css类属性操作
+		console.log(
+			$('.css').css('border'),	//2px solid rgb(0, 0, 0)
+			$('.css').css('height'),	//19.9125px
+		);
+		$('.css h2').css('width','200px').css('height','100px').css('background','#ccc').text('插入一个标题');
+		$('.css h2').css({
+			color:'green',
+			fontSize:'30px',
+			'line-height':'100px',
+		});
+		$('.css p').css({
+			width:'200px',
+			height:'200px',
+			padding:'20px',
+			margin:'20px auto',
+			border:'2px solid #f00',
+		});
+		console.log(
+			$('.css p').width(),	//200
+			$('.css p').height(),	//200
+			$('.css p').innerWidth(),	//240	获取包含padding的宽度（clientWidth）
+			$('.css p').innerHeight(),	//240
+			$('.css p').outerWidth(),	//244	获取包含border的宽度（offsetWidth）
+			$('.css p').outerHeight(),	//244
+		);
+		$('.css p').width(300).height(100).innerWidth(400).outerWidth(500);	//给width与给innerWidth设置的都是width属性的值。但是innerWidth与outerWidth都会动态的算出一个宽度值，赋给width属性
+
+		$('.css').css('position','relative');	//先把父级设置成相对定位
+		$('.css div').css({
+			width:'100px',
+			height:'100px',
+			background:'green',
+			position:'absolute',
+			left:'100px',
+			top:'200px'
+		});
+		//相对于document
+		console.log(
+			$('.css div').offset().left,	//110
+			$('.css div').offset().top,		//1648.3499755859375
+			//此方法没有.right与.bottom
+		);
+		$('.css div').offset({
+			left:200,
+			top:1800,
+		});
+
+		//获取相对于有定位的父级的位置信息
+		console.log(
+			$('.css div').position().left,
+			$('.css div').position().top,
+		);
+
+		console.log(
+			$(document).scrollTop(),
+			$(document).scrollLeft(),
+		);
+		setTimeout(function(){
+			$(document).scrollTop(300);
+		},2000);
+
+	</script>
+</body>
+
+</html>

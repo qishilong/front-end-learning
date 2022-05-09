@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var arr1 = [3, 4]; // 001
+    // var arr2 = arr1; // 001
+    // // 变量存的数组的地址。
+    // arr2[0] = 1;
+    // // [1, 4] 001
+    // arr2 = [4, 5]; // 002
+    // // arr2 装的是 新数组的地址。
+    // arr2[1] = 2;
+    // // [4,2] 002
+    // arr1[1] = 0;
+    // // [1,0] 001
+    // console.log(arr1, arr2);
+
+    // 函数声明
+    // function f1() {}
+    // 函数表达式
+    // var f2 = function() {}
+
+    // 构造函数Function的实例
+    // var f3 = new Function();
+
+
+    // 预编译(预处理)
+    // 全局预编译
+    // 1. 创建GO对象。有且只有一个 global Object，变量，执行期上下文（作用域）
+    // 2. 查找变量声明（var）,变量名作为GO的属性，属性值是undefined。 变量声明提升。
+    // 3. 查找函数声明（function）变量名作为Go的属性，属性值函数体。函数声明整体提升。
+
+    // 同名属性会覆盖
+    // var a = 10
+    // var a;
+    // function f1() {}
+
+    //     a = 10;
+    //     f1();
+
+    // 函数预编译
+    // 1. 创建AO对象。 AO可以有多个。 Active Object。 变量，执行期上下文（作用域）
+    // 2. 查找变量声明（var）和 形式参数，作为AO的属性，属性值是undefined。 变量声明提升，提升到函数体顶部。
+    // 3. 形参实参相统一。
+    // 4. 查找函数声明（function）变量名作为Go的属性，属性值函数体。函数声明整体提升, 提升到函数体顶部。
+    //  函数执行完成 AO就会被销毁。正常情况
+    //  函数执行完成 AO不能被销毁。闭包
+
+
+    // function fn() {
+    //   var num = 0;
+    //   return function () {
+    //     num += 1;
+    //     console.log(num); // 1 2
+    //   };
+    // }
+    // var f = fn();
+    // f();
+    // f(); 
+
+    /*
+     GO = {
+       f: niming,
+       fn: function,
+       Ao(fn) = {
+         num: 2,
+         niming: function
+         AO(niming) = {
+
+         }
+       }
+     }
+    
+    */
+
+    // function sayHello(name) {
+    //   var text = name; 
+    //   var say = function () {
+    //     console.log(text);
+    //   };
+    //   return say;
+    // }
+
+    // var say2 = sayHello("lily");
+    // say2();
+
+    /*
+      GO = {
+        sayHello: fun,
+        say2: say
+        Ao(sayHello) = {
+          name: 'lili',
+          text: 'lili',
+          say: function
+          AO(say) {
+
+          }
+        }
+      }
+    */
+
+    // function addCount(count) {
+    //   var f= function(add) {
+    //     count = count + add;
+    //     console.log(count);
+    //   };
+    //   return f
+    // }
+    // addCount(2)(3);
+
+    // fn()();
+    // var f = fn(); fn() 返回的是函数
+    // f();
+
+    /*
+     GO = {
+       addCount: func,
+       AO(addCount) = {
+         count: 2+3,
+         niming: func,
+         AO(niming) = {
+           add: 3
+         }
+       }
+     }
+    
+    */
+
+
+
+    // 函数里面返回函数就会产生闭包
+    // 函数内部的函数被保存到外部，就会产生闭包。
+
+
+
+    // function foo() {
+    //   var name = "shanshan";
+    //   var fn = function() {
+    //     console.log(name);
+    //   };
+    //   return fn;
+    // }
+    // var bar = foo();
+    // bar();
+
+    /*
+     GO = {
+       bar: fn函数的地址,
+       foo: function
+       AO(foo) = {
+         name: 'shanshan',
+         fn: function
+         AO(fn) = {
+           name
+         }
+       }
+     }
+    
+    */
+
+    // var name = 'World!';
+    // (function () {
+    //   if (typeof name === 'undefined') {
+    //     var name = 'Jack';
+    //     console.log('Goodbye ' + name);
+    //   } else {
+    //     console.log('Hello ' + name);
+    //   }
+    // })();
+
+    /*
+     GO = {
+      name: 'world',
+      AO(anonymous) = {
+        name: 'jack'
+      }
+     }
+    
+    */
+
+
+    // (function(){
+    //   var x = y = 1;
+    // })();
+    // console.log(y); // 1
+    // console.log(x); // error
+
+    // 未声明就使用的变量，会成为全局变量
+    /*
+     GO = {
+       y: 1
+       
+     }
+    */
+
+    // (function () {}())
+    // (function(){})()
+
+    // var val = 12;
+    // function fun1(){
+    //   console. log(val); // und
+    //   var val = 20;
+    //   console.log(val); // 20
+    // }
+    // fun1();
+
+    /*
+     GO = {
+       val: 123,
+       fun1: func,
+       AO(fun1) = {
+         val: 20
+       }
+     }
+    
+    */
+
+
+
+
+
+
+    // global = 100
+    // function fn(){
+    //     console.log(global); // und
+    //     global = 200;
+    //     console.log(global); // 200
+    //     var global = 300
+    // }
+    // fn()
+    // var global;
+
+    /*
+     GO = {
+       global: 100,
+       fn: function,
+       AO(fn) = {
+         global: 300,
+       }
+     }
+    */
+
+    // function fun(num) {
+    //   console.log(num); // 10
+    //   var num = 5;
+    //   console.log(num); // 5
+    // }
+    // fun(10)
+    /*
+     GO = {
+       fun: function,
+       Ao(fun) = {
+         num: 5
+       }
+     }
+    
+    */
+    // var user = '渡一教育';
+    // function first(){
+    //   console.log(user);
+    // };
+    // function second(){
+    //   var user = '工程师';
+    //   first();
+    // }
+    // second();
+
+    // 变量：地址
+
+    /*
+     GO = {
+       user: '渡一教育',
+       first: func,
+       second: func
+       AO(second) = {
+         user: '工程师'
+       }
+       AO(first) = {
+        //  user: ‘渡一教育’
+       }
+
+     }
+    */
+    //  函数作用域 跟 函数定义位置有关，和函数执行位置无关。
+
+
+
+
+
+
+
+    // function bar() {
+    //   return foo;
+    //   foo = 10;
+    //   function foo() { }
+    //   var foo = 11;
+    // }
+    // console.log(bar())
+
+    /*
+    GO = {
+      bar: function,
+      AO(bar) = {
+        foo: function,
+      }
+    }
+     
+    */
+
+
+    // function foo(a) {
+    //   var a;
+    //   return a;
+    // }
+    // function bar(a) {
+    //   // var a = 'bye';
+    //   var a;
+    //   a = 'bye';
+    //   return a;
+    // }
+    // console.log([foo('hello'), bar('hello')])
+    // ['hello', 'bye']
+    /*
+     GO = {
+       foo: func,
+       bar: func,
+       AO(bar) = {
+         a: 'bye'
+       }
+     }
+    */
+
+    // function test(a, b) {
+    //   var a,b;
+    //   function a() {};
+
+    //   console.log(a); // function
+    //   console.log(b); // undefined
+    //   // var b = 234;
+    //   b = 234
+    //   console.log(b); // 234
+    //   a = 123;
+    //   console.log(a); // 123
+    //   // function a() { };
+    //   // var a;
+    //   b = 234;
+    //   b = function () { };
+    //   console.log(a); // 123
+    //   console.log(b); // function
+    // }
+    // test(1);
+
+    /*
+    GO = {
+      test: function,
+      AO(test) = {
+        a: 123,
+        b: function,
+      }
+    }
+    
+    */
+
+    // String.prototype.giveLydiaPizza = function () {
+    //   return "Just give Lydia pizza already!";
+    // };
+
+    // const name = "Lydia";
+    // console.log(name.giveLydiaPizza());
+
+    // 包装类
+
+    // var str = '成哥真帅';
+    // str.length = 3;
+    // console.log(str);
+
+    // js 设计， 万物皆对象。
+    // 原始值，调用属性和方法。 把原始值转化成对应的引用值 String, Boolean, Number
+
+    // Object.create();
+
+    // F 构造函数。
+    // F.prototype 构造函数的原型
+    // f.__proto__ 实例的原型
+    // 实例 = new 构造函数
+    // var F = function(){};
+    // F 构造函数，实例（Function）
+
+    // Object.prototype.a = function(){};
+    // Function.prototype.b = function(){};
+    // var f = new F();
+    // console.log(f.a, f.b);
+
+    // 原型作用，共享属性
+    // 圣杯模式 
+
+    // 尝试去听
+
+
+    // 改变this指向的方式。
+    // call, apply, bind
+
+    // call, apply 在函数执行的时候改变this指向。参数不一样
+    // bind， 返回一个带有明确this指向的函数。
+
+    // var you = {
+    //   money: 0,
+    //   makeMoney: function () {
+    //     this.money += 100;
+    //   }
+    // }
+
+    // you.makeMoney();
+    // you.makeMoney();
+
+    // var me = {
+    //   money: -1000,
+    // }
+
+    // 废话代码
+    // console.log(1,2,3,4);
+    // console.log.apply(console, [1,2,3,4]);
+    // console.log(...[1,2,3,4]);
+
+
+    // var name = "window";
+    // var person = {
+    //   name: "邓小宝",
+    //   sayName: function () {
+    //     console.log(this.name);
+    //   }
+    // };
+    // var animal = {
+    //   name: "崽崽",
+    // };
+
+    // person.sayName(); // person.name
+    // person.sayName.call(animal); // animal.name 崽崽 萨摩
+    // person.sayName.apply(window); // window.name window
+
+
+    // function Person(firstName, lastName) {
+    //   this.firstName = firstName;
+    //   this.lastName = lastName;
+    // }
+
+    // const lydia = new Person("Lydia", "Hallie");  // new 返回一个新的对象，this指向新的对象。
+    // const sarah = Person("Sarah", "Smith"); // window.Person, this => window
+
+    // console.log(lydia);
+    // console.log(sarah);
+
+
+    // function sidEffecting(arr) {
+    //   arr[0] = arr[2];
+    // }
+    // function bar(a, b, c) {
+    //   // a, b, c 1
+    //   // arguments = [1,1,1]
+    //   c = 10
+    //   // arguments = [1,1,10]
+    //   console.log(arguments)
+    //   sidEffecting(arguments);
+    //   // arguments[0] = arguments[2]
+    //   // arguments = [10,1,10]
+    //   // a,b,c, 10, 1, 10
+    //   return a + b + c;
+    // }
+    // console.log(bar(1, 1, 1)); 
+
+    // arguments, arguments 同步，参数与arguments映射关系。
+
+    // function fn(arg1, arg2) {
+    //   // arg1= html, arg2 = css
+    //   console.log(arg1, arg2); // html, css
+    //   arguments[0] = "duyi";
+    //   // arg1 = 'duyi'
+    //   arg2 = "web";
+    //   // arguments[1] = 'web'
+    //   console.log(arg1); // 'duyi'
+    //   console.log(arguments[1]); //'web'
+    // };
+    // fn("html", "css");
+
+
+    // function getAge() {
+    //   "use strict";
+    //   age = 21;
+    //   console.log(age);
+    // }
+
+    // getAge();
+
+    // 默认： 为声明就使用的变量，会成为全局变量
+    // 严格模式：不能使用未声明的变量。
+
+    // DOM
+
+    // 1. 选择元素
+    // id, class, tagName, querySelector
+
+    // 2. 修改元素样式
+    // dom.style.property = xxx
+    // 修改样式，作用到行间样式。
+
+
+
+
+  </script>
+  <a href="https://www.baidu.com/">百度一下</a>
+  <script>
+  //  a标签，点击会跳转，默认行为
+  // 取消默认行为，点击也不会跳转。
+  var tagA = document.getElementsByTagName('a')[0];
+  tagA.onclick = function (e) {
+    e.preventDefault();
+  }
+
+  // e 事件对象
+  // e.target 事件源 对象。真正触发事件的对象。
+  </script>
+</body>
+
+</html>

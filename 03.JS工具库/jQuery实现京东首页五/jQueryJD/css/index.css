@@ -1,0 +1,94 @@
+/* 通用样式 */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+.w {
+  margin: auto;
+  width: 1190px;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  font-style: normal;
+}
+
+/* 通用样式 over */
+
+/* shortcut */
+
+.shortcut {
+  border-bottom: 1px solid #ddd;
+  background-color: #e3e4e5;
+  height: 30px;
+}
+
+/* header */
+
+.header {
+  background-color: #fff;
+  height: 140px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* fs */
+.fs {
+  height: 470px;
+  margin-top: 10px;
+}
+
+.fs-1 {
+  width: 190px;
+  height: 100%;
+  float: left;
+  background: #fff;
+  margin-right: 10px;
+}
+
+.fs-2 {
+  float: left;
+  width: 790px;
+  height: 100%;
+  margin-right: 10px;
+}
+.fs-3 {
+  float: right;
+  width: 190px;
+  height: 100%;
+  background-color: #fff;
+}
+
+.fs-2 .sliderWraper {
+  width: 590px;
+  height: 470px;
+  float: left;
+  /* background: #ddd; */
+}
+
+.fs-2 .sliderBanner {
+  width: 190px;
+  height: 470px;
+  float: right;
+  /* background-color: #ddd; */
+}
+
+.seckill {
+  height: 260px;
+  margin-top: 20px;
+  background-color: #ddd;
+}

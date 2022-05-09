@@ -1,0 +1,171 @@
+/* 该部分样式最多带着学生写到 tabs 部分 */
+
+/* 剩下部分的样式直接粘贴成品大致介绍一下即可 */
+
+/* 整体样式开始 */
+
+.fs-1 {
+    position: relative;
+}
+
+a {
+    color: #666;
+}
+
+a:hover {
+    color: red;
+}
+
+/* 整体样式结束 */
+
+/* menu 部分样式开始 */
+
+.fs-1 .menu {
+    padding: 10px 0;
+    /* outline: 1px solid; */
+}
+
+.fs-1 .menu li {
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    padding-left: 18px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.fs-1 .menu li a {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.fs-1 .menu li.menu-active {
+    background-color: #d9d9d9;
+}
+
+.fs-1 .menu li a:hover {
+    color: red;
+}
+
+.cate_menu_item {
+    /* menu 里面每一个 li 挂了一个这个样式 */
+    height: 25px;
+    line-height: 25px;
+}
+
+.cate_menu_line {
+    /* 分隔 li 里面每个 a 标签的斜线 */
+    padding: 0 2px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* menu 部分样式结束 */
+
+/* 隐藏项目样式开始 */
+
+.menu-content {
+    /* 隐藏项目整体样式 */
+    position: absolute;
+    padding: 20px 0 10px;
+    box-sizing: border-box;
+    left: 190px;
+    top: 0;
+    z-index: 100;
+    width: 998px;
+    min-height: 470px;
+    border: 1px solid #f7f7f7;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 0 5px rgba(0, 0, 0, .3);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, .3);
+    display: none;
+    /* outline: 1px solid; */
+}
+
+.menu-content .tabs {
+    /* 上面黑色的 tab 项目 */
+    padding-left: 20px;
+    height: 24px;
+}
+
+.menu-content .tabs a {
+    /* 上面黑色的 tab 项目 */
+    margin-right: 10px;
+    padding: 0 10px;
+    height: 24px;
+    display: inline-block;
+    background-color: #333;
+    line-height: 24px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.menu-content .tabs a:hover {
+    /* 上面黑色的 tab 项目 */
+    background-color: #c81623;
+    color: #fff;
+}
+
+.menu-content .tabs a i {
+    /* 上面黑色的 tab 项目 */
+    margin-left: 5px;
+}
+
+.menu-content .details {
+    /* 下面的 detail 各个分类 */
+    padding: 10px 0 0 20px;
+    font-size: 12px;
+}
+
+.menu-content .details dl {
+    /* 下面的 detail 各个分类 */
+    padding: 3px 0;
+}
+
+.menu-content .details dl dt, .menu-content .details dl dd {
+    /* 下面的 detail 各个分类 */
+    float: left;
+}
+
+.menu-content .details dl::after {
+    /* 下面的 detail 各个分类 */
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.menu-content .details dt {
+    /* 下面的 detail 各个分类 */
+    width: 80px;
+    text-align: right;
+    font-weight: 700;
+}
+
+.menu-content .details dt a {
+    /* 下面的 detail 各个分类 */
+    height: 16px;
+    line-height: 16px;
+    margin: 3px 0;
+    padding: 0 7px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.menu-content .details dt i {
+    /* 下面的 detail 各个分类 */
+    float: right;
+    margin-left: 5px;
+}
+
+.menu-content .details dd a {
+    /* 下面的 detail 各个分类 */
+    height: 16px;
+    line-height: 16px;
+    display: inline-block;
+    margin: 3px 0;
+    padding: 0 7px;
+    white-space: nowrap;
+}
+
+/* 隐藏项目样式结束 */

@@ -1,0 +1,314 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "谢杰2222",
+      "age": "18",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "xiejie@gmail.com",
+      "address": "成都",
+      "htmlScore": 100,
+      "cssScore": 99,
+      "jsScore": 98,
+      "profile": "这是一个好学生2222",
+      "classId": 1
+    },
+    {
+      "id": 2,
+      "name": "张三",
+      "age": "19",
+      "gender": "男",
+      "phone": "15981234321",
+      "email": "zhangsan@gmail.com",
+      "address": "山东",
+      "htmlScore": 95,
+      "cssScore": 92,
+      "jsScore": 97,
+      "profile": "这是一个好学生",
+      "classId": 2
+    },
+    {
+      "id": 3,
+      "name": "李四",
+      "age": "23",
+      "gender": "女",
+      "phone": "13112345678",
+      "email": "lisi@gmail.com",
+      "address": "广州",
+      "htmlScore": 92,
+      "cssScore": 96,
+      "jsScore": 95,
+      "profile": "这是一个好学生",
+      "classId": 3
+    },
+    {
+      "name": "yajing",
+      "age": "18",
+      "gender": "女",
+      "phone": "18200126922",
+      "email": "123@qq.com",
+      "address": "成都",
+      "htmlScore": "100",
+      "cssScore": "100",
+      "jsScore": "100",
+      "profile": "hao",
+      "classId": 1,
+      "id": 4
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "gender": "男",
+      "phone": "13112341234",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "12",
+      "cssScore": "12",
+      "jsScore": "12",
+      "profile": "12",
+      "classId": 2,
+      "id": 5
+    },
+    {
+      "name": "21",
+      "age": "21",
+      "gender": "男",
+      "phone": "13112341234",
+      "email": "123@qq.com",
+      "address": "上海",
+      "htmlScore": "12",
+      "cssScore": "12",
+      "jsScore": "21",
+      "profile": "12",
+      "classId": 2,
+      "id": 6
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 7
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 8
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 9
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 10
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 11
+    },
+    {
+      "name": "123",
+      "age": "10",
+      "gender": "男",
+      "phone": "13112344321",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "23",
+      "cssScore": "32",
+      "jsScore": "12",
+      "profile": "122",
+      "classId": 2,
+      "id": 12
+    },
+    {
+      "name": "123",
+      "age": "12",
+      "gender": "男",
+      "phone": "15912341234",
+      "email": "123@qq.com",
+      "address": "北京",
+      "htmlScore": "32",
+      "cssScore": "23",
+      "jsScore": "12",
+      "profile": "123123",
+      "classId": 2,
+      "id": 13
+    },
+    {
+      "name": "雅静",
+      "age": "20",
+      "gender": "女",
+      "phone": "18200126922",
+      "email": "123@qq.com",
+      "address": "天津",
+      "htmlScore": "100",
+      "cssScore": "100",
+      "jsScore": "100",
+      "profile": "好耶",
+      "classId": 3,
+      "id": 14
+    },
+    {
+      "name": "xiexizhi",
+      "age": "4",
+      "gender": "男",
+      "phone": "13112341234",
+      "email": "123@qq.com",
+      "address": "广州",
+      "htmlScore": "100",
+      "cssScore": "100",
+      "jsScore": "100",
+      "profile": "123123",
+      "classId": 2,
+      "id": 15
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "name": "F01",
+      "description": "这是前端01班。"
+    },
+    {
+      "id": 2,
+      "name": "F02",
+      "description": "这是前端第二个班，同学们学习都非常积极"
+    },
+    {
+      "id": 3,
+      "name": "F03",
+      "description": "这是前端第三个班，班级气氛比较沉闷，大家都很低调"
+    },
+    {
+      "name": "F25",
+      "description": "这是一个非常棒的前端班",
+      "id": 4
+    }
+  ],
+  "admins": [
+    {
+      "id": 1,
+      "username": "xiejie",
+      "account": "xiejie",
+      "password": "123456"
+    },
+    {
+      "username": "jiexie",
+      "account": "jiexie",
+      "password": "123123",
+      "rePassword": "123123",
+      "id": 2
+    },
+    {
+      "username": "jiexie",
+      "account": "jiexie",
+      "password": "123123",
+      "rePassword": "123123111",
+      "id": 3
+    },
+    {
+      "username": "1",
+      "account": "1",
+      "password": "1",
+      "rePassword": "1",
+      "id": 4
+    },
+    {
+      "username": "2",
+      "account": "2",
+      "password": "2",
+      "rePassword": "2",
+      "id": 5
+    },
+    {
+      "username": "yajing",
+      "account": "yajing",
+      "password": "12345678",
+      "rePassword": "12345678",
+      "id": 6
+    },
+    {
+      "username": "jiexie",
+      "account": "jiexie",
+      "password": "jiexie",
+      "rePassword": "jiexie",
+      "id": 7
+    },
+    {
+      "username": "xiejie2",
+      "account": "xiejie2",
+      "password": "123456",
+      "rePassword": "123456",
+      "id": 8
+    },
+    {
+      "username": "chenlong",
+      "account": "chenlong",
+      "password": "1234",
+      "rePassword": "1234",
+      "id": 9
+    },
+    {
+      "username": "awei",
+      "account": "awei",
+      "password": "1234",
+      "rePassword": "1234",
+      "id": 10
+    },
+    {
+      "username": "186",
+      "account": "186",
+      "password": "186",
+      "rePassword": "186",
+      "id": 11
+    }
+  ]
+}

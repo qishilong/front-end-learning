@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 在有序数组中，查找特定值，找到返回下标，找不到返回-1
+
+    var arr = [1, 2, 4, 5, 6];
+
+    // 5 7 9;
+    // 遍历数组，在数组中去找，挨个对比。
+    // var goal = 9;
+    // for (var i = 0; i < arr.length; i++) {
+    //   if (arr[i] == goal) {
+    //     console.log(i);
+    //   }
+    // }
+    // console.log(-1);
+
+    function indexOf(arr, val) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == val) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    // [] 是 new Array的实例
+    // Array.prototype.myIndexOf();
+
+    Array.prototype.myIndexOf = function (val, start) {
+      start = start || 0;
+      for (var i = start; i < this.length; i++) {
+        if (this[i] == val) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    // 原型作用：共享属性。
+
+    // 有序数组？？
+    // 天生有序
+    // 弹幕！评论！流水！
+    // 1s 2s
+    // 1小时前的评论
+    // 第五份流水。
+
+    // 面试题：如何快速找到特定时间的弹幕（评论，流水）
+
+    // 1+9 = 十， 十加九十 = 一百  一百+九百 = 一千， 一千加九千 = 十千
+    // 0~1000 
+    // 340, 999
+    // 500 (0 ~ 1000)
+    // 250 (0 500)
+    // 375 (250 500)
+    // 310 (250, 375)
+    // 340 (310, 375)
+
+    // （有序）二分查找，折半查找
+    // var arr = [1,3,5,8,11,23,45,60,80,100];
+
+    function binarySearch(arr, val) {
+      // 初始化边界
+      var left = 0;
+      var right = arr.length - 1;
+      var center;
+      while (left <= right) {
+        center = Math.floor((left + right) / 2);
+        if (arr[center] == val) {
+          return center;
+        } else if (arr[center] > val) {
+          right = center - 1;
+
+        } else if (arr[center] < val) {
+          left = center + 1;
+        }
+      }
+      return -1;
+    }
+
+
+    // 数组的最大字段和。
+    // [-1, 2, -3, 4, -1, 5];
+    // 求，区间数组，和最大
+    // [4, -1, 5] 8
+
+    // 暴力 && 分治法 分而治之
+
+    // 暴力算法
+    // -1, 2, -3 4
+    // -1         -1
+    // -1 2        1
+    // -1 2 -3     -2
+    // -1 2 -3 4   2
+
+    // 2           2
+    // 2 -3        -1
+    // 2 -3 4      3
+
+    // -3         -3
+    // -3 4       1
+
+    // 4          4 
+
+    // 把第一个元素当成最大值
+    var arr = [-1, 2, -3, 4, -1, 5];
+    // var max = arr[0];
+    // // 求和
+    // var sum = 0;
+
+    // for(var i=0; i<arr.length; i++) {
+    //   sum = 0;
+    //   for(var j=i; j<arr.length; j++) {
+    //     sum += arr[j];
+    //     if (sum > max) {
+    //       max = sum;
+    //     }
+    //   }
+    // }
+    // console.log(max);
+
+
+    // 1,2,3 | -1,-2,-3  左边
+    // -1 -2 -3 | 1 2 3  右边
+    // -1 -2 1 | 2 3 -3  中间
+    // 左边 ，右边，中间
+
+    // -2 1 4 | 1 2 -3
+    // -2 1 | 4     1 2 | -3 
+    // -2 | 1        1 | 2
+    
+    // 分治法，可以不会！！！，非常可以！！！！
+    function fn(arr, left, right) {
+      //  递归出口
+      if (left == right) {
+        return arr[left];
+      }
+      // 一半
+      var half = Math.floor((left + right) / 2);
+      // 左侧最大子段和
+      var leftValue = fn(arr, left, half);
+      // 右侧最大字段和
+      var rightValue = fn(arr, half + 1, right);
+      // 中间最大字段和
+      var leftMax = arr[half];
+      var leftSum = arr[half];
+      for (i = half - 1; i >= left; i--) {
+        leftSum += arr[i];
+        if (leftSum > leftMax) {
+          leftMax = leftSum;
+        }
+      }
+
+      var rightMax = arr[half + 1];
+      var rightSum = arr[half + 1];
+      for(var i=half+1+1; i<=right; i++) {
+        rightSum += arr[i];
+        if (rightSum > rightMax) {
+          rightMax = rightSum
+        }
+      }
+      console.log(leftValue, rightValue, leftMax + rightMax);
+      return Math.max(leftValue, rightValue, leftMax + rightMax);
+
+    }
+    // o^2
+    
+    // -1, 2, -3, | 4, -1, 5
+    // -1 2 | -3     4 -1 | 5
+    // -1 | 2       4 | -1
+
+    // -1 2 1
+    // 2 -3 -1
+
+    // 4 -1 -3
+    // 4 5 8
+
+    // nlogn
+
+
+
+  </script>
+</body>
+
+</html>

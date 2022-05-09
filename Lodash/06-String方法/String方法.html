@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<script src="js/lodash.js"></script>
+	<script>
+		//camelCase()	转换字符串为驼峰格式
+		console.log(
+			_.camelCase('kaivon_chen'),
+			_.camelCase('kaivon chen'),
+		);
+
+		//capitalize()	首字母为大写
+		console.log(_.capitalize('kaivon'));	//Kaivon
+
+		//endsWith()	查检结尾的字符
+		console.log(_.endsWith('abc', 'c'));	//true
+
+		//escape()	把特殊字符转义成真正的HTML实体字符
+		console.log(_.escape('ka<iv>on'));	//ka&lt;iv&gt;on
+
+		//unescape()	与上面相反
+		console.log(_.unescape('ka&lt;iv&gt;on'));	//ka<iv>on
+
+		//kebabCase()	转换字符为加-的形式
+		console.log(_.kebabCase('k a i'));	//k-a-i
+
+		//lowerCase()/toLower()	转小写
+		//upperCase()/toUpper()	转大写
+
+		//lowerFirst()	首字符转小写
+		//upperFirst()	首字符转大写
+
+		//pad()	填充字符串到指定的长度(左右填充)
+		console.log(_.pad('abc', 8, '-')); 	//--abc---
+
+		//padEnd()
+		console.log(_.padEnd('abc', 8, '-'));
+
+		//padStart()
+		console.log(_.padStart('abc', 8, '-'));
+
+		//parseInt()	把字符串类型的数字转成数字，
+
+		//repeat()	重复字符串
+		console.log(_.repeat('kaivon', 2));	//kaivonkaivon
+
+		//replace()	替换字符串
+		console.log(_.replace('kaivon', 'von', '***'));	//kai***
+
+		//snakeCase()	转换字符串为_的形式
+		console.log(_.snakeCase('k a i'));	//k_a_i
+
+		//split()	分隔字符串为数组，与原生String.split()一样
+
+		//startCase()	转换字符串为+空格的形式，并且首字符大写
+		console.log(
+			_.startCase('kaivon-chen'),	//Kaivon Chen
+			_.startCase('kaivonChen'),	//Kaivon Chen
+			_.startCase('kaivon_chen'),	//Kaivon Chen
+		);
+
+		//startsWith()	检查字符串的开始字符
+		console.log(_.startsWith('kaivon', 'k'));	//true
+
+		//template()	编译模板
+		var compiled = _.template('hello <%= user %>!');	//user为一个占位符
+		console.log(compiled({ 'user': 'kaivon' }));	//拿到数据后，给user赋值，它就能正确解析出内容了
+
+		//trim()	去除首尾空格，或者指定字符
+		console.log(_.trim('kaivon-', '-'));	//kaivon
+		//trimEnd()	去除后面的空格，或者指定字符
+		//trimStart()	与上面的一样，只不过去除的是左边的
+
+		//truncate()
+		console.log(_.truncate('Hi kaivon! How are you feeling today? I am felling great!'));	//Hi kaivon! How are you feel...
+		console.log(_.truncate('Hi kaivon! How are you feeling today? I am felling great!', {
+			//'length': 10,	//限制固定的字符个数
+			'separator': /!/	//加个正则，遇到第一个空格后就加三个点
+		}));
+
+		//words()	把字符串的单词拆分成数组
+		console.log(_.words('kaivon chen'));	//["kaivon", "chen"]
+	</script>
+</body>
+<html>

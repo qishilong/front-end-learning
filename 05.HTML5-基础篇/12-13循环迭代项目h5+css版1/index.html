@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html5学生管理系统</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <!-- - 显示区域 -->
+            <div class="logo">
+                <img class="logo-img" src="./img/logo.png" alt="">
+                <span>渡</span>
+                <span>一</span>
+                <span>教</span>
+                <span>育</span>
+            </div>
+            <!-- - 隐藏区域 -->
+            <div class="btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="drop-list">
+                <li>学生列表</li>
+                <li>新增学生</li>
+                <li>统计图表</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="siderbar-container">
+                <h5 class="title">学生管理</h5>
+                <ul class="list-group">
+                    <li data-id="student-list" class="on list-item">学生列表</li>
+                    <li data-id="student-add" class="list-item">新增学生</li>
+                    <li data-id="student-pie" class="list-item">统计图表</li>
+                </ul>
+            </div>
+            <div class="content-wrapper">
+                <div class="tab-content-item show-list" id="student-list">学生列表内容区域</div>
+                <div class="tab-content-item" id="student-add">新增学生内容区域</div>
+                <div class="tab-content-item" id="student-pie">统计图表内容区域</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

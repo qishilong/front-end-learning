@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/moment-with-locales.js"></script>
+</head>
+
+<body>
+	<script>
+		//时长
+		console.log(moment.duration());
+
+		console.log(
+			moment.duration(100),//给一个参数表示为毫秒
+			moment.duration(2, 'seconds'),//时长为2s
+			moment.duration(3, 'minutes'),//时长为3min
+			moment.duration(1, 'M'),
+			
+			//参数也可以是一个对象
+			moment.duration({
+				seconds: 1,
+				minutes: 2,
+				hours: 3,
+				days: 4,
+				weeks: 5,
+				months: 6,
+				years: 7
+			}),
+
+			//ASP.NET 风格的时间跨度
+			moment.duration('23:59:59'),	//时:分:秒
+		);
+
+		//clone() 克隆一个时长对象
+		var d1 = moment.duration();
+		var d2 = d1.clone();
+		d1.add(1, 'second');
+		console.log(d1, d2);
+
+		moment.locale('zh-cn');
+		//humanize() 	显示一段时长
+		console.log(
+			moment.duration(1, 'minutes').humanize(),
+			moment.duration(24, 'hours').humanize(),
+			moment.duration(1, 'minutes').humanize(true),	//1 分钟内
+			moment.duration(-1, 'minutes').humanize(true),	//1 分钟前
+		);
+
+		//milliseconds()	此方法会计算溢出
+		//asMilliseconds()
+		console.log(
+			moment.duration(500).milliseconds(),	//500
+			moment.duration(1500).milliseconds(),	//500
+			moment.duration(15000).milliseconds(),	//0
+			//moment.duration(1500)
+
+			moment.duration(500).asMilliseconds(),	//500
+			moment.duration(1500).asMilliseconds(),	//1500
+			moment.duration(15000).asMilliseconds(),//15000
+		);
+
+		//seconds()
+		//asSeconds()
+		console.log(
+			moment.duration(500).seconds(),		//0
+			moment.duration(1500).seconds(),	//1
+			moment.duration(15000).seconds(),	//15
+
+			moment.duration(500).asSeconds(),	//0.5
+			moment.duration(1500).asSeconds(),	//1.5
+			moment.duration(15000).asSeconds(),//15
+		);
+
+
+		//add()	增加时长，这个方法可以添加多种类型的参数
+		var a = moment.duration(1, 'd');	//时长为1天
+		var b = moment.duration(2, 'd');	//时长为2天
+		console.log(
+			a.add(b).days(),
+			moment.duration().add(1, 'd').days()	// 1
+		);
+
+		//subtract()	减少时长
+		var a = moment.duration(3, 'd');
+		var b = moment.duration(2, 'd');
+		console.log(
+			a.subtract(b).days(),	//1
+			moment.duration(5, 'd').subtract(1, 'd').days()	//4
+		);
+
+		//duration(x.diff(y))	获取两个时长的差值
+		var a = moment([2018, 10, 21, 10, 05]);
+		var b = moment([2018, 10, 21, 10, 06]);
+		console.log(
+			moment.duration(b.diff(a)),
+		);
+
+		//as()
+		console.log(
+			moment.duration(1000).as('milliseconds'),//1000
+			moment.duration(1000).as('seconds'),//1
+		)
+
+		//get()
+		var d = moment.duration({
+			seconds: 1,
+			minutes: 2,
+			hours: 3,
+			days: 4,
+			months: 5,
+			years: 6
+		});
+		console.log(d);
+		console.log(
+			d.get('seconds'),
+			d.get('minutes'),
+			d.get('hours'),
+			d.get('days'),
+			d.get('months'),
+			d.get('years'),
+		)
+	</script>
+</body>
+<html>

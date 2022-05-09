@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      width: 100px;
+      height: 100px;
+      background: #fac;
+      line-height: 100px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      float: left;
+    }
+
+    .arrow {
+      /* 上三角形 */
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      /* border: 50px solid #fca; */
+      border-bottom-color: #fca;
+      position: absolute;
+      top: 60px;
+      left: -100px;
+    }
+    .active {
+      background: #caf;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="wrapper">
+    <!-- 动态生成 -->
+  </ul>
+
+  <div class="arrow left"></div>
+  <div class="arrow right"></div>
+  <script>
+    function $(s) {
+      return document.querySelector(s);
+    }
+    function $$(s) {
+      return document.querySelectorAll(s);
+    }
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+    // 初始化内容
+    var wrapper = $('.wrapper');
+    var left = $('.left');
+    var right = $('.right');
+    var length = arr.length;
+
+
+
+    arr.forEach(function (item) {
+      var li = document.createElement('li');
+      li.innerText = item;
+      wrapper.appendChild(li);
+    });
+
+    var lis = $$('li');
+
+    // 6 3 
+    var count = Math.ceil(length / 2);
+    // 0,1,2
+    var i = 0;
+    // for (var i = 0; i < count; i++) {
+    var tid = setInterval(function () {
+      // 数组内部交换
+      var temp = arr[i];
+      arr[i] = arr[length - 1 - i];
+      arr[length - 1 - i] = temp;
+     
+      // 箭头的位置
+      left.style.left = i * 100 + 'px';
+      right.style.left = (length - 1 -i) * 100 + 'px';
+
+      // 数据交换
+      // DOM内容交换
+      lis[i].innerText = arr[i];
+      lis[i].className = 'active';
+      lis[length-1-i].innerText = arr[length-1-i];
+      lis[length-1-i].className = 'active';
+
+      if (i == count - 1) {
+        clearInterval(tid);
+      }
+      i++;
+    }, 1000);
+      
+    // 原生js（jquery） => 我们修改数据 =>我们根据数据渲染页面
+    // Vue   =>(前提：我们定义好数据和DOM的对应关系后) => 我们修改数据，Vue根据数据渲染页面 M V VM。
+    // }
+    // console.log(arr);
+  </script>
+</body>
+
+</html>

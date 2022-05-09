@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./swiper.css">
+  <script src="./jquery.js"></script>
+  <script src="./swiper.js"></script>
+  <style>
+
+.demo {
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.demo1 {
+  width: 200px;
+  height: 100px;
+  margin: 30px auto 0;
+}
+.item {
+  width: 100%;
+  height: 100%;
+}
+.item1 {
+  background: #fac;
+}
+
+.item2 {
+ 
+  background: #caf;
+}
+
+.item3 {
+ 
+  background: #afc;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- 我们有一个插件（工具），工具已经写好了 -->
+  <!-- 用户使用插件，根据书写轮播图的容器（demo，项目item123 生成轮播图 -->
+  <div class="demo">
+    <div class="item item1">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <div class="item item2">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <div class="item item3">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </div>
+
+  <div class="demo1">
+    <div class="item item2">
+      <span>1</span><span>2</span><span>3</span><span>4</span>
+    </div>
+    <div class="item item1">
+      <span>1</span><span>2</span><span>3</span><span>4</span>
+
+    </div>
+    <div class="item item3">
+      <span>1</span><span>2</span><span>3</span><span>4</span>
+
+    </div>
+  </div>
+
+
+  <script>
+    // $('.demo').swiper();
+    // 通过上述方式，形成一个可以使用的轮播图
+    // 会有不同的状态， 参数去设置，控制我们的轮播图
+    $('.demo').swiper({
+      // 1. 轮播图的内容列表
+      contentList: $('.demo>.item'),
+      // 2. 轮播图的轮播方式 fade， animate
+      type: 'animate',
+      // 3. 自动轮播
+      isAuto: true,
+      // 4. 自动轮播的时常 3000
+      autoChangeTime: 3000,
+      // 5. 轮播图宽高
+      width: 500,
+      height: 300,
+      // 6. 按钮的状态 一直存在 'always'， 鼠标放入存在'hover'， 隐藏 'hide'
+      showChangeBtn: 'always',
+      // 7. 小圆点的大小
+      dotSize: 10,
+      // 8. 小白点位置（左中右，leftcenterright)
+      dotPosition: 'center',
+      // 9. 小白点的默认颜色
+      dotColor: '#fff',
+      // 10. 当前页面小白点的颜色
+      dotActiveColor: 'red',
+      // 11. 小白点展示状态 true, false
+      showDots: true
+    });
+    
+    $('.demo1').swiper({
+      contentList: $('.demo1>.item'),
+      type: 'animate',
+      showChangeBtn: 'hover',
+      dotActiveColor: '#cfc',
+      showDots: true
+    })
+  </script> 
+</body>
+
+</html>

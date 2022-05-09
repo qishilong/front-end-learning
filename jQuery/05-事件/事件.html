@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		button {
+			font-size: 20px;
+			color: #fff;
+			line-height: 40px;
+			padding: 0 15px;
+			background: green;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+
+<body>
+	<button id="btn1">事件名称函数</button>
+	<button id="btn2">通过on添加</button>
+	<div id="btn3">
+		<h2>标题</h2>
+		<p>段落</p>
+	</div>
+
+	<div id="btn4">
+		<button>通过one添加</button>
+	</div>
+
+	<button id="btn5">解除事件</button>
+
+	<button id="btn6">trigger触发事件</button>
+	<br>
+	<br>
+
+	<!-- trigger与triggerHandler的区别 -->
+
+	<!-- 区别1：默认行为 -->
+	<button id="trigger">trigger</button>
+	<button id="triggerHandler">triggerHandler</button>
+	<br>
+	<input type="text" value="获取焦点">
+
+	<!-- 区别2：执行事件的元素的数量 -->
+	<ul id="color">
+		<li>red</li>
+		<li>green</li>
+		<li>blue</li>
+		<li>yellow</li>
+	</ul>
+
+	<!-- 区别3：是否冒泡 -->
+	<div id="bubble">
+		<h2>
+			<span>陈学辉</span>
+		</h2>
+	</div>
+
+	<!-- 区别4：链式操作 -->
+	<button id="btn7">链式操作</button>
+	<br>
+	<br>
+	
+	<!-- 事件对象 -->
+	<button id="btn8">事件对象</button>
+	<button id="btn9">事件对象</button>
+
+
+	<script src="js/jquery-3.4.1.js"></script>
+	<script>
+		//绑定事件1：通过事件名称函数
+		$('#btn1').mouseover(function () {
+			$(this).css('background', 'orange');
+		}).mouseout(function () {
+			$(this).css('background', 'grey');
+		});
+
+		//绑定事件2：通过on添加
+		$('#btn2').on('click', function () {
+			$(this).css('background', 'blue');
+		});
+		$('#btn2').on('click', { name: 'kaivon' }, function (event) {
+			console.log(event.data.name);
+		});
+		$('#btn3').on('click', 'h2', { color: 'red' }, function (event) {
+			//$(this)指向h2
+			$(this).css('border', '1px solid ' + event.data.color);
+		});
+		//on可以添加多个事件
+		$('#btn2').on({
+			mouseover: function () {
+				$(this).css('background', 'pink');
+			},
+			mouseout: function () {
+				$(this).css('background', 'cyan');
+			}
+		});
+
+		//绑定事件3：one()
+		$('#btn4').one('click', 'button', { color: 'purple' }, function (event) {
+			$(this).css('background', event.data.color);
+			console.log('只会打印一次');
+		});
+
+		//解除事件：off()
+		$('#btn5').click(function () {
+			//$('#btn1').off();	//没有参数，会把所有的事件全部解除
+			$('#btn1').off('mouseover');
+		});
+
+		//手动触发绑定事件：trigger()
+		$('#btn6').on({
+			click: function () {
+				console.log('btn6的点击事件');
+			},
+			mouseover: function (event, name, age) {
+				console.log('btn6的鼠标移入事件：' + name + ' : ' + age);
+				$(this).css('background', 'brown');
+			},
+			end: function () {
+				console.log('这是一个自定义的事件');
+			}
+		});
+
+		setTimeout(function () {
+			$('#btn6').trigger('click');
+		}, 500);
+		setTimeout(function () {
+			$('#btn6').trigger('mouseover',['kaivon',18]);
+		}, 1000);
+		setTimeout(function(){
+			$('#btn6').trigger('end');
+		},1500);
+
+		//手动触发绑定事件：triggerHandler()
+
+		//区别1：trigger()会触发事件的默认行为；triggerHandler()不会触发事件的默认行为
+		$('input').focus(function(){
+			console.log('获取到焦点了');
+		});
+		$('#trigger').click(function(){
+			$('input').trigger('focus');
+		});
+		$('#triggerHandler').click(function(){
+			$('input').triggerHandler('focus');
+		});
+
+		//区别2：trigger()会执行所有选中元素的事件；triggerHandler()只会执行第一个元素的事件
+		$('#color li').click(function(){
+			console.log($(this).html()+' '+$(this).index());
+		});
+		setTimeout(function(){
+			//$('#color li').trigger('click');
+			$('#color li').triggerHandler('click');
+		},2000);
+		
+		//区别3：trigger()会冒泡；triggerHandler()不会冒泡
+		$('#bubble h2').click(function(){
+			console.log('h2被点击了');
+		});
+		$('#bubble span').click(function(){
+			console.log('span被点击了');
+		});
+		setTimeout(function(){
+			//$('#bubble span').trigger('click');
+			$('#bubble span').triggerHandler('click');
+		},2500);
+
+		//区别4：trigger()可以使用链式操作；triggerHandler()不可以使用链式操作
+		$('#btn7').on({
+			mouseover:function(){
+				$(this).css('width','200px');
+				return $(this);
+			},
+			mouseout:function(){
+				$(this).css('height','200px');
+			}
+		});
+		setTimeout(function(){
+			// $('#btn7').trigger('mouseover').trigger('mouseout');
+			$('#btn7').triggerHandler('mouseover').triggerHandler('mouseout');
+		},3000);
+
+
+		/* 事件对象 */
+		$('#btn8').click(function(event){
+			console.log(event);
+		});
+		$('#btn9')[0].onclick=function(ev){
+			console.log(ev);
+		};
+	</script>
+</body>
+<html>

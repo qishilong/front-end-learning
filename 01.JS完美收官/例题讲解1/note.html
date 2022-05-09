@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 强调  斜体-->
+  <!-- <em>hello</em>
+  <i>duyi</i> -->
+
+  <!-- 加粗 blod -->
+  <!-- <b>hello</b>
+  <strong>duyi</strong> -->
+
+  <!-- 块元素， 行元素， 行块元素 -->
+  <!-- 元素在页面中的排列方式 -->
+  <!-- css display 调整元素的排列方式  -->
+  <!-- 块级元素：独占整行，改变宽高， div block-->
+  <!-- 行元素：不独占整行，不能改变宽高 span  inline-->
+  <!-- 行级块元素：可以改变宽高，不会独占整行 img, input, inline-block -->
+
+  <!-- <img src="" alt="logo" title="图片"> -->
+  <!-- src 图片地址 -->
+  <!-- alt: 图片占位符 -->
+  <!-- title: 图片提示符 -->
+
+  <!-- rgb(255,255,255) -->
+  <!-- #fac -->
+  <!-- pink -->
+
+
+  <!-- 盒子模型 -->
+  <!-- 鸡蛋模型 -->
+  <!-- 蛋黄content，蛋液padding，蛋壳border, 蛋与蛋之间的距离（margin） -->
+  <!-- 上右下左  -->
+  <!-- 蛋中蛋 -->
+  <!-- 父子结构 -->
+
+  <!-- 清除浮动 -->
+  <!-- 具有float不为none -->
+  <!-- float:left, right -->
+  <!-- 脱离文档流，具有inline-block特点。受父级宽度影响， 压不住同级文字 -->
+  <!-- 浮动功能：文字环绕 -->
+
+  <!-- 父级元素无法包裹子级浮动元素 -->
+  <!-- 清除浮动 -->
+  <!-- 伪（假）元素 clear:both; -->
+  <!-- BFC -->
+  <!-- 1. 爸爸管儿子 -->
+  <!-- 包裹浮动元素，margin塌陷，合并 -->
+  <!-- 2. 亲兄弟明算账 -->
+  <!-- BFC + float 实现多栏布局 三栏双栏 -->
+
+  <!-- 文档流 document flow -->
+
+  <script>
+    // 代码，是人为赋予含义的！
+
+    // 1. 啥叫变量！！
+    // js变量空间。
+    // a. 数字 1，2 NaN, Infinity
+    // b. 字符串 文本 '我是字符串' "我是文本"
+    // c. 布尔值Boolean 对与错 true And false
+    // d. 空值（null, undefined）
+    // e. 地址（数组的地址，对象的地址，函数的地址）
+
+    // js赋值本质，复制
+    // var a = 3;
+    // var b = a;
+
+    // var a = [];
+    // var b = a; // b 把a内存的地址复制一份放入b中
+
+    // 原始值（栈内存）
+    // 引用值（堆内存）
+
+    // typeof 返回值
+    // 返回值类型 字符串
+    // undefined object function number string boolean
+
+
+    // 抽象相等比较法
+    // == 隐式类型转换
+
+    // 原始值，引用值
+
+    // 原始值与原始值比较
+    // a. 相同类型比较
+    //  1==1， 2==2， NaN == NaN
+    //  '1' == '1'
+    //  true == true false == false
+    //  null == null
+    //  undefined == undefined
+    // b. 不同类型比较(转换成数字在比较)
+    //  1 == '1' =》 1 == Number('1')   1==1
+    //  true = 1 => Number(true) == 1  1 == 1
+    //  true == '1' Number(true) == Number('1')  1 == 1
+    //  null == undefined 相等。空的含义， 其他的一率不等
+    // 原始值与引用值比较
+    //  把引用值准换成原始值，=》 原始值与原始值比较的问题
+    //  如何把引用值转换成原始值？
+    // 引用值就是对象，对象都有方法， valueOf, toSting
+    // 先调用valueOf,如果valueOf返回时原始值，就用原始值比较。否则（不是原始值）
+    // 在调用toString方法，如果是原始值，就用原始值比较，否则（不是原始值），报错
+    // console.log([] == 0)
+    // var obj = {
+    //   valueOf() {
+    //     console.log('valueOf被调用了');
+    //     return [];
+    //   },
+    //   toString() {
+    //     console.log('toString被调用');
+    //     return [];
+    //   },
+    // }
+    // 引用值与引用值比较
+    // 地址比较，地址一样才行。
+
+
+    // ROOM
+    // R(二声，啊？) O(二声，哦？) O(三声，懂了) M(一声， 懂到起飞)
+
+    // + 一元运算 二元
+    // +a Number() 数据类型转换转换成数字  
+    // a + b
+    // 加法 数学中的加法, 数字与数字相加。引用值 => 原始值 => 数字
+    // 字符串拼接 字符串+任何东西都是字符串.
+
+
+    // var a = 30;
+    // var b = 8;
+    // console.log(a%b);
+    // 模运算，取余
+    // 5 / 2 = 2 ... 1
+    // 10 / 3 = 3 ... 1
+    // 30 / 8 = 3 ... 6
+
+
+    // 问题：要把🐘装冰箱，拢共分几步
+    // 1. 把冰箱门打开
+    // 2. 把大象放进去
+    // 3. 大冰箱门关上。
+
+    // 把X装冰箱的方法 fn 是： 
+    // 1. 把冰箱门打开
+    // 2. 把X放进去
+    // 3. 把冰箱门关上。
+
+    // 方法定义，函数定义，函数声明
+    // function fn (val) {
+    //   console.log('1. 把冰箱门打开');
+    //   console.log('2. 把' + val +'放进去');
+    //   console.log('3. 大冰箱门关上');
+    // }
+    // 方法执行，函数调用
+    // fn('💩');
+
+    // 方法：若干步骤的集合
+
+    // 参数
+    // 形式参数，假的，可代替,函数定义占用的.
+    // 实际参数,真实, 函数执行传入的
+    // 把鸡蛋装冰箱
+
+    // 返回值 return 
+
+    // 健壮性 
+
+
+    // var a = [0];
+    // 布尔值，对了，满足条件
+    // 隐式类型转换 转换成布尔值Boolean([0])
+    // if ([0]) {
+    //   console.log(a == true);
+    // } else {
+    //   console.log("wut");
+    // }
+
+    // var i = 0;
+    // while (i < 40) {
+    //   if (i < 30) {
+    //     continue;
+    //     document.write("########");
+    //     i++;
+    //   }
+    // }
+
+    // 循环，for ,while, do while
+    // 避免去写死循环。
+
+    // function getInfo(member, year) {
+    //   // member = person {name: 'css'}对象的地址
+    //   // year  = '1998';
+    //   member.name = "css";
+    //   year = "1998";
+    // }
+
+    // var person = { name: "html" };
+    // var birthYear = "1997";
+    // getInfo(person, birthYear);
+
+    // console.log(person, birthYear);
+
+    // var obj = {
+    //   n: 10,
+    // }
+    // var m = obj.n;
+    // console.log(obj.m)
+
+    // 胖子不是一口吃出来的，但是是一口一口一口吃出来的。
+
+  </script>
+
+
+
+
+
+</body>
+
+</html>

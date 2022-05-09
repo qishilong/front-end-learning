@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        canvas {
+            border: 1px solid #000;
+        }
+        
+        img {
+            border: 1px solid #000;
+        }
+        
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <canvas id="canvas" width="500" height="500"></canvas>
+    <img src="" alt=""> -->
+    <div class="box"></div>
+
+
+    <!-- <script src="./js/blur.js"></script> -->
+    <script src="./gaussBlur.js"></script>
+    <script>
+        var img = new Image();
+        img.src = './img/img_01.jpg';
+        img.onload = function() {
+            window.blurImg(this, document.querySelector('.box')); //- 封装一个方法，生成一个高斯模糊的背景图片
+        }
+    </script>
+</body>
+
+</html>

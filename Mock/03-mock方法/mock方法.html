@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 90%;
+			margin: 0 auto;
+			font-size: 20px;
+			line-height: 60px;
+		}
+
+		th,
+		td {
+			padding: 0;
+			border: 1px solid #99b0da;
+			text-align: center;
+		}
+
+		th {
+			background: #dbe3fa;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="js/mock.js"></script>
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<button id="btn">请求数据</button>
+	<table>
+		<thead>
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>邮箱</th>
+				<th>生日</th>
+				<th>手机号</th>
+				<th>住址</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="table-body"></tbody>
+	</table>
+
+	<script>
+		$('#btn').click(function () {
+			$.ajax({
+				url: 'js/data.json',
+				type: 'get',
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					createDom(data.data);
+				}
+			});
+		});
+
+		function createDom(data) {
+			var str = '';
+			data.forEach(function (item, index) {
+				str += `
+					<tr>
+						<td>${item.sNo}</td>
+						<td>${item.name}</td>
+						<td>${item.sex}</td>
+						<td>${item.email}</td>
+						<td>${item.birth}</td>
+						<td>${item.phone}</td>
+						<td>${item.address}</td>
+						<td>
+							<button>编辑</button>
+							<button>删除</button>
+						</td>
+					</tr>
+				`;
+			});
+			$('#table-body').html(str);
+		};
+
+
+		Mock.mock('js/data.json', {
+			"status": "success",
+			"msg": "查询成功",
+			"data|10": [{
+				"id|+1": 1,
+				"name": "@cname",
+				"birth": "@date",
+				"sex|1": ['男', '女'],
+				"sNo|+1": 11000,
+				"email": "@email",
+				"phone": "@natural(13000000000,19900000000)",
+				"address": "@county(true) @ctitle(5,10)",
+				"appkey": "@string(4,7)_@date(T)",
+				"ctime": "@date(T)",
+           		"utime": "@date(T)"
+			}],
+		});
+
+		Mock.setup({
+			timeout:5000,
+		});
+
+		//https://github.com/YMFE/yapi
+	</script>
+</body>
+<html>
