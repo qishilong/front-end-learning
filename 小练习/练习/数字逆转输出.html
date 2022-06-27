@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    <script>
+
+        function target() {
+            var num = window.prompt('input');
+            var str = "";
+            for(var i = num.length-1 ; i>=0 ; i--){
+                str +=tranform(num[i]);
+            }
+            console.log(str);
+        }
+        function tranform(shuzi) {
+            switch(shuzi){
+                case '0' :
+                    return "零";
+                case '1' :
+                    return "壹";
+                case '2' :
+                    return "贰";
+                case '3' :
+                    return "叁";
+                case '4' :
+                    return "肆";
+                case '5' :
+                    return "伍";
+                case '6' :
+                    return "陆";
+                case '7' :
+                    return "柒";
+                case '8' :
+                    return "捌";
+                case '9' :
+                    return "玖";
+            }
+        }
+    </script>
+</body>
+</html>

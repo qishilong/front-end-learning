@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //浅层克隆
+        // var obj = {
+        //     name : 'abc',
+        //     age : 123,
+        //     sex : 'female',
+        //     card : ['visa', 'unionpay'],
+        // }
+
+        // var obj1 = {};
+
+        // function clone(origin, target){
+        //     var target = target || {};
+        //     for(var prop in origin){
+        //         target[prop] = origin[prop];
+        //     }
+        //     return target;
+        // }
+
+        // clone(obj, obj1);
+        //obj.card.push('abc');
+
+        //深度克隆
+        // var obj = {
+        //     name : 'abc',
+        //     age : 123,
+        //     card : ['visa', 'master'],
+        //     wife : {
+        //         name : 'bcd',
+        //         son : {
+        //             name : 'aaa'
+        //         }
+        //     }
+        // }
+
+        // var obj1 = {
+
+        // }
+
+        // function deepClone(origin, target){
+        //     var target = target || {},
+        //     toStr = Object.prototype.toString,
+        //     arrStr = '[object Array]';
+        //     for(var prop in origin){
+        //         if(origin.hasOwnProperty(prop)){
+        //             if(origin[prop] !== 'null' && typeof(origin[prop]) == 'object'){
+        //                 if(toStr.call(origin[prop]) == arrStr){
+        //                     target[prop] = [];
+        //                 }else{
+        //                     target[prop] = {};
+        //                 }
+        //                 deepClone(origin[prop], target[prop]);
+        //             }else{
+        //                 target[prop] = origin[prop];
+        //             }
+        //         }
+                
+        //     }
+        //     return target;
+        // }
+        //obj1.card.push('abc');
+
+        //三目运算符
+        //  ?   :   
+        //形式：?问号前面是一个条件判断，判断true就走：冒号前面的；false就走：冒号后面的，并且返回值
+        //利用三目运算符简化克隆的代码
+        // function deepClone(origin, target){
+        //     var target = target || {},
+        //     toStr = Object.prototype.toString,
+        //     arrStr = '[object Array]';
+        //     for(var prop in origin){
+        //         if(origin[prop] !== 'null' && typeof(origin[prop]) == 'object'){
+        //             target[prop] = toStr.call(origin[prop]) == arrStr ? [] : {};
+        //             deepClone(origin[prop], target[prop]);
+        //         }else{
+        //             target[prop] = origin[prop];
+        //         }
+        //     }
+        //     return target;
+        // }
+        //obj1.card.push('abc');
+    </script>
+</body>
+</html>

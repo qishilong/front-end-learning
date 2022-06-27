@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>普通轮播图</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen li {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .screen ul {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 3000px;
+            /* width: 6000px; */
+        }
+
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+            /* font-size: 0px; */
+        }
+
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            /* border-radius: 50%; */
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+            /* display: inline-block; */
+            /* margin: 0px auto; */
+            /* text-align: center; */
+        }
+
+        .all ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: none;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+        img:hover{
+            transform: scale(1.2);
+            margin: 1px auto 1px;
+            cursor: pointer;
+            /* transition: all 0.6s; */
+        }
+        img {
+            transition: transform 600ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all" id='box'>
+        <div class="screen">
+            <ul>
+                <li><img src="../images/0.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/1.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/2.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/3.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/4.webp" width="500px" height="200px" /></li>
+                <!-- <li><img src="../images/0.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/1.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/2.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/3.webp" width="500px" height="200px" /></li>
+                <li><img src="../images/4.webp" width="500px" height="200px" /></li> -->
+            </ul>
+            <!-- 动态创建的小方块，添加在这里，样式已经给写好了-->
+            <ol>
+                <!-- <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li> -->
+            </ol>
+        </div>
+        <div id="arr">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+    <script>
+        //获取和创建
+        var box = myId("box");
+        var screen = box.children[0];  //可视区域
+        var list = screen.children[0]; //运动的ul
+        var listUl = list.children;     //图片个数
+        var ol = screen.children[1];   //放置小方块按钮
+        var arr = box.children[1];     //放置箭头的父盒子
+        var arrLeft = arr.children[0]; //操作的箭头
+        var arrRight = arr.children[1];//操作的箭头
+        var imgWid = screen.offsetWidth;
+
+        // 1.总体分为两部分:
+        // 2.实现简单轮播图：点击按钮变色，list的运动
+        // 3.点击按钮变色：根据图片个数创建按钮,实现变色
+
+        // 4.左右焦点图：移入移出显示隐藏，点击运动
+        // 5.点击运动：先跑起来，找到需要特殊处理的点
+        // 6.特殊处理部分：如何判断当前状态？进行什么操作？
+
+        // 1.创建小方块部分
+        for (var i = 0; i < listUl.length; i++) {
+            var li = document.createElement("li");
+            ol.appendChild(li);
+            li.innerHTML = i + 1;
+        }
+
+
+        // 2.设置样式，默认第一个显示
+        var listOl = ol.children;
+        listOl[0].className = "current";
+
+        // 3.点击按钮变色,同时设置list进行运动
+        for (var i = 0; i < listOl.length; i++) {
+            listOl[i].index = i;
+            // 点击事件
+            listOl[i].onclick = function () {
+                // 判断一下，如果当前显示的是假的第一张，抽回
+                if (pic == listUl.length - 1) {
+                    list.style.left = 0 + "px";
+                }
+
+                for (var i = 0; i < listOl.length; i++) {
+                    listOl[i].className = "";
+                }
+                this.className = "current";
+                // 4.点击按钮的时候设置ul滚动
+                var target = -this.index * imgWid;
+                animate(list, target);
+
+                // 让pic跟索引值同步
+                pic = this.index;
+            };
+        }
+
+        // 操作左右按钮部分
+
+        // 由于点击左右按钮时需要无缝滚动，我们克隆第一张图片
+        var firstPic = listUl[0].cloneNode(true);
+        list.appendChild(firstPic);
+
+
+        // 5.点击效果
+        var pic = 0;
+
+        arrRight.onclick = function () {
+            // 在某一次点击的时候，如果当前显示的是假的第一张，我们需要先拉回，然后继续运动
+            // 判断pic的值，如果是length-1，这时拉回来
+            if (pic == listUl.length - 1) {
+                // 拉回来
+                list.style.left = 0 + "px";
+                pic = 0;
+            }
+            // ！！千万别加else，因为滚动是每次执行所必需的
+            pic++;
+            animate(list, -pic * imgWid);
+
+            // 设置对应的按钮进行变色
+            for (var i = 0; i < listOl.length; i++) {
+                listOl[i].className = "";
+            }
+
+            // 由于pic可能取到5，listUl的元素个数比listOl的个数多1,
+            // 所以当我们显示假的第一张时，显示第一个按钮
+            // 这个判断会比上面的判断先一次点击执行
+            if (pic == listUl.length - 1) {
+                listOl[0].className = "current";
+            } else {
+                listOl[pic].className = "current";
+            }
+
+        };
+
+
+        arrLeft.onclick = function () {
+            // 检测，如果当前已经是真的第一张了，这时抽到假的第一张显示的位置
+            if (pic == 0) {
+                list.style.left = -(list.offsetWidth - imgWid) + "px";
+                pic = listUl.length - 1;//设置为5
+            }
+            // 先跑起来
+            pic--;
+            animate(list, -pic * imgWid);
+
+            // 对应按钮显示
+            for (var i = 0; i < listOl.length; i++) {
+                listOl[i].className = "";
+            }
+            // 因为pic的作用是表示当前滚过的图片张数
+            // 但是点击左按钮的时候，没有机会停在假的第一张上。所以取不到listUl.length - 1
+            listOl[pic].className = "current";
+        };
+
+
+        // 自动播放部分
+
+        // 通过观察我们发现，自动播放，实际上就是间隔固定的时间，执行点击右按钮这件事
+        var timer = null;
+        timer = setInterval(function () {
+            arrRight.click();
+        }, 2500);
+
+        box.onmouseover = function () {
+            arr.style.display = "block";
+            // 移入时让自动播放停止
+            clearInterval(timer);
+        };
+
+
+        box.onmouseout = function () {
+            arr.style.display = "none";
+            // 再次设置自动播放
+            timer = setInterval(play, 2500);
+        };
+
+
+        function play() {
+            // 在某一次点击的时候，如果当前显示的是假的第一张，我们需要先抽回，然后继续运动
+            // 判断pic的值，如果是length-1，这时抽回
+            if (pic == listUl.length - 1) {
+                list.style.left = 0 + "px";//抽回
+                pic = 0;
+            }
+            // 千万别加else，因为滚动是每次执行所必需的
+            pic++;
+            animate(list, -pic * imgWid);
+
+            // 设置对应的按钮进行变色
+            for (var i = 0; i < listOl.length; i++) {
+                listOl[i].className = "";
+            }
+            // 由于pic可能取到5，listUl的元素个数比listOl的个数多1,
+            // 所以当我们显示假的第一张时，显示第一个按钮
+            if (pic == listUl.length - 1) {//这个判断会比上面的判断先一次点击执行
+                listOl[0].className = "current";
+            } else {
+                listOl[pic].className = "current";
+            }
+
+        }
+
+
+        // 缓动的animate
+        function animate(tag, target) {
+            clearInterval(tag.timer);
+            tag.timer = setInterval(function () {
+                // 取值时，会进行四舍五入
+                var leader = tag.offsetLeft;
+                // var step = 10;//步长是固定值，导致运动是匀速效果
+                // 缓动公式： （目标位置 - 当前位置）/10
+                var step = (target - leader) / 10;
+                // 对step进行取整操作
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                leader = leader + step;
+                tag.style.left = leader + "px";
+                // 尽管盒子会在到达位置时停住但是我们还要清除定时器
+                if (leader == target) {
+                    clearInterval(tag.timer);
+                }
+            }, 20);
+        }
+
+        function myId(id) {
+            return document.getElementById(id);
+        }
+
+    </script>
+</body>
+
+</html>

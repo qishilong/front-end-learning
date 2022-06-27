@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // reduce
+        // Array.prototype.myReduce = function (fun, initialValue) {
+        //     var len = this.length,
+        //         _this = arguments[2] || window,
+        //         nextValue = initialValue;
+        //     for (var i = 0; i < len; i ++){
+        //         nextValue = fun.apply(_this, [nextValue, this[i], i, this]);
+        //     }
+        //     return nextValue;
+        // }
+
+        // var cookieStr = 'H_WISE_SIDS=107313_110085_127969_164869_175668_176399_178384_178638_179350_179380_179456_179623_181484_181588_181731_182273_182531_183328_184011_184199_184734_184793_184891_184894_186319_186595_186635_186716_186743_186840_186843_187205_187282_187292_187449_187485_187669_187726_187819_187929_187962_188031_188182_188297_188425_188461_188552_188614_188665_188732_188749_188842_188891_189058_189097_189150_189325_189397_189413_189446_189557_189679_189712_189733_189755_189758_189801_189927_190034_190092_190114_190132_190138_190188_190474_190507_190513_190624_190653_190737_190772_191008_191029_191071_191267_191414_191433; BIDUPSID=0B04D3928E308E44703A5874BB6FAC8C; PSTM=1635510980; BAIDUID=F9F3AA833A8A59D1EE131B19F7BC8955:FG=1; BAIDUID_BFESS=F9F3AA833A8A59D1EE131B19F7BC8955:FG=1; COOKIE_SESSION=193_0_3_0_9_0_1_0_3_0_0_0_231_0_40_0_1637647641_0_1637647601%7C3%230_0_1637647601%7C1; BD_UPN=12314753; baikeVisitId=4415c122-4ed0-421c-8c49-bcbedcaf3a9b; channel=home.code-nav.cn; BD_HOME=1; H_PS_PSSID=35105_31253_34584_35245_34871_35318_26350_35474; sug=3; sugstore=1; ORIGIN=0; bdime=0; BA_HECTOR=0k80802k80aha5842l1grgf8t0r';
+
+        // function parseCookieStr (str) {
+        //     var obj = {};
+        //     var cookieArr = str.split('; ');
+        //     return cookieArr.myReduce(function (prevValue, icurValue, index, self){
+        //         // console.log(prevValue, icurValue);
+        //         var arr = icurValue.split('=');
+        //         prevValue[arr[0]] = arr[1];
+        //         return prevValue;
+        //     }, obj);
+        // }
+
+        // var cookieObj = parseCookieStr(cookieStr);
+
+        // reduceRight
+        Array.prototype.myReduceRight = function (fun, initialValue) {
+            var len = this.length,
+                _this = arguments[2] || window,
+                nextValue = initialValue;
+            for (var i = len; i >= 0; i --){
+                nextValue = fun.apply(_this, [nextValue, this[i], i, this]);
+            }
+            return nextValue;
+        }
+
+        var cookieStr = 'H_WISE_SIDS=107313_110085_127969_164869_175668_176399_178384_178638_179350_179380_179456_179623_181484_181588_181731_182273_182531_183328_184011_184199_184734_184793_184891_184894_186319_186595_186635_186716_186743_186840_186843_187205_187282_187292_187449_187485_187669_187726_187819_187929_187962_188031_188182_188297_188425_188461_188552_188614_188665_188732_188749_188842_188891_189058_189097_189150_189325_189397_189413_189446_189557_189679_189712_189733_189755_189758_189801_189927_190034_190092_190114_190132_190138_190188_190474_190507_190513_190624_190653_190737_190772_191008_191029_191071_191267_191414_191433; BIDUPSID=0B04D3928E308E44703A5874BB6FAC8C; PSTM=1635510980; BAIDUID=F9F3AA833A8A59D1EE131B19F7BC8955:FG=1; BAIDUID_BFESS=F9F3AA833A8A59D1EE131B19F7BC8955:FG=1; COOKIE_SESSION=193_0_3_0_9_0_1_0_3_0_0_0_231_0_40_0_1637647641_0_1637647601%7C3%230_0_1637647601%7C1; BD_UPN=12314753; baikeVisitId=4415c122-4ed0-421c-8c49-bcbedcaf3a9b; channel=home.code-nav.cn; BD_HOME=1; H_PS_PSSID=35105_31253_34584_35245_34871_35318_26350_35474; sug=3; sugstore=1; ORIGIN=0; bdime=0; BA_HECTOR=0k80802k80aha5842l1grgf8t0r';
+
+        function parseCookieStr (str) {
+            var obj = {};
+            var cookieArr = str.split('; ');
+            return cookieArr.myReduceRight(function (prevValue, icurValue, index, self){
+                // console.log(prevValue, icurValue);
+                var arr = icurValue.split('=');
+                prevValue[arr[0]] = arr[1];
+                return prevValue;
+            }, obj);
+        }
+
+        var cookieObj = parseCookieStr(cookieStr);
+    </script>
+</body>
+</html>

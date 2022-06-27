@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var personArr = [{
+            name: '王港',
+            src: './src/img/3.png',
+            des: '颈椎不好',
+            sex: 'm',
+            age: '20'
+        }, {
+            name: '刘莹',
+            src: './src/img/5.png',
+            des: '我是谁',
+            sex: 'f',
+            age: 30
+        }, {
+            name: '王秀莹',
+            src: './src/img/4.png',
+            des: '我很好看',
+            sex: 'f',
+            age: 40
+        }, {
+            name: '刘金雷',
+            src: './src/img/1.png',
+            des: '你没有见过陌生的脸',
+            sex: 'm',
+            age: 50
+        }, {
+            name: '刘飞翔',
+            src: './src/img/2.png',
+            des: '瓜皮刘',
+            sex: 'm',
+            age: 17
+        }];
+
+        Array.prototype.myEvery = function (fun) {
+            var len = this.length;
+            var flag = true;
+            var _this = arguments[1] || window;
+            for(var i = 0; i < len; i ++){
+                if(fun.apply(_this, [this[i], i, this]) == false){
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        var obj = {name: 'cst'};
+
+        var flag = personArr.myEvery(function (ele, index, self){
+            console.log(this);
+            if(ele.age > 18){
+                return true;
+            }else{
+                return false;
+            }
+        }, obj);
+
+        console.log(flag);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script>
+
+        var div = document.getElementsByTagName('div')[0];
+        div.style.height = '100px';
+        div.style.width = '100px';
+        div.style.backgroundColor = 'red';
+
+        // div.onclick = function() {               //这种方式不行，不能实现点一次变一次
+        //     var count = 0;
+        //     if(count == 0){
+        //         this.style.backgroundColor = 'green';
+        //         count ++;
+        //     }else{
+        //         this.style.backgroundColor = 'red';
+        //     }
+        // }
+
+        // var count = 0;
+        // div.onclick = function() {
+        //     count ++;
+        //     if(count % 2 == 1){
+        //         this.style.backgroundColor = 'green';
+        //     }else{
+        //         this.style.backgroundColor = 'red';
+        //     }
+        // }
+    </script>
+</body>
+</html>

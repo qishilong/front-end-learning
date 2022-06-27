@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串逆序</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li{
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-weight: 700;
+            background-color: #fac;
+            color: #fff;
+            float: left;
+            font-size: 24px;
+        }
+
+        .arrow{
+            border: 50px solid transparent;
+            height: 0px;
+            width: 0px;
+            border-bottom-color: #fac;
+        }
+
+        .active{
+            background-color: rgb(215, 18, 233);
+        }
+    </style>
+</head>
+<body>
+    <ul class="wrapper">
+        <!-- 动态生成li -->
+    </ul>
+
+    <div class="arrow right"></div>
+    <div class="arrow left"></div>
+
+    <script>
+        function $(s){
+            return document.querySelector(s);
+        }
+
+        function $$(s){
+            return document.querySelectorAll(s);
+        }
+
+        var wrapper = $('.wrapper');
+        var right = $('.right');
+        var left = $('left');
+        
+        var arr = [1,2,3,4,5,6,7,8];
+        var lenght = arr.lenght;
+
+        arr.foreach()
+    </script>
+</body>
+</html>

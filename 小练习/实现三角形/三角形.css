@@ -1,0 +1,7 @@
+.div {
+    height: 200px;
+    width: 200px;
+    
+    border: 100px solid #000;
+    border-color: #000 #000 #fff #fff;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- <div onclick = "console.log('first div')" >
+        <div onclick = "console.log('second div')" >
+            <button onclick = "console.log('button')">
+                Click!
+            </button>
+        </div> 
+    </div> -->
+
+
+    <!-- <div onclick = "console.log('div')">
+        <p onclick = "console.log('p')">
+            Click here!
+        </p>
+    </div> -->
+
+    <!-- <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <script>
+        var oDivMap = document.getElementsByClassName('content');
+        oDivMap[1].className = 'wrapper';
+        console.log(oDivMap.length);
+    </script> -->
+
+
+    <script>
+        // var a = 10;
+        // function a() {};
+        // console.log(typeof (a));
+
+        // var foo = 'foo';
+        // var bar = 'bar';
+
+        // function myFunc(){
+        //     return foo + bar;
+        // }
+        // console.log(myFunc());
+
+        // function showCase(value) {
+        //     switch(value) {
+        //         case 'A':
+        //             console.log('Case A');
+        //             break;
+        //         case 'B':
+        //             console.log('Case B');
+        //             break;
+        //         case undefined:
+        //             console.log('undefined');
+        //             break;
+        //         default:
+        //             console.log('Do not know!');
+        //     }
+        // }
+        // showCase(new String('A'));
+
+        // var a = [0];
+        // if ([0]) {
+        //     console.log(a == true);
+        // } else {
+        //     console.log('wut');
+        // }
+
+        // var i = 0;
+        // while( i < 40 ){
+        //     if( i < 30 ) {
+        //         continue;
+        //         document.write('########');
+        //         i ++;
+        //     }
+        // }
+
+        // function getInfo(member, year) {
+        //     member.name = 'css';
+        //     year = '1998';
+        // }
+
+        // var person = { name : 'html'};
+        // var birthYear = '1997';
+        // getInfo(person, birthYear);
+        // console.log(person, birthYear);
+
+        // var obj = {
+        //     n : 10,
+        //     m : obj.n * 10
+        // }
+        // console.log(obj.m);
+
+        // var arr1 = [3, 4];
+        // var arr2 = arr1;
+        // arr2[0] = 1;
+        // arr2 = [4, 5];
+        // arr2[1] = 2;
+        // arr1[1] = 0;
+        // console.log(arr1, arr2);
+
+        // function sum (a, b) {
+        //     return a + b;
+        // }
+        // console.log(sum(1, '2'));
+
+        // function bar() {
+        //     return foo;
+        //     foo = 10;
+        //     function foo() {
+        //         var foo = 11;
+        //     }
+        // }
+        // console.log(bar());
+
+        // function foo(a) {
+        //     var a;
+        //     return a;
+        // }
+        // function bar(a) {
+        //     var a = 'bye';
+        //     return a;
+        // }
+        // console.log([foo('hello'), bar('hello')]);
+
+        // function test(a, b) {
+        //     console.log(a);
+        //     console.log(b);
+        //     var b = 234;
+        //     console.log(b);
+        //     a = 123;
+        //     console.log(a);
+        //     function a() {};
+        //     var a;
+        //     b = 234;
+        //     var b = function () {};
+        //     console.log(a);
+        //     console.log(b);
+        // }
+        // test(1);
+
+        // var user = '渡一教育';
+        // function first() {
+        //     console.log(user);
+        // }
+        // function second() {
+        //     var user = '工程师';
+        //     first();
+        // }
+        // second();
+
+        // function fun(num) {
+        //     console.log(num);
+        //     var num = 5;
+        //     console.log(num);
+        // }
+        // fun(10);
+
+        // global = 100;
+        // function fn() {
+        //     console.log(global);
+        //     global = 200;
+        //     console.log(global);
+        //     var global = 300;
+        // }
+        // fn();
+        // var global;
+
+        // var val = 12;
+        // function fun1() {
+        //     console.log(val);
+        //     var val = 20;
+        //     console.log(val);
+        // }
+        // fun1();
+
+        // (function() {
+        //     var x = y = 1;
+        // })();
+        // console.log(y);
+        // console.log(x);
+
+        // var name = 'World!';
+        // (function () {
+        //     if (typeof name === 'undefined') {
+        //         var name = 'Jack';
+        //         console.log('Goodbye' + name);
+        //     } else {
+        //         console.log('Hello' + name);
+        //     }
+        // })();
+
+        // String.prototype.giveLydiaPizza = function () {
+        //     return 'Just give Lydia pizza already!';
+        // }
+        // const name = 'Lydia';
+        // console.log(name.giveLydiaPizza());
+
+        // var F = function () {};
+        // Object.prototype.a = function() {};
+        // Function.prototype.b = function () {};
+        // var f = new F();
+
+        // console.log(Array.isArray(Array.prototype));
+
+        // var obj = {};
+        // obj.log = console.log;
+        // obj.log.call(console, this);
+
+        // function Foo(){
+        //     console.log(this.age);
+        // }
+        // Foo();
+
+        // function Person(firstName, lastName) {
+        //     this.firstName = firstName;
+        //     this.lastName = lastName;
+        // }
+        // const lydia = new Person('Lydia', 'Hallie');
+        // const sarah = Person('Sarah', 'Smith');
+
+        // console.log(lydia);
+        // console.log(sarah);
+
+        // function sideEffecting(arr) {
+        //     arr[0] = arr[2];
+        // }
+        // function bar(a, b, c) {
+        //     c = 10;
+        //     sideEffecting(arguments);
+        //     return a + b + c;
+        // }
+        // console.log(bar(1, 1, 1));
+
+        // function fn(arg1, arg2) {
+        //     console.log(arg1, arg2);
+        //     arguments[0] = 'duyi';
+        //     arg2 = 'web';
+        //     console.log(arg1);
+        //     console.log(arguments[1]);
+        // }
+        // fn('html', 'css');
+
+        // function getAge() {
+        //     'use strict';
+        //     age = 21;
+        //     console.log(age);
+        // }
+        // getAge();
+
+        // for(var i = 0; i < 5; i ++){
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 1000)
+        // }
+
+        // function buildList(list) {
+        //     var result = [];
+        //     for (var i = 0; i < list.length; i ++){
+        //         var len = result.length;
+        //         var item = 'item' + i;
+        //         result[len] = function () {
+        //             console.log(item + list[i]);
+        //         }
+        //     } 
+        //     return result;
+        // }
+        // function testList() {
+        //     var fnlist = buildList([1, 2, 3]);
+        //     for(var j = 0;j < fnlist.length; j ++){
+        //         fnlist[j]();
+        //     }
+        // }
+        // testList();
+
+        // function foo() {
+        //     var name = 'shanshan';
+        //     return function () {
+        //         console.log(name);
+        //     }
+        // }
+        // var bar = foo();
+        // bar();
+
+        // function addCount(count) {
+        //     return function (add) {
+        //         count = count + add;
+        //         console.log(count);
+        //     }
+        // }
+        // addCount(2)(3);
+
+        // function sayHello(name) {
+        //     var text = name;
+        //     var say = function () {
+        //         console.log(text);
+        //     }
+        //     return say;
+        // }
+        // var say2 = sayHello('lily');
+        // say2();
+
+        // function fn() {
+        //     var num = 0;
+        //     return function () {
+        //         num += 1;
+        //         console.log(num);
+        //     }
+        // }
+        // var f = fn();
+        // f();
+        // f();
+
+        // var a = Date(0);
+        // var b = new Date(0);
+        // var c = new Date();
+        // console.log([a === b, b === c, a === c]);
+
+        // 2.toString();//会报错    
+        //             //之所以会报错，是因为在这里的 . 发生了歧义。
+        //             //它既可以理解为小数点，也可以理解为对方法的调用，问题就出在这里，
+        //             //我们想要后一种理解，而实际上，因为这个点紧跟于一个数字之后，//
+        //             //按照规范，解释器就把它判断为一个小数点。
+        //             //我们也可以看下抛出的异常信息：“标识符紧跟于一个数字字面量之后。”说明 2.toString() 在解释器看来其实是：(2.)toString();
+        //             //下面几种写法也是可行的：
+        //             //(2).toString();
+        //             //2 .toString();  //加个空格
+        //             //2.0.toString();
+        // 2..toString();
+        // 2 .toString();
+        // (2).toString();
+
+        // var arr = [1, 2, 3, 4, 5];
+        // console.log(arr.length);
+        // arr.length = 2;
+        // console.log(arr);
+        // arr.length = 3;
+        // console.log(arr);
+
+        // (function () {
+        //     try {
+        //         throw new Error;
+        //     } catch (x) {
+        //         var x = 1;
+        //             y = 2;
+        //         console.log(x);
+        //     }
+        //     console.log(x);
+        //     console.log(y);
+        // }())
+
+        // var str = 'abc';
+        // console.log(str.length);
+        // str.length = 1;
+        // console.log(str);
+        // console.log(str.length);
+
+        // var name = 'shanshan';
+        // name += 10;
+        // var type = typeof(name);
+        // if(type.length === 6) {
+        //     type.text = 'string';
+        // }
+        // console.log(type.text);
+
+        // console.log(1 + '2' + '2');
+        // console.log(1 + + '2' + '2');
+        // console.log('A' - 'B' + '2');
+        // console.log("A" - 'B' + 2);
+    </script> 
+</body>
+</html>

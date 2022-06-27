@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="height : 100px; width: 100px; border: 1px solid #000;"></div>
+    <script>
+
+        //function getStyle (elem,prop){}
+        //elem 是指获取的谁（dom 元素），prop 是获取的是什么属性
+        var div = document.getElementsByTagName('div')[0];
+        function getStyle() {
+            if(window.getComputedStyle) {
+                return window.getComputedStyle(elem, null)[prop];
+            }else{
+                return elem.currentStyle[prop];
+            }
+        }
+    </script>
+</body>
+</html>

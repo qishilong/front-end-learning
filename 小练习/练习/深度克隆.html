@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var obj = {
+            name: 'abc',
+            age: 123,
+            card: ['visa', 'master'], //原始对象
+            wife: {
+                name: 'bcd',
+                son: {
+                    name: 'aaa'
+                }
+            }
+        }
+        var obj1 = {
+
+        }
+
+        //for循环
+        // function deepClone(origin, target) {
+        //     var target = target || {};
+        //     var toStr = Object.prototype.toString;
+        //     var arrStr = '[object Array]';
+        //     for (var prop in origin) {
+        //         if (origin.hasOwnProperty(prop)) {
+        //             if (origin[prop] !== 'null' && typeof (origin[prop]) == 'object') {
+        //                 if (toStr.call(origin[prop] == arrStr)) {
+        //                     target[prop] = [];
+        //                 } else {
+        //                     target[prop] = {};
+        //                 }
+        //                 deepClone(origin[prop], target[prop]);
+        //             } else {
+        //                 target[prop] = origin[prop];
+        //             }
+        //         }
+        //     }
+        //     return target;
+        // }
+
+        //三目运算符
+        function deepClone(origin, target) {
+            var target = target || {};
+            var toStr = Object.prototype.toString;
+            var arrStr = '[object Array]';
+            for (var prop in origin) {
+                if (origin.hasOwnProperty(prop)) {
+                    if (origin[prop] !== 'null' && typeof (origin[prop]) == 'object') {
+                        // if (toStr.call(origin[prop] == arrStr)) {
+                        //     target[prop] = [];
+                        // } else {
+                        //     target[prop] = {};
+                        // }
+                        target[prop] = toStr.call(origin[prop]) == arrStr ? [] : {};
+                        deepClone(origin[prop], target[prop]);
+                    } else {
+                        target[prop] = origin[prop];
+                    }
+                }
+            }
+            return target;
+        }
+        // 深度克隆的步骤
+        // 1、 先把所有的值都遍历一遍（ 看是引用值和原始值）用for (var prop in obj)， 对象和数组都可以使用
+        // 2、 判断是原始值， 还是引用值？ 用 typeof 判断是不是 object
+        // 1） 如果是原始值就直接拷贝
+        // 2） 如果是引用值， 判断是数组还是对象
+        // 3、 判断是数组还是对象？（ 方法 instanceof【 看 a 的原型链上有没有 b 的原型】、
+        // toString、 constructor， 建议用 toString, 另外两个有个小 bug—— 跨父子域不行）
+        // 1） 如果是数组， 就新建一个空数组；
+        // 2） 如果是对象， 就新建一个空对象。
+        // 4、 建立了数组以后， 如果是挨个看原始对象里面是什么， 都是原始值就可以直接考
+        // 过来了； 或者， 建立了对象以后， 挨个判断对象里面的每一个值， 看是原始值还是引用值
+        // 5、 递归
+    </script>
+</body>
+
+</html>

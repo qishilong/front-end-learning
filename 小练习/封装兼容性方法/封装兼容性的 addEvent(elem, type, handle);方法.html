@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="width: 100px; height: 100px; background-color: red;"></div>
+
+    <script>
+        //addEvent 是给一个 dom 对象添加一个该事件类型的处理函数
+        var div = document.getElementsByTagName('div');
+        function addEvent(elem, type, handle) {
+            if(elem.addEveneListener) {
+                elem.addEveneListener(elem, handle, false);
+            }else if(elem.attachEvent) {
+                elem.addEvent('on' + type, function() {
+                    handle.call(elem);
+                })
+            }else{
+                elem['on' + type] = handle;
+            }
+        }
+    </script>
+</body>
+</html>

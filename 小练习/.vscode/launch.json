@@ -1,0 +1,14 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Open 闭包，实现变量私有化属性.html",
+            "file": "c:\\Users\\戚世龙\\Desktop\\平常练习\\练习\\闭包，实现变量私有化属性.html"
+        }
+    ]
+}

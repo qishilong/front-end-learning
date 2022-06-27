@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 公有原型式继承
+        // Father.prototype.lastName = "Deng";
+        // function Father(){
+
+        // }
+        // function Son(){
+
+        // }
+        // Son.prototype = Father.prototype;
+        // var son = new Son();
+        // var father = new Father();
+
+        // 抽象出一个功能，封装函数
+        // Father.prototype.lastName = 'Deng';
+        // function Father(){
+
+        // }
+        // function Son(){
+
+        // }
+        // function inherit(Target, Origin){
+        //     Target.prototype = Origin.prototype;
+        // }
+        // inherit(Son, Father);  //先继承后构造（如果先构造后继承，将不会产生继承）
+        // var son = new Son();
+
+
+        // 继承关系：圣杯模式
+        // Son的原型式new F()，F的原型是Father，这是两层关系，不是一层，在Son里加减东西不会对Father造成影响
+        // function inherit(Target, Origin){
+        //     function F(){};
+        //     F.prototype = Origin.prototype;
+        //     Target.prototype = new F();
+        // }
+        // Father.prototype.lastName = 'Deng';
+        // function Father(){
+
+        // }
+        // function Son(){
+
+        // }
+        // inherit(Son, Father);
+        // var son = new Son();
+        // var father = new Father();
+
+        // son.__proto__-->new F().__proto__-->Father.prototype  //son的原型链指向
+        // function inherit(Target, Origin){
+        //     function F(){};
+        //     F.prototype = Origin.prototype;
+        //     Target.prototype = new F();
+        //     Target.prototype.constuctor = Target;  //将Son的原型链指向改为Son的构造函数
+        //     Target.prototype.uber = Origin.prototype;  //查看究竟继承的是谁的属性（超类），F()只是中间层，Son真正继承的是Father，通过这可以查看
+        // }
+        // Father.prototype.lastName = 'Deng';
+        // function Father(){
+    
+        // }
+        // function Son(){
+
+        // }
+        // inherit(Son, Father);
+        // var son = new Son();
+        // var father = new Father();        
+    </script>
+</body>
+</html>

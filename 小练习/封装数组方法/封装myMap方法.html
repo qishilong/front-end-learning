@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var personArr = [{
+            name: '王港',
+            src: './src/img/3.png',
+            des: '颈椎不好',
+            sex: 'm'
+        }, {
+            name: '刘莹',
+            src: './src/img/5.png',
+            des: '我是谁',
+            sex: 'f'
+        }, {
+            name: '王秀莹',
+            src: './src/img/4.png',
+            des: '我很好看',
+            sex: 'f'
+        }, {
+            name: '刘金雷',
+            src: './src/img/1.png',
+            des: '你没有见过陌生的脸',
+            sex: 'm'
+        }, {
+            name: '刘飞翔',
+            src: './src/img/2.png',
+            des: '瓜皮刘',
+            sex: 'm'
+        }];
+
+        Array.prototype.myMap = function (fun) {
+            var len = this.length;
+            var arr = [];
+            var _this = arguments[1] || window;
+            for(var i = 0; i < len; i ++){
+                arr.push(fun.call(_this, this[i], i, self)); //这里用call和用apply是一样的
+                                                             //apply的写法：arr.push(fun.apply(_this, [this[i], i, self]));
+            }
+            return arr;
+        }
+
+        var obj = {name:'cst'};
+        var newNameArr = personArr.myMap(function (ele, index, self) {
+            console.log(this, ele, index, self);
+            return ele.name;
+        }, obj);
+
+        console.log(newNameArr);
+    </script>
+</body>
+
+</html>

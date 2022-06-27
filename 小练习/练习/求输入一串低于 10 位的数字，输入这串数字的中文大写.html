@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function test() {
+            var num_dict = {
+                "0": "零", 
+                "1": "壹",
+                "2": "贰",
+                "3": "叁",
+                "4": "肆",
+                "5": "伍",
+                "6": "陆",
+                "7": "柒",
+                "8": "捌",
+                "9": "玖",
+                "10": "拾",
+            };
+            var test_num = prompt("请输入一串低于10位的数字：");
+            if (test_num === "0") {
+                console.log(num_dict[0]);
+                return;
+            }
+            reg = /^[1-9][0-9]{0,8}$/; //1-9位数
+            /*判断是否是正确的输入*/
+            if (test_num.search(reg)) {
+                console.error("请正确输入!");
+                return;
+            }
+            /*将字符串以4位一个进行切割*/
+            var result = "";
+            var flag = 0;
+            var flag_dict = {
+                "0": "",
+                "1": "万",
+                "2": "亿"
+            };
+            for (var i = test_num.length; i > 0;) {
+                /*切片*/
+                var son_str;
+                if (i - 4 > 0) {
+                    son_str = test_num.slice(i - 4, i);
+                    i -= 4;
+                } else {
+                    son_str = test_num.slice(0, i);
+                    i = 0;
+                }
+                if (son_str != 0) {
+                    result = exchange(son_str) + flag_dict[flag] + result;
+                }
+                flag++;
+            }
+            /*对每一片进行处理*/
+            function exchange(son_str) {
+                var pre_result = "";
+                var dict = {
+                    "0": "仟",
+                    "1": "佰",
+                    "2": "拾",
+                    "3": ""
+                };
+                var i = 0;
+                while (i < son_str.length) {
+                    if (son_str[i] != 0) {
+                        pre_result = pre_result + num_dict[son_str[i]] + dict[4 - son_str.length + i];
+                    } else {
+                        if (son_str[i + 1] != 0 && i + 1 < son_str.length)
+                            pre_result = pre_result + num_dict[0];
+                    }
+                    i++;
+                }
+                return pre_result;
+            }
+            console.log(test_num);
+            console.log(result);
+        }
+        test();
+    </script>
+</body>
+
+</html>

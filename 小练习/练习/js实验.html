@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            height: 100px;
+            width: 100px;
+            border: 1px solid #000;
+            color: red;
+            font-size: 50px;
+            text-align: right;
+            padding: 25px;
+            margin-top: 100px;
+            float: left;
+        }
+        .demo{
+            text-align: center;
+        }
+        button{
+            position:absolute;
+            top: 300px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="0">
+    <input type="text" value=":" class="demo">
+    <input type="text" value="0">
+    <input type="text" value=":" class="demo">
+    <input type="text" value="0">
+    <button>停止</button>
+
+    <script>
+        //获取input
+        var olocksNode = document.getElementsByTagName('input')[0],
+            minutesNode = document.getElementsByTagName('input')[2],
+            secondsNode = document.getElementsByTagName('input')[4],
+            button = document.getElementsByTagName('button')[0];
+        var olocks = 0,
+            minutes = 0,
+            seconds = 0;
+        //设置定时器
+        var timer = setInterval(function () {
+            seconds ++;
+            if(seconds == 60){
+                seconds = 0;
+                minutes ++;
+                if(minutes == 60){
+                    minutes = 0;
+                    olocks ++;
+                    if(olocks == 24){
+                        olocks = 0;
+                    }
+                }
+            }
+            olocksNode.value = olocks;
+            minutesNode.value = minutes;
+            secondsNode.value = seconds;
+        //当点击button按钮时清除定时器
+            button.onclick = function(){
+                clearInterval(timer);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

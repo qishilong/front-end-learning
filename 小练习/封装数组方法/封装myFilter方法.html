@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var personArr = [{
+            name: '王港',
+            src: './src/img/3.png',
+            des: '颈椎不好',
+            sex: 'm'
+        }, {
+            name: '刘莹',
+            src: './src/img/5.png',
+            des: '我是谁',
+            sex: 'f'
+        }, {
+            name: '王秀莹',
+            src: './src/img/4.png',
+            des: '我很好看',
+            sex: 'f'
+        }, {
+            name: '刘金雷',
+            src: './src/img/1.png',
+            des: '你没有见过陌生的脸',
+            sex: 'm'
+        }, {
+            name: '刘飞翔',
+            src: './src/img/2.png',
+            des: '瓜皮刘',
+            sex: 'm'
+        }];
+
+        Array.prototype.myFilter = function (fun) {
+            var arr = [];
+            var len = this.length;
+            var _this = arguments[1] || window; //这里这样写和三目运算符是一样的
+            for(var i = 0; i < len; i ++){
+                fun.apply(_this, [this[i], i, this]) && arr.push(this[i]); //这里这样写和三目运算符的效果也是一样的
+            }
+            return arr;
+        }
+
+        var obj = {
+            name: 'cst'
+        }
+
+        var newArr = personArr.myFilter(function (ele, index, self){
+            console.log(this);
+            return ele.sex == 'm';
+        }, obj);
+
+        console.log(newArr);
+    </script>
+</body>
+
+</html>

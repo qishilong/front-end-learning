@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        ul{
+            position: relative;
+            margin: 100px auto;
+            width: 800px;
+            height: 100px;
+        }
+        .ele{
+            float: left;
+            height: 98px;
+            width: 198px;
+            border: 1px solid black;
+            line-height: 98px;
+            text-align: center;
+            background-color: orange;
+        }
+        .bg{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 200px;
+            height: 100px;
+            opacity: 0.5;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li class="ele">1</li>
+        <li class="ele">2</li>
+        <li class="ele">3</li>
+        <li class="ele">4</li>
+        <li class="bg"></li>
+    </ul>
+
+    <script>
+        var ele = document.getElementsByTagName('li');
+            bg = ele[ele.length - 1];
+            timer = null;
+        for (var i = 0;i < ele.length - 1; i ++){
+            ele[i].onmouseenter = function (){
+                console.log(this.offsetLeft);
+                starMove(bg, this.offsetLeft);
+            }
+        }
+
+        function starMove(dom, target){
+            clearInterval(timer);
+            var speed = 0;
+                a = 1;
+                u = 0.8;
+            timer = setInterval(function (){
+                a = (target - dom.offsetLeft) / 5;
+                speed += a;
+                speed *= u;
+                console.log(speed, target - dom.offsetLeft);
+                if(Math.abs(speed) < 1 && Math.abs(target - dom.offsetLeft) < 1){
+                    clearInterval(timer);
+                    dom.style.left = target + 'px';
+                }else{
+                    dom.style.left = dom.offsetLeft + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</body>
+</html>

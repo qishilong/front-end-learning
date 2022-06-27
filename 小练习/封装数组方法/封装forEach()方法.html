@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var personArr = [{
+            name: '王港',
+            src: './src/img/3.png',
+            des: '颈椎不好',
+            sex: 'm'
+        }, {
+            name: '刘莹',
+            src: './src/img/5.png',
+            des: '我是谁',
+            sex: 'f'
+        }, {
+            name: '王秀莹',
+            src: './src/img/4.png',
+            des: '我很好看',
+            sex: 'f'
+        }, {
+            name: '刘金雷',
+            src: './src/img/1.png',
+            des: '你没有见过陌生的脸',
+            sex: 'm'
+        }, {
+            name: '刘飞翔',
+            src: './src/img/2.png',
+            des: '瓜皮刘',
+            sex: 'm'
+        }];
+
+        Array.prototype.myForEach = function (fun) {
+            var len = this.length;
+            var _this = arguments[1] != undefined ? arguments[1] : window;
+            for (var i = 0; i < len; i++) {
+                fun.apply(_this, [this[i], i, this]);
+                // fun(this[i], i, this);
+            }
+        }
+
+        function deal(ele, index, self) {
+            oLiArray[index].innerText = ele.name;
+            console.log(ele, index, self, this);
+            // console.log(ele, index, self);
+        }
+
+        var obj = {
+            name: 'cst'
+        }
+        personArr.myForEach(deal, obj);
+        // personArr.myForEach(deal);
+        //这里关于fun为什么这样写做一些说明，forEach(函数，对象)，forEach()可以传入两个参数，第一个
+        //比较重要，第一个传入的是函数，根据函数中传入的数组的长度决定循环次数；在这里fun可以这样写
+        //是因为这时myForEach(deal)中传入的是一个函数，相当于myForEach传入的参数，fun这时就代表
+        //这个传入的参数，也就是deal这个函数，简而言之，forEach中传入的参数是函数，fun是形参，代表的是
+        //是传入的函数
+    </script>
+</body>
+
+</html>
